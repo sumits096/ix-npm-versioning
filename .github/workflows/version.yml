@@ -3,7 +3,7 @@ name: Version Increment
 on:
   push:
     branches:
-      - main
+      - version-changes
 
 jobs:
   version:
@@ -12,9 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          submodules: 'true'
           token: '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'
-      - run: env GIT_TERMINAL_PROMPT=1 go get https://github.com/sumits096/ix-npm-versioning
-      - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
+      # - run: env GIT_TERMINAL_PROMPT=1 go get https://github.com/sumits096/ix-npm-versioning
+      # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "1.2.3"
