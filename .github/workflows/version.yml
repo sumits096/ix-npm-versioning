@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          token: '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'
       - run: git config --global user.name 'sumits096'
       - run: git config --global user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
