@@ -11,10 +11,10 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}   # checkout the correct branch name
-          fetch-depth: 0                # fetch the whole repo history
-          token: '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'
+        # with:
+        #   ref: ${{ github.head_ref }}   # checkout the correct branch name
+        #   fetch-depth: 0                # fetch the whole repo history
+        #   token: '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'
       # - run: env GIT_TERMINAL_PROMPT=1 go get https://github.com/sumits096/ix-npm-versioning
       # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
       - run: git config --global --add user.name 'sumits096'
