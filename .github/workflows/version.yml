@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: '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'
+      - run: export GIT_TERMINAL_PROMPT=1
+      - run: go get
       - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
       - run: git config --global user.name 'sumits096'
       - run: git config --global user.email 'sumits@incubxperts.com'
