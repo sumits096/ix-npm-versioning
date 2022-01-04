@@ -20,4 +20,4 @@ jobs:
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
-      - run: git push origin
+      - run: git push
