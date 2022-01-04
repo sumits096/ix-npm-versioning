@@ -11,7 +11,8 @@
     "lint": "eslint '**/*.js'",
     "fix": "eslint --fix '**/*.js'",
     "preversion": "git push && git push --tags",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "build": "APP_VERSION=$npm_package_version react-scripts build"
   },
   "engines": {
     "node": "14.*.*"
