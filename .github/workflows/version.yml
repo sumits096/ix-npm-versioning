@@ -3,7 +3,7 @@ name: Version Increment
 on:
   pull_request:
     branches:
-      - origin/main
+      - version-changes
 
 jobs:
   version:
