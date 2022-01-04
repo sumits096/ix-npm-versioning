@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       #   with:
       #     submodules: 'true'
       #     token: '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'
@@ -18,7 +18,7 @@ jobs:
       # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
-      - run: rm -rf node_modules
+      # - run: rm -rf node_modules
       - run: npm version patch
-      - run: git commit package-lock.json
+      # - run: git commit package-lock.json
       - run: git push
