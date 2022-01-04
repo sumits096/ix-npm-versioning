@@ -10,8 +10,8 @@
     "system-test": "NAME=Cloud mocha test/system.test.js --timeout=180000",
     "lint": "eslint '**/*.js'",
     "fix": "eslint --fix '**/*.js'",
-    "preversion": "git push origin/main && git push origin/main --tags",
-    "postversion": "git push origin/main && git push origin/main --tags"
+    "preversion": "git push origin/version-changes && git push origin/version-changes --tags",
+    "postversion": "git push origin/version-changes && git push origin/version-changes --tags"
   },
   "engines": {
     "node": "14.*.*"
