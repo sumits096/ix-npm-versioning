@@ -15,8 +15,17 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
 
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'user.name', 'sumits096']
+
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['test']
+  args: ['version','prepatch']
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run-script','build']
 
 - name: 'gcr.io/cloud-builders/npm'
   args: ['publish']
