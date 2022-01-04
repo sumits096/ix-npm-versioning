@@ -3,7 +3,7 @@ name: Version Increment
 on:
   push:
     branches:
-      - main
+      - version-changes
 
 jobs:
   version:
@@ -18,6 +18,8 @@ jobs:
       # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
-      - run: cd..
+      - run: rm -rf node_modules
+      - run: npm install
       - run: npm version patch
+      - run: git commit package-lock.json
       - run: git push
