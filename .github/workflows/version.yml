@@ -1,9 +1,9 @@
 name: Version Increment
 
 on:
-  pull_request:
+  push:
     branches:
-      - version-changes
+      - main
 
 jobs:
   version:
@@ -17,6 +17,8 @@ jobs:
         #   token: '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'
       # - run: env GIT_TERMINAL_PROMPT=1 go get https://github.com/sumits096/ix-npm-versioning
       # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
+      - run: echo $VERSION
+      - run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
