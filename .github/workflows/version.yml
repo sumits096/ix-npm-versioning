@@ -22,7 +22,7 @@ jobs:
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
-      - run: git pull ${{ github.head_ref }}
+      - run: git pull origin ${{ github.head_ref }}
       - run: git push
       # - run: |
       #         echo "Slug variables"
