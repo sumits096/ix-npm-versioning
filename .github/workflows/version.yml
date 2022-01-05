@@ -19,8 +19,8 @@ jobs:
       # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
       - run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
       - run: echo ${{ github.head_ref }}
-      # - run: git config --global --add user.name 'sumits096'
-      # - run: git config --global --add user.email 'sumits@incubxperts.com'
+      - run: git config --global --add user.name 'sumits096'
+      - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
       - run: git push ${{ github.head_ref }}
       # - run: |
