@@ -23,7 +23,7 @@ jobs:
       # - run: git config --global --add user.email 'sumits@incubxperts.com'
       # - run: npm version patch -m "[RELEASE] %s"
       # - run: git push
-       run: |
+        - run: |
               echo "Slug variables"
               echo " - ${{ env.GITHUB_REF_SLUG }}"    
               echo " - ${{ env.GITHUB_HEAD_REF_SLUG }}"
