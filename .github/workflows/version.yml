@@ -1,9 +1,9 @@
 name: Version Increment
 
 on:
-  push:
+  pull_request:
     branches:
-      - ${{ github.head_ref }}
+      - main
 
 jobs:
   version:
@@ -22,7 +22,7 @@ jobs:
       # - run: git config --global --add user.name 'sumits096'
       # - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
-      - run: git push
+      - run: git push ${{ github.head_ref }}
       # - run: |
       #         echo "Slug variables"
       #         echo " - ${{ env.GITHUB_REF_SLUG }}"    
