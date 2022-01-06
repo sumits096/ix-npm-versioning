@@ -23,7 +23,7 @@ jobs:
       - run: git config --global --add user.email 'sumits@incubxperts.com'
       - run: npm version patch -m "[RELEASE] %s"
       - run: git merge FETCH_HEAD
-      - run: git commit -m "initial commit"
+      # - run: git commit -m "initial commit"
       - run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
       # - run: git pull origin ${{ github.head_ref }}
       # - run: git push
