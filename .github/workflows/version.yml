@@ -15,31 +15,47 @@ jobs:
         #   ref: ${{ github.head_ref }}   # checkout the correct branch name
         #   fetch-depth: 0                # fetch the whole repo history
         #   token: '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'
-      # - run: env GIT_TERMINAL_PROMPT=1 go get https://github.com/sumits096/ix-npm-versioning
-      # - run: git config --global --add url."ssh://git@github.com:".insteadOf "https://github.com/"
-      - run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-      - run: echo ${{ github.head_ref }}
-      - run: git config --global --add user.name 'sumits096'
-      - run: git config --global --add user.email 'sumits@incubxperts.com'
-      - run: npm version patch -m "[RELEASE] %s"
-      - run: git merge FETCH_HEAD
-      # - run: git commit -m "initial commit"
-      - run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
-      # - run: git pull origin ${{ github.head_ref }}
-      # - run: git push
-      # - run: |
-      #         echo "Slug variables"
-      #         echo " - ${{ env.GITHUB_REF_SLUG }}"    
-      #         echo " - ${{ env.GITHUB_HEAD_REF_SLUG }}"
-      #         echo " - ${{ env.GITHUB_BASE_REF_SLUG }}"
-      #         echo " - ${{ env.GITHUB_REPOSITORY_SLUG }}"
-      #         # output e.g. : master feat-new-feature v1.0.0 product-1.0.0-rc.2 new-awesome-product
-      #         echo "Slug URL variables"
-      #         echo " - ${{ env.GITHUB_REF_SLUG_URL }}"
-      #         echo " - ${{ env.GITHUB_HEAD_REF_SLUG_URL }}"
-      #         echo " - ${{ env.GITHUB_BASE_REF_SLUG_URL }}"
-      #         echo " - ${{ env.GITHUB_REPOSITORY_SLUG_URL }}"
-      #         # output e.g. : master feat-new-feature v1-0-0 product-1-0-0-rc-2 new-awesome-product
-      #         echo "Short SHA variables"
-      #         echo " - ${{ env.GITHUB_SHA_SHORT }}"
-      #         # output e.g. : ffac537e
+      # - run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+      # - run: echo ${{ github.head_ref }}
+      # - run: git config --global --add user.name 'sumits096'
+      # - run: git config --global --add user.email 'sumits@incubxperts.com'
+      # - run: echo 'true condition'
+      # - run: npm version patch -m "[RELEASE] %s"
+      # - run: git merge FETCH_HEAD
+      # - run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+
+      - name: Major version
+        if: "'true' == 'true'"
+        run: |
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo ${{ github.head_ref }}
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com'
+              echo 'Add Major version'
+              npm version major -m "[RELEASE] %s"
+              git merge FETCH_HEAD
+              git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+      
+      - name: Minor version
+        if: "'true' == 'true'"
+        run: |
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo ${{ github.head_ref }}
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com'
+              echo 'Add Minor version'
+              npm version minor -m "[RELEASE] %s"
+              git merge FETCH_HEAD
+              git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+
+      - name: Patch version
+        if: "'true' == 'true'"
+        run: |
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo ${{ github.head_ref }}
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com'
+              echo 'Add Patch version'
+              npm version patch -m "[RELEASE] %s"
+              git merge FETCH_HEAD
+              git push origin HEAD:refs/heads/${{ github.head_ref }} --force
