@@ -26,33 +26,34 @@ jobs:
 
       - name: Major version
         if: "'true' == 'true'"
-        run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-        run: echo ${{ github.head_ref }}
-        run: git config --global --add user.name 'sumits096'
-        run: git config --global --add user.email 'sumits@incubxperts.com'
-        run: echo 'Add Major version'
-        run: npm version patch -m "[RELEASE] %s"
-        run: git merge FETCH_HEAD
-        run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+        run: |
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo ${{ github.head_ref }}
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com'
+              echo 'Add Major version'
+              npm version patch -m "[RELEASE] %s"
+              git merge FETCH_HEAD
+              git push origin HEAD:refs/heads/${{ github.head_ref }} --force
       
-      - name: Run Project A
-        if: "'true' == 'true'"
-        run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-        run: echo ${{ github.head_ref }}
-        run: git config --global --add user.name 'sumits096'
-        run: git config --global --add user.email 'sumits@incubxperts.com'
-        run: echo 'Add Minor version'
-        run: npm version patch -m "[RELEASE] %s"
-        run: git merge FETCH_HEAD
-        run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+      # - name: Run Project A
+      #   if: "'true' == 'true'"
+      #   run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+      #   run: echo ${{ github.head_ref }}
+      #   run: git config --global --add user.name 'sumits096'
+      #   run: git config --global --add user.email 'sumits@incubxperts.com'
+      #   run: echo 'Add Minor version'
+      #   run: npm version patch -m "[RELEASE] %s"
+      #   run: git merge FETCH_HEAD
+      #   run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
-      - name: Run Project A
-        if: "'true' == 'true'"
-        run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-        run: echo ${{ github.head_ref }}
-        run: git config --global --add user.name 'sumits096'
-        run: git config --global --add user.email 'sumits@incubxperts.com'
-        run: echo 'Add patch version'
-        run: npm version patch -m "[RELEASE] %s"
-        run: git merge FETCH_HEAD
-        run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+      # - name: Run Project A
+      #   if: "'true' == 'true'"
+      #   run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+      #   run: echo ${{ github.head_ref }}
+      #   run: git config --global --add user.name 'sumits096'
+      #   run: git config --global --add user.email 'sumits@incubxperts.com'
+      #   run: echo 'Add patch version'
+      #   run: npm version patch -m "[RELEASE] %s"
+      #   run: git merge FETCH_HEAD
+      #   run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
