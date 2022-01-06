@@ -46,4 +46,4 @@ jobs:
               echo 'Current Version'
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               echo 'Updated Version'
-              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $3 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
