@@ -9,7 +9,7 @@ jobs:
   version:
     runs-on: ubuntu-latest
     # if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
-    if: 'true' == 'true'
+    if: "'true' == 'true'"
     steps:
       - uses: actions/checkout@v2
         # with:
