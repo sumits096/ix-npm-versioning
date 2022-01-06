@@ -8,7 +8,8 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    # if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    if: 'true' == 'true'
     steps:
       - uses: actions/checkout@v2
         # with:
@@ -19,10 +20,23 @@ jobs:
       - run: echo ${{ github.head_ref }}
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
-      if: 'true' == 'true'
       - run: echo 'true condition'
-      # - if: 'true' == 'false'
-      # - run: echo 'false condition'
+      - run: npm version patch -m "[RELEASE] %s"
+      - run: git merge FETCH_HEAD
+      - run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+
+    if: 'true' == 'false'
+    steps:
+      - uses: actions/checkout@v2
+        # with:
+        #   ref: ${{ github.head_ref }}   # checkout the correct branch name
+        #   fetch-depth: 0                # fetch the whole repo history
+        #   token: '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'
+      - run: echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+      - run: echo ${{ github.head_ref }}
+      - run: git config --global --add user.name 'sumits096'
+      - run: git config --global --add user.email 'sumits@incubxperts.com'
+      - run: echo 'false condition'
       - run: npm version patch -m "[RELEASE] %s"
       - run: git merge FETCH_HEAD
       - run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
