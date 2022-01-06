@@ -32,7 +32,7 @@ jobs:
               git config --global --add user.name 'sumits096'
               git config --global --add user.email 'sumits@incubxperts.com'
               echo 'Add Major version'
-              npm version patch -m "[RELEASE] %s"
+              npm version major -m "[RELEASE] %s"
               git merge FETCH_HEAD
               git push origin HEAD:refs/heads/${{ github.head_ref }} --force
       
@@ -44,7 +44,7 @@ jobs:
               git config --global --add user.name 'sumits096'
               git config --global --add user.email 'sumits@incubxperts.com'
               echo 'Add Minor version'
-              npm version patch -m "[RELEASE] %s"
+              npm version minor -m "[RELEASE] %s"
               git merge FETCH_HEAD
               git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
