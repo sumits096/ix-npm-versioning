@@ -44,6 +44,6 @@ jobs:
         if: "'true' == 'true'"
         run: |
               echo 'Current Version'
-              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              echo 'Updated Version'
               echo $(cat package.json | grep version | head -2 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo 'Updated Version'
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
