@@ -20,9 +20,9 @@ jobs:
       - run: git config --global --add user.name 'sumits096'
       - run: git config --global --add user.email 'sumits@incubxperts.com'
       - if: 'true' == 'true'
-        - run: echo 'true condition'
+        run: echo 'true condition'
       - if: 'true' == 'false'
-        - run: echo 'false condition'
+        run: echo 'false condition'
       - run: npm version patch -m "[RELEASE] %s"
       - run: git merge FETCH_HEAD
       - run: git push origin HEAD:refs/heads/${{ github.head_ref }} --force
