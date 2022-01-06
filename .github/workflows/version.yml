@@ -24,7 +24,7 @@ jobs:
       - run: npm version patch -m "[RELEASE] %s"
       - run: git merge FETCH_HEAD
       # - run: git pull origin ${{ github.head_ref }}
-      - run: git push origin HEAD
+      - run: git push origin refs/heads
       # - run: |
       #         echo "Slug variables"
       #         echo " - ${{ env.GITHUB_REF_SLUG }}"    
