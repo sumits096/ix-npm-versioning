@@ -11,9 +11,9 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
       - uses: actions/checkout@v2
-        # with:
-        #   ref: ${{ github.head_ref }}   # checkout the correct branch name
-        #   fetch-depth: 0                # fetch the whole repo history
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 2                # fetch the whole repo history
         #   token: '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'
 
       # - name: Major version
@@ -44,5 +44,5 @@ jobs:
         if: "'true' == 'true'"
         run: |
               echo 'Current Version'
-              git checkout HEAD:refs/heads/${{ github.base_ref }}
+              echo ${{ github.base_ref }} 
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
