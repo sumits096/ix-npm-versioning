@@ -46,5 +46,4 @@ jobs:
               echo 'Current Version'
               git checkout origin/main
               git fetch origin 
-              git reset --hard origin/main
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
