@@ -45,4 +45,4 @@ jobs:
         run: |
               echo 'Current Version'
               git reset ${{ github.head_ref }} ~6
-              echo $(cat package.json | grep version | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo $(cat package.json | grep version | base -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
