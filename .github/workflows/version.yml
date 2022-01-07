@@ -45,5 +45,5 @@ jobs:
         run: |
               echo 'Current Version'
               echo ${{ github.base_ref }} 
-              git log --pretty=oneline | awk '{print $1}'
+              git reset --hard origin~1
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
