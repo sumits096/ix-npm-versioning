@@ -44,5 +44,5 @@ jobs:
         if: "'true' == 'true'"
         run: |
               echo 'Current Version'
-              git reset ${{ github.base_ref }} ~6
+              git checkout ${{ github.base_ref }}
               echo $(cat package.json | grep version | ${{ github.base_ref }} -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
