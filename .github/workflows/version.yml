@@ -45,4 +45,4 @@ jobs:
         run: |
               echo 'Current Version'
               echo ${{ github.base_ref }} 
-              echo $(cat package.json | grep version | origin -2 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo $(cat package.json | grep version | remote -2 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
