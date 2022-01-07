@@ -45,7 +45,7 @@ jobs:
         run: |
               echo 'Current Version'
               echo ${{ github.base_ref }} 
-              $ git reset --hard 323d3c75be57a98100351f648ef95fa1130fdbf8
+              $ git reset --hard '323d3c75be57a98100351f648ef95fa1130fdbf8'
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               $ git pull
               echo 'Updated Version'
