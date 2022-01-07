@@ -45,5 +45,5 @@ jobs:
         run: |
               echo 'Current Version'
               echo ${{ github.base_ref }} 
-              echo $ {{ git log }}
+              git log
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
