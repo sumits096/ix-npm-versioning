@@ -19,7 +19,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   const name = process.env.NAME || 'This is ';
-  res.send(`test Changes.. ${name}!`);
+  res.send(`test Changes... ${name}!`);
 });
 
 const port = process.env.PORT || 8080;
