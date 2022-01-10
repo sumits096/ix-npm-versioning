@@ -55,19 +55,19 @@ jobs:
         run: |
               echo 'Previous Version'
               # echo ${{ github.event.after }}
-              # echo ${{ github.event.before }}
-              echo "::set-env name=Latest_Version::$(echo ${{ github.event.after }})"
+              echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
+              # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
+              # echo ${{ github.event.before }}
               # git reset --hard ${{ github.event.before }}
               echo "::set-env name=Previous_Version::$(echo ${{ github.event.before }})"
 
-              # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               # echo 'Current Version'
               # git reset --hard ${{ github.event.head }}
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
       - name: Verify version
-        if: " $Latest_Version ==  $Previous_Version "
+        # if: " $Latest_Version ==  $Previous_Version "
         run: |
               echo $Latest_Version
               echo $Previous_Version
