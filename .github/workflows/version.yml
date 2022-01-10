@@ -23,26 +23,30 @@ jobs:
               # Capture current commit SHA and version 
               echo "::set-env name=Latest_Commit::$(echo ${{ github.event.after }})"
               echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
-             
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          # fetch-depth: 2                # fetch the whole repo history        
       - name: Get and reset to previous version
         run: |
               # Reset to last commit branch and capture version 
-              echo "$(git rev-parse head)"
+              echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
               # git reset --hard ${{ github.event.before }}
               # echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
-      - name: Reset to latest version
-        run: |
-              # Reset to latest commit branch
-              # git reset --hard $Latest_Commit
+      # - name: Reset to latest version
+      #   run: |
+      #         # Reset to latest commit branch
+      #         git reset --hard $Latest_Commit
 
-      - name: Verify and Patch version
-        if: env.Latest_Version == env.Previous_Version
-        run: |
-              echo ${{env.Latest_Version}}
-              echo ${{env.Previous_Version}}
-              # git config --global --add user.name 'sumits096'
-              # git config --global --add user.email 'sumits@incubxperts.com's
-              # npm version patch -m "[RELEASE] %s"
-              # git merge FETCH_HEAD
-              # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+      # - name: Verify and Patch version
+      #   if: env.Latest_Version == env.Previous_Version
+      #   run: |
+      #         echo ${{env.Latest_Version}}
+      #         echo ${{env.Previous_Version}}
+      #         git config --global --add user.name 'sumits096'
+      #         git config --global --add user.email 'sumits@incubxperts.com's
+      #         npm version patch -m "[RELEASE] %s"
+      #         git merge FETCH_HEAD
+      #         git push origin HEAD:refs/heads/${{ github.head_ref }} --force
