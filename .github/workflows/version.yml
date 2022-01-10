@@ -36,14 +36,14 @@ jobs:
               git reset --hard $Latest_Commit
 
       - name: Verify and Patch version
-        if: "'2.1.17' == '2.1.17'"
+        if: "'${{env.Latest_Version}}' == '2.1.17'"
         run: |
               echo 'Same Version'
               echo ${{env.Latest_Version}}
               echo ${{env.Previous_Version}}
 
       - name: Verify and Patch version
-        if: "'2.1.17' != '2.1.17'"
+        if: "'${{env.Latest_Version}}' != '2.1.17'"
         run: |
               echo 'Updated Version'
               echo ${{env.Latest_Version}}
