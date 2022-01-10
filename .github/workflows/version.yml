@@ -44,7 +44,7 @@ jobs:
         if: "'true' == 'true'"
         run: |
               echo 'Previous Version'
-              echo ${{ github.event.base_ref }}
+              echo ${{ github.head_ref }}
               echo ${{ github.event.before }}
               # git reset --hard ${{ github.event.before }}
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
