@@ -14,31 +14,6 @@ jobs:
         with:
           ref: ${{ github.head_ref }}   # checkout the correct branch name
           fetch-depth: 2                # fetch the whole repo history
-        #   token: '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'
-
-      # - name: Major version
-      #   if: "'true' == 'true'"
-      #   run: |
-      #         echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-      #         echo ${{ github.head_ref }}
-      #         git config --global --add user.name 'sumits096'
-      #         git config --global --add user.email 'sumits@incubxperts.com'
-      #         echo 'Add Major version'
-      #         npm version major -m "[RELEASE] %s"
-      #         git merge FETCH_HEAD
-      #         git push origin HEAD:refs/heads/${{ github.head_ref }} --force
-      
-      # - name: Minor version
-      #   if: "'true' == 'true'"
-      #   run: |
-      #         echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-      #         echo ${{ github.head_ref }}
-      #         git config --global --add user.name 'sumits096'
-      #         git config --global --add user.email 'sumits@incubxperts.com'
-      #         echo 'Add Minor version'
-      #         npm version minor -m "[RELEASE] %s"
-      #         git merge FETCH_HEAD
-      #         git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
       - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
         run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
@@ -61,14 +36,14 @@ jobs:
               git reset --hard $Latest_Commit
 
       - name: Verify and Patch version
-        if: ${{env.Latest_Version}} == ${{env.Previous_Version}}
+        if: "'true' == 'true'"
         run: |
               echo 'Same Version'
               echo ${{env.Latest_Version}}
               echo ${{env.Previous_Version}}
 
       - name: Verify and Patch version
-        if: ${{env.Latest_Version}} == ${{env.Previous_Version}}
+        if: "'true' != 'true'"
         run: |
               echo 'Updated Version'
               echo ${{env.Latest_Version}}
