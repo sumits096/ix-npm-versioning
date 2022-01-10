@@ -44,5 +44,5 @@ jobs:
         if: "'true' == 'true'"
         run: |
               echo 'Current Version'
-              echo head@{5}
+              echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
               echo $(cat package.json | grep version | head@{5} -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
