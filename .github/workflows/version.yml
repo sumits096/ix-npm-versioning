@@ -43,11 +43,3 @@ jobs:
               npm version patch -m "[RELEASE] %s"
               git merge FETCH_HEAD
               git push origin HEAD:refs/heads/${{ github.head_ref }} --force
-
-      - name: Verify and Patch version
-        if: env.Latest_Version != env.Previous_Version
-        run: |
-              echo 'Updated Version'
-              echo ${{env.Latest_Version}}
-              echo ${{env.Previous_Version}}
-         
