@@ -40,6 +40,9 @@ jobs:
       #         git merge FETCH_HEAD
       #         git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+
       - name: Extract branch name on pull request
         if: github.event_name == 'pull_request'
         run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
