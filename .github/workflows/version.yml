@@ -55,7 +55,7 @@ jobs:
               echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
               # Reset to latest commit branch
-              git reset --hard $Latest_Commit
+              # git reset --hard $Latest_Commit
 
               # Capture version number from package.json
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
