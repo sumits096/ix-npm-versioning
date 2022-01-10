@@ -18,7 +18,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  const name = process.env.NAME || 'This is a ';
+  const name = process.env.NAME || 'This is ';
   res.send(`test Changes... ${name}!`);
 });
 
