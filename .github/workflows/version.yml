@@ -70,6 +70,7 @@ jobs:
       - name: Verify and Patch version
         if: "${{env.Latest_Version}} !=  ${{env.Previous_Version}}"
         run: |
+              echo 'Updated Version'
               git config --global --add user.name 'sumits096'
               git config --global --add user.email 'sumits@incubxperts.com'
               echo 'Add Patch version'
