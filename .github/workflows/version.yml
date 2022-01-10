@@ -68,7 +68,7 @@ jobs:
               echo ${{env.Previous_Version}}
 
       - name: Verify and Patch version
-        if: "${{env.Latest_Version}} !=  ${{env.Previous_Version}}"
+        if: "${{env.Latest_Version}} !==  ${{env.Previous_Version}}"
         run: |
               echo 'Updated Version'
               echo ${{env.Latest_Version}}
