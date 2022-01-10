@@ -60,18 +60,15 @@ jobs:
               # Reset to latest commit branch
               git reset --hard $Latest_Commit
 
-              # Capture version number from package.json
-              # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-
       - name: Verify and Patch version
-        if: "'${{env.Latest_Version}}' ==  '${{env.Previous_Version}}'"
+        if: "${{env.Latest_Version}} ===  ${{env.Previous_Version}}"
         run: |
               echo 'Same Version'
               echo ${{env.Latest_Version}}
               echo ${{env.Previous_Version}}
 
       - name: Verify and Patch version
-        if: "'${{env.Latest_Version}}' !=  '${{env.Previous_Version}}'"
+        if: "${{env.Latest_Version}} !=  ${{env.Previous_Version}}"
         run: |
               echo 'Updated Version'
               echo ${{env.Latest_Version}}
