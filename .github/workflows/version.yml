@@ -38,9 +38,11 @@ jobs:
       - name: Verify and Patch version
         if: env.Latest_Version == env.Previous_Version
         run: |
-              echo 'Same Version'
-              echo ${{env.Latest_Version}}
-              echo ${{env.Previous_Version}}
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com's
+              npm version patch -m "[RELEASE] %s"
+              git merge FETCH_HEAD
+              git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
       - name: Verify and Patch version
         if: env.Latest_Version != env.Previous_Version
@@ -48,8 +50,4 @@ jobs:
               echo 'Updated Version'
               echo ${{env.Latest_Version}}
               echo ${{env.Previous_Version}}
-              # git config --global --add user.name 'sumits096'
-              # git config --global --add user.email 'sumits@incubxperts.com's
-              # npm version patch -m "[RELEASE] %s"
-              # git merge FETCH_HEAD
-              # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+         
