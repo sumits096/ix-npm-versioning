@@ -43,8 +43,9 @@ jobs:
       - name: Patch version
         if: "'true' == 'true'"
         run: |
-              echo 'Current Version'
+              echo 'Previous Version'
               git reset --hard ${{ github.event.before }}
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              git fetch ${{ github.head_ref }}
+              echo 'Current Version'
+              git pull origin HEAD:refs/heads/${{ github.head_ref }} --force
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
