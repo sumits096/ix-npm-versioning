@@ -20,8 +20,6 @@ jobs:
 
       - name: Get Current version
         run: |
-              # Capture current commit SHA and version 
-              # echo "::set-env name=Latest_Commit::$(echo ${{ github.event.after }})"
               echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
       - uses: actions/checkout@v2
@@ -31,7 +29,6 @@ jobs:
 
       - name: Get main branch version
         run: |
-              # Reset to last commit branch and capture version 
               git pull origin ${{ github.base_ref }}
               echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
