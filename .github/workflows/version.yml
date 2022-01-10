@@ -55,12 +55,15 @@ jobs:
         run: |
               echo 'Previous Version'
               # echo ${{ github.event.after }}
+              echo "::set-env name=Latest_Commit::$(echo ${{ github.event.after }})"
               echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
               # echo ${{ github.event.before }}
-              # git reset --hard ${{ github.event.before }}
-              echo "::set-env name=Previous_Version::$(echo ${{ github.event.before }})"
+              git reset --hard ${{ github.event.before }}
+              echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
+
+              git reset --hard $Latest_Commit
 
               # echo 'Current Version'
               # git reset --hard ${{ github.event.head }}
