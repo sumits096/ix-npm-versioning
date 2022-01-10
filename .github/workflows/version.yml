@@ -53,23 +53,21 @@ jobs:
       - name: Get version
         if: "'true' == 'true'"
         run: |
-              echo 'Previous Version'
-              # echo ${{ github.event.after }}
+              # Capture current commit SHA and version 
               echo "::set-env name=Latest_Commit::$(echo ${{ github.event.after }})"
               echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
-              # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-
-              # echo ${{ github.event.before }}
+             
+              # Reset to last commit branch and capture version 
               git reset --hard ${{ github.event.before }}
               echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
+              # Reset to latest commit branch
               git reset --hard $Latest_Commit
 
-              # echo 'Current Version'
-              # git reset --hard ${{ github.event.head }}
+              # Capture version number from package.json
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
-      - name: Verify version
+      - name: Verify and Patch version
         # if: " $Latest_Version ==  $Previous_Version "
         run: |
               echo $Latest_Version
