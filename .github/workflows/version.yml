@@ -40,14 +40,23 @@ jobs:
       #         git merge FETCH_HEAD
       #         git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
-      - name: Patch version
+      - name: Get version
         if: "'true' == 'true'"
         run: |
               echo 'Previous Version'
-              echo ${{ github.event.after }}
-              echo ${{ github.event.before }}
+              # echo ${{ github.event.after }}
+              # echo ${{ github.event.before }}
+              echo "::set-env name=Latest_Version::$(echo ${{ github.event.after }})"
               # git reset --hard ${{ github.event.before }}
+              echo "::set-env name=Previous_Version::$(echo ${{ github.event.before }})"
+
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               # echo 'Current Version'
               # git reset --hard ${{ github.event.head }}
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+
+      - name: Verify version
+        if: "$Latest_Version ==  $Previous_Version"
+        run: |
+              echo $Latest_Version
+              echo 'Same Version'
