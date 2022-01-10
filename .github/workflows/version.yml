@@ -46,5 +46,5 @@ jobs:
               echo 'Current Version'
               git reset --hard ${{ github.event.before }}
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              git pull FETCH_HEAD
+              git pull ${{ github.head_ref }}
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
