@@ -63,9 +63,9 @@ jobs:
       - name: Verify and Patch version
         if: "'${{env.Latest_Version}}' ==  '${{env.Previous_Version}}'"
         run: |
-              echo $Latest_Version
-              echo $Previous_Version
               echo 'Same Version'
+              echo ${{env.Latest_Version}}
+              echo ${{env.Previous_Version}}
 
       - name: Verify and Patch version
         if: "'${{env.Latest_Version}}' !=  '${{env.Previous_Version}}'"
