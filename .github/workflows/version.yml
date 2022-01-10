@@ -27,7 +27,7 @@ jobs:
       - name: Get and reset to previous version
         run: |
               # Reset to last commit branch and capture version 
-              echo "$(git rev-parse head)""
+              echo "$(git rev-parse head)"
               # git reset --hard ${{ github.event.before }}
               # echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
