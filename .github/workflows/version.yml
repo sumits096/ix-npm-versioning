@@ -43,31 +43,31 @@ jobs:
       - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
         run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
-      - name: Extract branch name on pull request
-        if: github.event_name == 'pull_request'
-        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
+      # - name: Extract branch name on pull request
+      #   if: github.event_name == 'pull_request'
+      #   run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
 
-      - name: Print branch name
-        run: echo 'The branch name is' $BRANCH_NAME
+      # - name: Print branch name
+      #   run: echo 'The branch name is' $BRANCH_NAME
 
-      # - name: Get version
-      #   if: "'true' == 'true'"
-      #   run: |
-      #         echo 'Previous Version'
-      #         # echo ${{ github.event.after }}
-      #         # echo ${{ github.event.before }}
-      #         echo "::set-env name=Latest_Version::$(echo ${{ github.event.after }})"
+      - name: Get version
+        if: "'true' == 'true'"
+        run: |
+              echo 'Previous Version'
+              # echo ${{ github.event.after }}
+              # echo ${{ github.event.before }}
+              echo "::set-env name=Latest_Version::$(echo ${{ github.event.after }})"
 
-      #         # git reset --hard ${{ github.event.before }}
-      #         echo "::set-env name=Previous_Version::$(echo ${{ github.event.before }})"
+              # git reset --hard ${{ github.event.before }}
+              echo "::set-env name=Previous_Version::$(echo ${{ github.event.before }})"
 
-      #         # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-      #         # echo 'Current Version'
-      #         # git reset --hard ${{ github.event.head }}
-      #         # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              # echo 'Current Version'
+              # git reset --hard ${{ github.event.head }}
+              # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
-      # - name: Verify version
-      #   if: "Latest_Version ==  Previous_Version"
-      #   run: |
-      #         echo $Latest_Version
-      #         echo 'Same Version'
+      - name: Verify version
+        if: "Latest_Version ==  Previous_Version"
+        run: |
+              echo $Latest_Version
+              echo 'Same Version'
