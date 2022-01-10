@@ -44,9 +44,9 @@ jobs:
         if: "'true' == 'true'"
         run: |
               echo 'Current Version'
-              echo $(echo $GITHUB_REF | cut -d'/' -f 3)
-              echo $(cat package.json | grep version | head -5 | awk -F= "{ print $5 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              echo $(cat package.json | grep version | head -4 | awk -F= "{ print $4 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              echo $(cat package.json | grep version | head -3 | awk -F= "{ print $3 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              echo $(cat package.json | grep version | head -2 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo ${{ github.event.before }}
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $5 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $4 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $3 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+              echo $(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
