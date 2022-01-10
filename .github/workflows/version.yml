@@ -67,7 +67,8 @@ jobs:
               # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
       - name: Verify version
-        if: "$Latest_Version ==  $Previous_Version"
+        if: " $Latest_Version ==  $Previous_Version "
         run: |
               echo $Latest_Version
+              echo $Previous_Version
               echo 'Same Version'
