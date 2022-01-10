@@ -47,5 +47,5 @@ jobs:
               git reset --hard ${{ github.event.before }}
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               echo 'Current Version'
-              git reset --hard HEAD:refs/heads/${{ github.head_ref }}
+              git reset --hard ${{ github.head_ref }}
               echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
