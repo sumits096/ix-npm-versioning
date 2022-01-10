@@ -1,7 +1,7 @@
 {
   "name": "helloworld",
   "description": "Simple hello world sample in Node",
-  "version": "2.1.23",
+  "version": "2.1.24",
   "private": true,
   "main": "index.js",
   "scripts": {
