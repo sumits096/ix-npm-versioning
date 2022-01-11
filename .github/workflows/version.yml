@@ -45,6 +45,6 @@ jobs:
               npm version patch -m "[RELEASE] %s"
               git merge FETCH_HEAD
               echo "::set-env name=Tag_Name::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
-              git tag -a v2.1.0
+              git tag v2.1.0
               git push origin HEAD:refs/heads/${{ github.head_ref }} --force
               
