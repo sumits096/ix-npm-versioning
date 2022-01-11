@@ -46,7 +46,7 @@ jobs:
               git merge FETCH_HEAD
               echo "::set-env name=Tag_Name::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
               # git tag v2.1.0
-              git push origin
+              git push && git push --tags
               # git tag v2.1.0
               # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
               
