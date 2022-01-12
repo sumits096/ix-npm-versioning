@@ -26,4 +26,4 @@ steps:
     # git tag v1.2.4
     # git push --tags -f
     npm version patch
-    git push origin version changes
+    git push -f origin HEAD:version-changes
