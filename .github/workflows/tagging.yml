@@ -22,7 +22,6 @@ jobs:
         run: |
               git config --global --add user.name 'sumits096'
               git config --global --add user.email 'sumits@incubxperts.com's
-              git merge FETCH_HEAD
-              git push --tags
+              git push && git push --tags
               # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
               
