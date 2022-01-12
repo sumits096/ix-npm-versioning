@@ -1,13 +1,12 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   id: Copy to production branch
+  entrypoint: 'bash'
   args:
   - '-c'
   - |
-    set -x && \
     git config --global --add user.name 'sumits096'
     git config --global --add user.email 'sumits@incubxperts.com'
-    echo FETCH_HEAD
     git merge FETCH_HEAD
     git tag v1.2.4
-    git push --tags -f
+    git push origin --tags -f
