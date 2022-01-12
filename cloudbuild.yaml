@@ -26,6 +26,6 @@ steps:
     # npm version patch
     # git push origin HEAD:refs/heads/version-changes --force
     git tag v3.3.3
-    git remote rm origin
-    git remote add origin 'git@github.com:sumits096/ix-npm-versioning.git'
-    git push origin --tags -f
+    # git remote rm origin
+    # git remote add origin 'git@github.com:sumits096/ix-npm-versioning.git'
+    git push origin 'git@github.com:sumits096/ix-npm-versioning.git' --tags -f
