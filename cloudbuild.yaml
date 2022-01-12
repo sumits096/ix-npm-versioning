@@ -6,8 +6,10 @@ steps:
   - '-c'
   - |
     set -x && \
-    git config --global --add user.name 'sumits096'
-    git config --global --add user.email 'sumits@incubxperts.com'
+    git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)') && \
+    # git config --global --add user.name 'sumits096'
+    # git config --global --add user.email 'sumits@incubxperts.com'
+    echo $FETCH_HEAD
     git merge FETCH_HEAD
     git tag v1.2.4
     git push origin --tags -f
