@@ -11,4 +11,4 @@ steps:
     npm version patch -m "[RELEASE] %s"
     echo FETCH_HEAD
     git merge FETCH_HEAD
-    git push
+    git push origin version-changes
