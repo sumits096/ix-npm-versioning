@@ -9,5 +9,6 @@ steps:
     git config --global --add user.name 'sumits096'
     git config --global --add user.email 'sumits@incubxperts.com'
     npm version patch -m "[RELEASE] %s"
+    echo FETCH_HEAD
     git merge FETCH_HEAD
     git push
