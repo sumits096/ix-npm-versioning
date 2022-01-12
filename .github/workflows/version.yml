@@ -47,7 +47,7 @@ jobs:
               git push && git push --tags
               # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
 
-        - name: Verify and Patch version
+      - name: Verify and Patch version
         if: env.Latest_Version != env.Previous_Version
         run: |
               git config --global --add user.name 'sumits096'
