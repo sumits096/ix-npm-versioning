@@ -6,7 +6,7 @@ steps:
   - '-c'
   - |
     set -x && \
-    git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)') && \
+    git config --global user.email 'sumits@incubxperts.com' && \
     # git config --global --add user.name 'sumits096'
     # git config --global --add user.email 'sumits@incubxperts.com'
     echo $FETCH_HEAD
