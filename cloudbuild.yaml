@@ -9,7 +9,7 @@ steps:
     git config --global user.email 'sumits@incubxperts.com' && \
     # git config --global --add user.name 'sumits096'
     # git config --global --add user.email 'sumits@incubxperts.com'
-    echo FETCH_HEAD
-    git merge FETCH_HEAD
-    git tag v1.2.4
-    git push origin --tags -f
+    git log --format=%B -n 1 $COMMIT_SHA
+    # git merge FETCH_HEAD
+    # git tag v1.2.4
+    # git push origin --tags -f
