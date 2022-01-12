@@ -15,7 +15,7 @@ steps:
 #   args: ['version','prepatch']
 
 - name: 'gcr.io/cloud-builders/git'
-  id: Copy to production branch
+  id: Patch version to feature branch
   entrypoint: 'bash'
   args:
   - '-c'
@@ -26,4 +26,4 @@ steps:
     # git tag v1.2.4
     # git push --tags -f
     npm version patch
-    git push -f origin HEAD:version-changes
+    git push origin HEAD:refs/heads/${{ github.head_ref }} --force
