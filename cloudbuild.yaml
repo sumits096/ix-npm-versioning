@@ -6,12 +6,8 @@ steps:
   - '-c'
   - |
     set -x && \
-    # Configure Git to create commits with Cloud Build's service account
     git config --global --add user.name 'sumits096'
     git config --global --add user.email 'sumits@incubxperts.com'
-    # Switch to the version-changes branch
-    git fetch origin version-changes && git checkout version-changes
-    # Patch Version
-    npm version patch
-    # Push the changes back to gitHub repository
-    git push origin version-changes
+    npm version patch -m "[RELEASE] %s"
+    git merge FETCH_HEAD
+    git push
