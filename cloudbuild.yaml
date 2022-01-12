@@ -1,4 +1,13 @@
 steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'user.name', 'sumits096']
+
 - name: 'gcr.io/cloud-builders/git'
   id: Copy to production branch
   entrypoint: 'bash'
@@ -6,8 +15,6 @@ steps:
   - '-c'
   - |
     set -x && \
-    git config --global --add user.name 'sumits096'
-    git config --global --add user.email 'sumits@incubxperts.com'
     # git log --format=%B -n 1 $COMMIT_SHA
     # git merge FETCH_HEAD
     git tag v1.2.4
