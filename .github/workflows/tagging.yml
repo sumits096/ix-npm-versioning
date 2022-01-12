@@ -1,0 +1,28 @@
+name: Version Increment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.base_ref }}   # checkout the current branch name
+          fetch-depth: 2                # fetch the whole repo history
+
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+
+      - name: Add tags
+        run: |
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com's
+              git merge FETCH_HEAD
+              git push --tags
+              # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+              
