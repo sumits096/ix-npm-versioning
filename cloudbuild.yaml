@@ -5,6 +5,7 @@ steps:
   args:
   - '-c'
   - |
+    set -x && \
     git config --global --add user.name 'sumits096'
     git config --global --add user.email 'sumits@incubxperts.com'
     git merge FETCH_HEAD
