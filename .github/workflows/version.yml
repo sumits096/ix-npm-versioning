@@ -45,11 +45,12 @@ jobs:
               npm version patch -m "[RELEASE] %s"
               git merge FETCH_HEAD
               git push
-              
+
       - name: Add tags
         run: |
               git config --global --add user.name 'sumits096'
               git config --global --add user.email 'sumits@incubxperts.com's
+              git tag -d v$(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               git tag v$(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
               git push --tags
               
