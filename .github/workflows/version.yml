@@ -44,6 +44,15 @@ jobs:
               git config --global --add user.email 'sumits@incubxperts.com's
               npm version patch -m "[RELEASE] %s"
               git merge FETCH_HEAD
-              git push
+              git push && git push --tags
+              # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
+
+        - name: Verify and Patch version
+        if: env.Latest_Version != env.Previous_Version
+        run: |
+              git config --global --add user.name 'sumits096'
+              git config --global --add user.email 'sumits@incubxperts.com's
+              git merge FETCH_HEAD
+              git push && git push --tags
               # git push origin HEAD:refs/heads/${{ github.head_ref }} --force
               
