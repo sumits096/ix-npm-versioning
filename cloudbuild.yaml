@@ -1,36 +1,17 @@
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/cloud-builders/git'
+  id: Copy to production branch
+  entrypoint: /bin/sh
   args:
-  - kms
-  - decrypt
-  - --ciphertext-file=npmrc.enc
-  - --plaintext-file=/root/.npmrc
-  - --location=global
-  - --keyring=my-keyring
-  - --key=npm-key
-  volumes:
-  - name: 'home'
-    path: /root/
-
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.name', 'sumits096']
-
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['version','prepatch']
-
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run-script','build']
-
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['publish']
-  env:
-  - HOME=/root/
-  volumes:
-  - name: 'home'
-    path: /root/
+  - '-c'
+  - |
+    set -x && \
+    # Configure Git to create commits with Cloud Build's service account
+    git config --global --add user.name 'sumits096'
+    git config --global --add user.email 'sumits@incubxperts.com'
+    # Switch to the version-changes branch
+    git fetch origin version-changes && git checkout version-changes
+    # Patch Version
+    npm version patch
+    # Push the changes back to gitHub repository
+    git push origin version-changes
