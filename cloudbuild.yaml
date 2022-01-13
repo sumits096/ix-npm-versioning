@@ -1,31 +1,31 @@
-# steps:
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['install']
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
 
-# - name: 'gcr.io/cloud-builders/git'
-#   args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
 
-# - name: 'gcr.io/cloud-builders/git'
-#   args: ['config', '--global', 'user.name', 'sumits096']
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'user.name', 'sumits096']
 
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['version','prepatch']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['version','prepatch']
 
-# - name: 'gcr.io/cloud-builders/git'
-#   args: ['version','prepatch']
+- name: 'gcr.io/cloud-builders/git'
+  args: ['version','prepatch']
 
-# - name: 'gcr.io/cloud-builders/git'
-#   id: Patch version to feature branch
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     set -x && \
-#     # git log --format=%B -n 1 $COMMIT_SHA
-#     # git merge FETCH_HEAD
-#     # npm version patch
-#     # git push origin HEAD:refs/heads/version-changes --force
-#     git remote rm origin
-#     git remote add origin 'git@github.com:sumits096/ix-npm-versioning.git'
-#     git tag v1.2.4
-#     git push origin --tags -f
+- name: 'gcr.io/cloud-builders/git'
+  id: Patch version to feature branch
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    set -x && \
+    # git log --format=%B -n 1 $COMMIT_SHA
+    # git merge FETCH_HEAD
+    # npm version patch
+    # git push origin HEAD:refs/heads/version-changes --force
+    git remote rm origin
+    git remote add origin 'git@github.com:sumits096/ix-npm-versioning.git'
+    git tag v1.2.4
+    git push origin --tags -f

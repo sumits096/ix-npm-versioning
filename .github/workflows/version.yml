@@ -1,55 +1,55 @@
-name: Version Increment
+# name: Version Increment
 
-on:
-  pull_request:
-    branches:
-      - main
+# on:
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  version:
-    runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}   # checkout the current branch name
-          fetch-depth: 2                # fetch the whole repo history
+# jobs:
+#   version:
+#     runs-on: ubuntu-latest
+#     if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           ref: ${{ github.head_ref }}   # checkout the current branch name
+#           fetch-depth: 2                # fetch the whole repo history
 
-      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
-        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+#       - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+#         run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
-      - name: Get Current version
-        run: |
-              echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
+#       - name: Get Current version
+#         run: |
+#               echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.base_ref }}   # checkout the master branch name
-          fetch-depth: 2                # fetch the whole repo history    
+#       - uses: actions/checkout@v2
+#         with:
+#           ref: ${{ github.base_ref }}   # checkout the master branch name
+#           fetch-depth: 2                # fetch the whole repo history    
 
-      - name: Get main branch version
-        run: |
-              git pull origin ${{ github.base_ref }}
-              echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
+#       - name: Get main branch version
+#         run: |
+#               git pull origin ${{ github.base_ref }}
+#               echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}   # checkout the current branch name
-          fetch-depth: 2                # fetch the whole repo history
+#       - uses: actions/checkout@v2
+#         with:
+#           ref: ${{ github.head_ref }}   # checkout the current branch name
+#           fetch-depth: 2                # fetch the whole repo history
 
-      - name: Verify and Patch version
-        if: env.Latest_Version == env.Previous_Version
-        run: |
-              git config --global --add user.name 'sumits096'
-              git config --global --add user.email 'sumits@incubxperts.com'
-              npm version patch -m "[RELEASE] %s"
-              git merge FETCH_HEAD
-              git push
+#       - name: Verify and Patch version
+#         if: env.Latest_Version == env.Previous_Version
+#         run: |
+#               git config --global --add user.name 'sumits096'
+#               git config --global --add user.email 'sumits@incubxperts.com'
+#               npm version patch -m "[RELEASE] %s"
+#               git merge FETCH_HEAD
+#               git push
 
-      - name: Add tags to github
-        run: |
-              git config --global --add user.name 'sumits096'
-              git config --global --add user.email 'sumits@incubxperts.com'
-              git tag v$Latest_Version
-              git push --tags -f
+#       - name: Add tags to github
+#         run: |
+#               git config --global --add user.name 'sumits096'
+#               git config --global --add user.email 'sumits@incubxperts.com'
+#               git tag v$Latest_Version
+#               git push --tags -f
               
