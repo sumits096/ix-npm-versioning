@@ -37,9 +37,9 @@ steps:
   - '-c'
   - |
     # echo "Cloning repo ..."
-    # git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
+    git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
     # echo ${BRANCH_NAME}
-    # cd gcp-cicd-demo-config
+    cd ix-pm-versioning
     # ls
     # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
