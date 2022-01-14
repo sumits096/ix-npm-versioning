@@ -48,7 +48,3 @@ steps:
     git add -A
     git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
     git push origin main
-    
-  volumes:
-  - name: 'ssh'
-    path: /root/.ssh
