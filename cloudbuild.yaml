@@ -37,8 +37,8 @@ steps:
   - '-c'
   - |
     # echo "Cloning repo ..."
-    ssh-add ~/.ssh/git_rsa
-    ssh-add
+    eval `ssh-agent -s`
+    # ssh-add ~/.ssh/git_rsa
     git clone --depth 1 git@github.com:sumits096/ix-npm-versioning.git
     # echo ${BRANCH_NAME}
     cd ix-pm-versioning
