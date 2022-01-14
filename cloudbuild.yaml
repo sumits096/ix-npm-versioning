@@ -47,6 +47,7 @@ steps:
     # ls
     # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
+    git show-ref
     git config --global user.name sumits096
     git config --global user.email sumits@incubxperts.com
     git tag v1.2.4
