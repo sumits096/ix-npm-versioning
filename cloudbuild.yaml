@@ -20,6 +20,7 @@ steps:
     # git show-ref
     git config --global user.name sumits096
     git config --global user.email sumits@incubxperts.com
+    git checkout main
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
     touch README
     git add .
