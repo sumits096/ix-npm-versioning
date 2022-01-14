@@ -41,12 +41,15 @@ steps:
     # echo ${BRANCH_NAME}
     # cd gcp-cicd-demo-config
     # ls
-    sed -i "s|newTag: .*|newTag: $SHORT_SHA"
+    # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
     # git config --global user.name sumits096
     # git config --global user.email sumits@incubxperts.com
     git tag v1.2.4
-    git push origin --tags -f
+    # git push origin --tags -f
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
     # git push origin git@github.com:sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['push','origin','--tags', '-f']
