@@ -8,8 +8,8 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['config', '--global', 'user.name', 'sumits096']
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['version','prepatch']
+# - name: 'gcr.io/cloud-builders/npm'
+#   args: ['version','prepatch']
 
 - name: 'gcr.io/cloud-builders/git'
   args: ['version','prepatch']
