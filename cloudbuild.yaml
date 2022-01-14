@@ -51,8 +51,7 @@ steps:
     git config --global user.name sumits096
     git config --global user.email sumits@incubxperts.com
     touch README
-    git add README
-    git add (all other files)
+    git add .
     git commit -m 'reinitialized files'
     # git tag v1.2.4
     git push origin head --force
