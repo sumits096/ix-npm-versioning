@@ -52,4 +52,4 @@ steps:
     # git push origin git@github.com:sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
 
 - name: 'gcr.io/cloud-builders/git'
-  args: ['push','origin','https://sumits096:Sumit@Incub123@github.com:sumits096/ix-npm-versioning.git HEAD:version-changes','--tags', '-f']
+  args: ['push','origin','https://sumits096:Sumit@Incub123@github.com:sumits096/ix-npm-versioning.git','--tags', '-f']
