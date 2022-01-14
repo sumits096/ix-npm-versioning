@@ -51,7 +51,7 @@ steps:
     git config --global user.email sumits@incubxperts.com
     git tag v1.2.4
     # git remote add origin https://github.com/sumits096/ix-npm-versioning.git
-    git push --tags https://github.com/sumits096/ix-npm-versioning.git -f
+    git push --set-upstream origin version-changes -f
     # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
