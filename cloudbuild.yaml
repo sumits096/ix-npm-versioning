@@ -47,4 +47,4 @@ steps:
     git config --global user.email sumits@incubxperts.com
     git add -A
     git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
-    git push origin version-changes
+    git push origin version-changes --force
