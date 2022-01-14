@@ -37,8 +37,8 @@ steps:
   - '-c'
   - |
     # echo "Cloning repo ..."
-    git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
-    echo ${BRANCH_NAME}
+    # git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
+    # echo ${BRANCH_NAME}
     # cd gcp-cicd-demo-config
     # ls
     sed -i "s|newTag: .*|newTag: $SHORT_SHA"
@@ -47,4 +47,4 @@ steps:
     git config --global user.email sumits@incubxperts.com
     git add -A
     git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
-    git push ${BRANCH_NAME} --force
+    git push origin git@github.com:sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
