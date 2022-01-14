@@ -37,6 +37,7 @@ steps:
   - '-c'
   - |
     # echo "Cloning repo ..."
+    ssh-add -l -E md5
     git clone --depth 1 git@github.com:sumits096/ix-npm-versioning.git
     # echo ${BRANCH_NAME}
     cd ix-pm-versioning
@@ -50,6 +51,3 @@ steps:
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
     # git push origin git@github.com:sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
-
-# - name: 'gcr.io/cloud-builders/git'
-#   args: ['push','origin','https://sumits096:Sumit@Incub123@github.com:sumits096/ix-npm-versioning.git','--tags', '-f']
