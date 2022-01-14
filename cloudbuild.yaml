@@ -43,8 +43,8 @@ steps:
     # ls
     sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
-    git config --global user.name sumits096
-    git config --global user.email sumits@incubxperts.com
+    # git config --global user.name sumits096
+    # git config --global user.email sumits@incubxperts.com
     git tag v1.2.4
     git push origin --tags -f
     # git add -A
