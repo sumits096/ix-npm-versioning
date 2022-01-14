@@ -36,11 +36,6 @@
 # name: Version Increment
 
 steps:
-  - uses: actions/checkout@v2
-    with:
-      ref: ${{ github.head_ref }}   # checkout the current branch name
-      fetch-depth: 2                # fetch the whole repo history
-
   - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
     run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
@@ -48,20 +43,11 @@ steps:
     run: |
           echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
-  - uses: actions/checkout@v2
-    with:
-      ref: ${{ github.base_ref }}   # checkout the master branch name
-      fetch-depth: 2                # fetch the whole repo history    
-
   - name: Get main branch version
     run: |
+          git checkout main
           git pull origin ${{ github.base_ref }}
           echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
-
-  - uses: actions/checkout@v2
-    with:
-      ref: ${{ github.head_ref }}   # checkout the current branch name
-      fetch-depth: 2                # fetch the whole repo history
 
   - name: Verify and Patch version
     if: env.Latest_Version == env.Previous_Version
