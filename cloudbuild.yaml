@@ -38,7 +38,7 @@ steps:
   - |
     # echo "Cloning repo ..."
     # git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
-    # echo "Updating image tag version ..."
+    echo ${BRANCH_NAME}
     # cd gcp-cicd-demo-config
     # ls
     sed -i "s|newTag: .*|newTag: $SHORT_SHA"
