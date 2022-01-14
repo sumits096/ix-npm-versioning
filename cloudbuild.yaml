@@ -37,21 +37,24 @@
 
 steps:
   - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
-    run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+    entrypoint: 'bash'
+    args: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
   - name: Get Current version
-    run: |
+    entrypoint: 'bash'
+    args: |
           echo "::set-env name=Latest_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
   - name: Get main branch version
-    run: |
+    entrypoint: 'bash'
+    args: |
           git checkout main
           git pull origin ${{ github.base_ref }}
           echo "::set-env name=Previous_Version::$(echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]'))"
 
   - name: Verify and Patch version
-    if: env.Latest_Version == env.Previous_Version
-    run: |
+    entrypoint: 'bash'
+    args: |
           git config --global --add user.name 'sumits096'
           git config --global --add user.email 'sumits@incubxperts.com'
           npm version patch -m "[RELEASE] %s"
@@ -59,7 +62,8 @@ steps:
           git push
 
   - name: Add tags to github
-    run: |
+    entrypoint: 'bash'
+    args: |
           git config --global --add user.name 'sumits096'
           git config --global --add user.email 'sumits@incubxperts.com'
           git tag v$Latest_Version
