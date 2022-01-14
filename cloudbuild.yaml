@@ -29,7 +29,7 @@ steps:
     # git tag v1.2.411
     # git push origin version-changes --force
 
-    # git branch -M dev-docker-cicd
+    git branch -M version-changes
     git remote set-url origin https://sumits096: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@sumits096/ix-npm-versioning.git
     git push -u origin version-changes --tags
 
