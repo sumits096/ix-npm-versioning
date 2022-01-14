@@ -41,7 +41,7 @@ steps:
     # # ssh-add
     # ssh-add ~/.ssh/9.pub
     # ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-    git clone --depth 1 https://github.com/sumits096/ix-npm-versioning.git
+    # git clone --depth 1 https://github.com/sumits096/ix-npm-versioning.git
     # echo ${BRANCH_NAME}
     # cd ix-pm-versioning
     # ls
