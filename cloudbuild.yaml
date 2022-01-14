@@ -1,18 +1,18 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
+# - name: 'gcr.io/cloud-builders/npm'
+#   args: ['install']
 
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
+# - name: 'gcr.io/cloud-builders/git'
+#   args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
 
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.name', 'sumits096']
+# - name: 'gcr.io/cloud-builders/git'
+#   args: ['config', '--global', 'user.name', 'sumits096']
 
 # - name: 'gcr.io/cloud-builders/npm'
 #   args: ['version','prepatch']
 
-- name: 'gcr.io/cloud-builders/git'
-  args: ['version','prepatch']
+# - name: 'gcr.io/cloud-builders/git'
+#   args: ['version','prepatch']
 
 # - name: 'gcr.io/cloud-builders/git'
 #   id: Patch version to feature branch
@@ -43,10 +43,10 @@ steps:
     # ls
     # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
-    # git config --global user.name sumits096
-    # git config --global user.email sumits@incubxperts.com
+    git config --global user.name sumits096
+    git config --global user.email sumits@incubxperts.com
     git tag v1.2.4
-    git push remote origin https://sumits096:Sumit@Incub123@github.com:sumits096/ix-npm-versioning.git --tags -f
+    git push origin HEAD
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
     # git push origin git@github.com:sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
