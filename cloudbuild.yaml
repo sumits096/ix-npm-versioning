@@ -38,8 +38,9 @@ steps:
   - |
     # echo "Cloning repo ..."
     eval `ssh-agent -s`
-    ssh-add
-    # ssh-add ~/.ssh/git_rsa
+    # ssh-add
+    ssh-add ~/.ssh/git_rsa
+    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
     git clone --depth 1 git@github.com:sumits096/ix-npm-versioning.git
     # echo ${BRANCH_NAME}
     cd ix-pm-versioning
