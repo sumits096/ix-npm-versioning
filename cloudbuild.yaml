@@ -14,18 +14,41 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['version','prepatch']
 
-- name: 'gcr.io/cloud-builders/git'
-  id: Patch version to feature branch
+# - name: 'gcr.io/cloud-builders/git'
+#   id: Patch version to feature branch
+#   entrypoint: 'bash'
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     # git log --format=%B -n 1 $COMMIT_SHA
+#     # git merge FETCH_HEAD
+#     # npm version patch
+#     # git push origin HEAD:refs/heads/version-changes --force
+#     # git remote rm origin
+#     # git remote add origin 'git@github.com:sumits096/ix-npm-versioning.git'
+#     git tag v1.2.4
+#     git push origin --tags -f
+
+# Edit Kustomize layer in config repo and push changes
+- name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    set -x && \
-    # git log --format=%B -n 1 $COMMIT_SHA
-    # git merge FETCH_HEAD
-    # npm version patch
-    # git push origin HEAD:refs/heads/version-changes --force
-    # git remote rm origin
-    # git remote add origin 'git@github.com:sumits096/ix-npm-versioning.git'
-    git tag v1.2.4
-    git push origin --tags -f
+    echo "Cloning repo ..."
+    git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
+    echo "Updating image tag version ..."
+    cd gcp-cicd-demo-config
+    ls
+    sed -i "s|newTag: .*|newTag: $SHORT_SHA|" demo-app/overlays/develop/kustomization.yaml
+    echo "Pushing changes to git config repo ..."
+    git config --global user.name sumits096
+    git config --global user.email sumits@incubxperts.com
+    git add -A
+    git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
+    git push origin main
+    
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
