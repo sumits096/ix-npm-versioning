@@ -55,7 +55,7 @@ steps:
     git commit -m 'reinitialized files'
     # git tag v1.2.4
     # git push origin version-changes --force
-    git push origin HEAD:refs/heads/version-changes --force
+    git push --force
     # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
