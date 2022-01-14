@@ -52,7 +52,7 @@ steps:
     git config --global user.email sumits@incubxperts.com
     git tag v1.2.4
     # git remote add origin https://github.com/sumits096/ix-npm-versioning.git
-    git push origin head:${{ github.base_ref }} --force
+    git push origin head:${{ github.head_ref }} --force
     # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
