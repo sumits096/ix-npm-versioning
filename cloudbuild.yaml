@@ -36,11 +36,11 @@ steps:
   args:
   - '-c'
   - |
-    echo "Cloning repo ..."
-    git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
-    echo "Updating image tag version ..."
-    cd gcp-cicd-demo-config
-    ls
+    # echo "Cloning repo ..."
+    # git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
+    # echo "Updating image tag version ..."
+    # cd gcp-cicd-demo-config
+    # ls
     sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
     git config --global user.name sumits096
