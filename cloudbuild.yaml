@@ -31,7 +31,7 @@ steps:
     git commit -m 'reinitialized files'
     git branch -M version-changes
     git remote set-url origin https://sumits096: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@sumits096/ix-npm-versioning.git
-    git push -u origin version-changes --tags
+    git push -u origin version-changes
 
     # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
     # git add -A
