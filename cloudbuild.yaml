@@ -37,7 +37,7 @@ steps:
   - '-c'
   - |
     # echo "Cloning repo ..."
-    git clone --depth 1 git@github.com:sumits096/ix-npm-versioning
+    git clone --depth 1 git@github.com:sumits096/ix-npm-versioning.git
     # echo ${BRANCH_NAME}
     cd ix-pm-versioning
     # ls
