@@ -18,8 +18,10 @@ steps:
     # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
     echo "Pushing changes to git config repo ..."
     # git show-ref
-    git config --global user.name sumits096
-    git config --global user.email sumits@incubxperts.com
+
+    # git config --global user.name sumits096
+    # git config --global user.email sumits@incubxperts.com
+    
     # git checkout main
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
     # git push -u origin master
@@ -37,7 +39,7 @@ steps:
     #  git branch -M dev-docker-cicd
     #  git remote set-url origin https://ix-pankajk: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@github.com/ix-pankajk/ix-terraform-cicd.git
     #  git push -u origin dev-docker-cicd
-    
+
     # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
     # git add -A
     # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
