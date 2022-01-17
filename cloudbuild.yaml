@@ -29,8 +29,8 @@ steps:
     # git push origin version-changes --force
 
     git branch -M version-changes
-    git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
-    
+    git remote add upstream https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
+
     touch README
     git add .
     git commit -m 'reinitialized files'
