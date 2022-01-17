@@ -1,26 +1,27 @@
 steps:
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.name', 'sumits096']
-  
-# Edit Kustomize layer in config repo and push changes
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    echo "Pushing changes to git config repo ..."
-    git show-ref
     git config --global user.name sumits096
     git config --global user.email sumits@incubxperts.com
+
     git tag v1.2.10 
     touch README
-    git diff
     git add .
     git commit -m 'message'
 
-    git branch -M version-changes 
-    git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
-    git push -u origin version-changes
+    # git branch -M version-changes 
+    # git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
+    # echo "Pushing changes to git config repo ..."
+    # git push -u origin version-changes
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['branch','-M', 'version-changes']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['remote','set-url','origin','https://sumits096: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@github.com/sumits096/ix-npm-versioning.git']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['push','-u','origin','version-changes']
