@@ -9,7 +9,7 @@ steps:
     git config --global user.email sumits@incubxperts.com
     git branch -M version-changes
     git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
-    
+    git remote -v
     touch README
     git add .
     git commit -m 'reinitialized files'
