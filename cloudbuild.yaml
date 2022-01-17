@@ -15,4 +15,4 @@ steps:
     git commit -m 'reinitialized files'
     echo "Pushing changes to git config repo ..."
     # git push -u origin
-    git push -f --set-upstream origin
+    git push --set-upstream origin version-changes
