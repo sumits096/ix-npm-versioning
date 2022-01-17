@@ -1,7 +1,7 @@
 {
   "name": "helloworld",
   "description": "Simple hello world sample in Node",
-  "version": "2.1.53",
+  "version": "2.1.54",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "system-test": "NAME=Cloud mocha test/system.test.js --timeout=180000",
     "lint": "eslint '**/*.js'",
     "fix": "eslint --fix '**/*.js'",
-    "build": "APP_VERSION=$npm_package_version react-scripts build"
+    "build": "node build"
   },
   "engines": {
     "node": "14.*.*"

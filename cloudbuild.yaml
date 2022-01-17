@@ -1,36 +1,46 @@
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
+
+# Edit Kustomize layer in config repo and push changes
+- name: gcr.io/cloud-builders/git
+  entrypoint: 'bash'
   args:
-  - kms
-  - decrypt
-  - --ciphertext-file=npmrc.enc
-  - --plaintext-file=/root/.npmrc
-  - --location=global
-  - --keyring=my-keyring
-  - --key=npm-key
-  volumes:
-  - name: 'home'
-    path: /root/
+  - '-c'
+  - |
+    # echo "Cloning repo ..."
+    # eval `ssh-agent -s`
+    # # ssh-add
+    # ssh-add ~/.ssh/9.pub
+    # ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    # git clone --depth 1 https://github.com/sumits096/ix-npm-versioning.git
+    # echo ${BRANCH_NAME}
+    # cd ix-pm-versioning
+    # ls
+    # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
+    echo "Pushing changes to git config repo ..."
+    # git show-ref
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
+    git config --global user.name sumits096
+    git config --global user.email sumits@incubxperts.com
 
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.email', 'sumits@incubxperts.com']
+    # git checkout main
+    echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+    # git push -u origin master
+    # git tag v1.2.411
+    # git push origin version-changes --force
 
-- name: 'gcr.io/cloud-builders/git'
-  args: ['config', '--global', 'user.name', 'sumits096']
+    touch README
+    git add .
+    git commit -m 'reinitialized files'
+    git branch -M version-changes
+    git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
+    git push -u origin version-changes
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['version','prepatch']
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run-script','build']
+    #  git branch -M dev-docker-cicd
+    #  git remote set-url origin https://ix-pankajk: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@github.com/ix-pankajk/ix-terraform-cicd.git
+    #  git push -u origin dev-docker-cicd
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['publish']
-  env:
-  - HOME=/root/
-  volumes:
-  - name: 'home'
-    path: /root/
+    # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
+    # git add -A
+    # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
+    # git push origin https://github.com/sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
