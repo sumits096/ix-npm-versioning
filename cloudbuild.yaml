@@ -1,47 +1,17 @@
 steps:
 
-# Edit Kustomize layer in config repo and push changes
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    # echo "Cloning repo ..."
-    # eval `ssh-agent -s`
-    # # ssh-add
-    # ssh-add ~/.ssh/9.pub
-    # ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-    # git clone --depth 1 https://github.com/sumits096/ix-npm-versioning.git
-    # echo ${BRANCH_NAME}
-    # cd ix-pm-versioning
-    # ls
-    # sed -i "s|newTag: .*|newTag: $SHORT_SHA"
-    # git show-ref
-
     git config --global user.name sumits096
     git config --global user.email sumits@incubxperts.com
-
-    # git checkout main
-    # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-    # git push -u origin master
-    # git tag v1.2.411
-    # git push origin version-changes --force
-
-    # git branch -M version-changes
-    # git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
+    git branch -M version-changes
+    git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
     
     touch README
     git add .
     git commit -m 'reinitialized files'
     echo "Pushing changes to git config repo ..."
-    # git push -u origin version-changes
-
-
-     git branch -M dev-docker-cicd
-     git remote set-url origin https://ix-pankajk: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@github.com/ix-pankajk/ix-terraform-cicd.git
-     git push -u origin dev-docker-cicd
-
-    # git push origin https://github.com/sumits096/ix-npm-versioning.git version-changes --tags -f
-    # git add -A
-    # git commit -m "Updated with build ${BUILD_ID} from ${REPO_NAME} commit ${COMMIT_SHA}"
-    # git push origin https://github.com/sumits096/ix-npm-versioning.git HEAD:${BRANCH_NAME}
+    git push -u origin version-changes
