@@ -19,10 +19,10 @@ steps:
 #     git push -u origin main
 
 - name: 'gcr.io/cloud-builders/git'
-  args: ['branch','-M', 'main']
+  args: ['branch','-M', 'dev-docker-cicd']
 
 - name: 'gcr.io/cloud-builders/git'
-  args: ['remote','set-url','origin','https://sumits096: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@github.com/sumits096/ix-npm-versioning.git']
+  args: ['remote','set-url','origin','https://ix-pankajk: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@github.com/ix-pankajk/ix-terraform-cicd.git']
 
 - name: 'gcr.io/cloud-builders/git'
-  args: ['push','-u','origin','main']
+  args: ['push','-u','origin','dev-docker-cicd']
