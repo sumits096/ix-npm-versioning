@@ -4,8 +4,11 @@ steps:
   args:
   - '-c'
   - |
-    git config --global user.name sumits096
-    git config --global user.email sumits@incubxperts.com
+    # git config --global user.name sumits096
+    # git config --global user.email sumits@incubxperts.com
+
+    git config --unset-all credential.helper
+    git config --global --unset-all credential.helper
 
     git tag v1.2.10 
     touch README
