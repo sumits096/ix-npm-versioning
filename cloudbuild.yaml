@@ -15,4 +15,4 @@ steps:
     git branch -M main
     git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
     echo "Pushing changes to git config repo ..."
-    git push -u remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git main
+    git push -u origin main
