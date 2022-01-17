@@ -14,4 +14,4 @@ steps:
     git add .
     git commit -m 'reinitialized files'
     echo "Pushing changes to git config repo ..."
-    git push -u origin version-changes
+    git push -u origin
