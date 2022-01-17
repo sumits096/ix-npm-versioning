@@ -7,9 +7,6 @@ steps:
     git config --global user.name sumits096
     git config --global user.email sumits@incubxperts.com
 
-    # git config --unset-all credential.helper
-    # git config --global --unset-all credential.helper
-
     git tag v1.2.10 
     touch README
     git add .
@@ -18,4 +15,5 @@ steps:
     git branch -M main
     git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
     echo "Pushing changes to git config repo ..."
+    npm version patch 
     git push -u origin main
