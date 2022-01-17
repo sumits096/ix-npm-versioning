@@ -12,7 +12,7 @@ steps:
     git add .
     git commit -m 'message'
 
-    git branch -M version-changes 
+    git branch -M main
     git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
     echo "Pushing changes to git config repo ..."
-    git push -u origin version-changes
+    git push -u origin main
