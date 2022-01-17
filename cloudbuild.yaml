@@ -12,16 +12,7 @@ steps:
     git add .
     git commit -m 'message'
 
-    # git branch -M version-changes 
-    # git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
-    # echo "Pushing changes to git config repo ..."
-    # git push -u origin version-changes
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['branch','-M', 'version-changes']
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['remote','set-url','origin','https://sumits096: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@github.com/sumits096/ix-npm-versioning.git']
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['push','-u','origin','version-changes']
+    git branch -M version-changes 
+    git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
+    echo "Pushing changes to git config repo ..."
+    git push -u origin version-changes
