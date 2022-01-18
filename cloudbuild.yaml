@@ -1,48 +1,28 @@
 # steps:
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#   - kms
+#   - decrypt
+#   - --ciphertext-file=npmrc.enc
+#   - --plaintext-file=/root/.npmrc
+#   - --location=global
+#   - --keyring=my-keyring
+#   - --key=npm-key
+
 # - name: gcr.io/cloud-builders/git
 #   entrypoint: 'bash'
 #   args:
 #   - '-c'
 #   - |
+#     echo "Pushing changes to git config repo ..."
+#     git show-ref
 #     git config --global user.name sumits096
 #     git config --global user.email sumits@incubxperts.com
-
-#     git tag v1.2.10 
+#     git tag v1.2.10
 #     touch README
+#     git diff
 #     git add .
 #     git commit -m 'message'
-
 #     git branch -M main
-#     git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
-#     echo "Pushing changes to git repo ..."
-#     # npm version patch 
+#     git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
 #     git push -u origin main
-
-steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - kms
-  - decrypt
-  - --ciphertext-file=npmrc.enc
-  - --plaintext-file=/root/.npmrc
-  - --location=global
-  - --keyring=my-keyring
-  - --key=npm-key
-
-- name: gcr.io/cloud-builders/git
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    echo "Pushing changes to git config repo ..."
-    git show-ref
-    git config --global user.name sumits096
-    git config --global user.email sumits@incubxperts.com
-    git tag v1.2.10
-    touch README
-    git diff
-    git add .
-    git commit -m 'message'
-    git branch -M main
-    git remote set-url origin https://sumits096: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@github.com/sumits096/ix-npm-versioning.git
-    git push -u origin main
