@@ -60,7 +60,7 @@ steps:
   args: ['install']
 
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['test']
+  args: ['testpackage']
 
 - name: 'gcr.io/cloud-builders/npm'
   args: ['publish']
