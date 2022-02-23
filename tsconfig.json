@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": true,
+        "outDir": "./lib",
+        "strict": true,
+        "composite": true,
+        "rootDir": "./src",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true,
+        "types": [
+            "node",
+            "reflect-metadata"
+        ],
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": ["es6", "dom", "es2015"],
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "noEmitOnError": false,
+        "typeRoots": [
+            "../node_modules/@types/"
+        ],
+        "suppressImplicitAnyIndexErrors": false,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,         
+        "emitDecoratorMetadata": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/__tests__/*"
+    ]
+}
