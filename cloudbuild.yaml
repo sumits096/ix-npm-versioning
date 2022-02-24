@@ -12,19 +12,35 @@ steps:
   - name: 'home'
     path: /root/
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
+# - name: 'gcr.io/cloud-builders/npm'
+#   args: ['install']
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['build']
+# - name: 'gcr.io/cloud-builders/npm'
+#   args: ['build']
 
 # - name: 'gcr.io/cloud-builders/npm'
 #   args: ['test']
 
+# - name: 'gcr.io/cloud-builders/npm'
+#   args: ['publish']
+#   env:
+#   - HOME=/root/
+#   volumes:
+#   - name: 'home'
+#     path: /root/
+
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['publish']
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    npm install
+    npm build
+    npm publish
   env:
   - HOME=/root/
   volumes:
   - name: 'home'
     path: /root/
+
+
