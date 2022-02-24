@@ -63,7 +63,7 @@ steps:
 #   args: ['test']
 
 - name: gcr.io/cloud-builders/npm
-  args: ['run', 'npm config set registry https://registry.npmjs.org/']
+  args: ['npm config set registry https://registry.npmjs.org/']
 
 - name: 'gcr.io/cloud-builders/npm'
   args: ['publish']
