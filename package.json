@@ -1,6 +1,6 @@
 {
   "name": "ix-npm-versioning",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This is test package",
   "main": "index.js",
   "directories": {
