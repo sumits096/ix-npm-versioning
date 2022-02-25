@@ -9,6 +9,7 @@ steps:
 
     echo $BRANCH_NAME
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Package_Version.txt
+    echo 'version test'
     echo $(cat /workspace/Package_Version.txt)
 
 # - name: 'gcr.io/cloud-builders/gcloud'
