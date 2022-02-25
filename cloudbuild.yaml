@@ -34,6 +34,8 @@ steps:
   args:
   - '-c'
   - |
+    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
+    npm version echo $(cat /workspace/Latest_Version.txt)-alpha
     npm install
     npm build
     npm publish --tag beta
