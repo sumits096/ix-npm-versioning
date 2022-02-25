@@ -12,29 +12,24 @@ steps:
   - name: 'home'
     path: /root/
 
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['install']
+- name: gcr.io/cloud-builders/git
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo "Pushing changes to git config repo ..."
+    git show-ref
+    git config --global user.name sumit096
+    git config --global user.email sumits@incubxperts.com
 
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['build']
-
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['test']
-
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['publish']
-#   env:
-#   - HOME=/root/
-#   volumes:
-#   - name: 'home'
-#     path: /root/
+    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
+    echo $(cat /workspace/Latest_Version.txt)
 
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
     echo $(cat /workspace/Latest_Version.txt)
     npm install
     npm build
