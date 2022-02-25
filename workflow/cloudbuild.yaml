@@ -12,40 +12,40 @@ steps:
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
     echo $(cat /workspace/Latest_Version.txt)
 
-    # git branch -M ${_MAIN_BRANCH}
-    # git remote set-url origin ${_GIT_REPO}
+    git branch -M ${_MAIN_BRANCH}
+    git remote set-url origin ${_GIT_REPO}
 
-    # git checkout ${_MAIN_BRANCH}
-    # git fetch origin ${_MAIN_BRANCH}
-    # git reset --hard origin/${_MAIN_BRANCH}
+    git checkout ${_MAIN_BRANCH}
+    git fetch origin ${_MAIN_BRANCH}
+    git reset --hard origin/${_MAIN_BRANCH}
 
-    # echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Previous_Version.txt
+    echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Previous_Version.txt
 
-    # git branch -M $BRANCH_NAME
-    # git remote set-url origin ${_GIT_REPO}
-    # git checkout $BRANCH_NAME
-    # git fetch origin $BRANCH_NAME
-    # git reset --hard origin/$BRANCH_NAME
+    git branch -M $BRANCH_NAME
+    git remote set-url origin ${_GIT_REPO}
+    git checkout $BRANCH_NAME
+    git fetch origin $BRANCH_NAME
+    git reset --hard origin/$BRANCH_NAME
 
-# - name: 'gcr.io/cloud-builders/npm'
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     if [[ $(cat /workspace/Latest_Version.txt) == $(cat /workspace/Previous_Version.txt) ]]
-#     then
-#       npm version patch
-#     elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
-#     then
-#       echo 'version is not updated'
-#     fi
+- name: 'gcr.io/cloud-builders/npm'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    if [[ $(cat /workspace/Latest_Version.txt) == $(cat /workspace/Previous_Version.txt) ]]
+    then
+      npm version patch
+    elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
+    then
+      echo 'version is not updated'
+    fi
 
-# - name: gcr.io/cloud-builders/git
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     git branch -M $BRANCH_NAME
-#     git remote set-url origin ${_GIT_REPO}
-#     git tag v$(cat /workspace/Latest_Version.txt)
-#     git push origin $BRANCH_NAME --tags -f
+- name: gcr.io/cloud-builders/git
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    git branch -M $BRANCH_NAME
+    git remote set-url origin ${_GIT_REPO}
+    git tag v$(cat /workspace/Latest_Version.txt)
+    git push origin $BRANCH_NAME --tags -f
