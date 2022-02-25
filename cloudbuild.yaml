@@ -37,7 +37,7 @@ steps:
     # npm version --preid=alpha
     npm install
     npm build
-    npm publish alpha
+    npm publish --tag beta
   env:
   - HOME=/root/
   volumes:
