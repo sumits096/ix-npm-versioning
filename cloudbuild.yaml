@@ -1,17 +1,4 @@
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - kms
-  - decrypt
-  - --ciphertext-file=npmrc.enc
-  - --plaintext-file=/root/.npmrc
-  - --location=global
-  - --keyring=my-keyring
-  - --key=npm-key
-  volumes:
-  - name: 'home'
-    path: /root/
-
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
   args:
@@ -25,6 +12,19 @@ steps:
     echo $BRANCH_NAME
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Check_Version.txt
     echo $(cat /workspace/Check_Version.txt)
+    
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=npmrc.enc
+  - --plaintext-file=/root/.npmrc
+  - --location=global
+  - --keyring=my-keyring
+  - --key=npm-key
+  volumes:
+  - name: 'home'
+    path: /root/
 
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
