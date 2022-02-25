@@ -20,6 +20,7 @@ steps:
     git reset --hard origin/${_MAIN_BRANCH}
 
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Previous_Version.txt
+    echo $(cat /workspace/Previous_Version.txt)
 
     git branch -M $BRANCH_NAME
     git remote set-url origin ${_GIT_REPO}
