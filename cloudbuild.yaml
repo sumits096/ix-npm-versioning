@@ -34,8 +34,8 @@ steps:
   args:
   - '-c'
   - |
-    npm install
     npm version prerelease --preid=alpha
+    npm install
     npm build
     npm publish
   env:
