@@ -34,7 +34,7 @@ steps:
   args:
   - '-c'
   - |
-    npm version prerelease --preid=alpha
+    npm version --preid=alpha
     npm install
     npm build
     npm publish
