@@ -21,7 +21,7 @@ steps:
     git show-ref
     git config --global user.name sumit096
     git config --global user.email sumits@incubxperts.com
-
+    
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
     echo $(cat /workspace/Latest_Version.txt)
 
@@ -30,7 +30,6 @@ steps:
   args:
   - '-c'
   - |
-    echo $(cat /workspace/Latest_Version.txt)
     npm install
     npm build
     npm publish --tag beta
