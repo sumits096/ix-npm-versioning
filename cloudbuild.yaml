@@ -10,8 +10,8 @@ steps:
     git config --global user.email sumits@incubxperts.com
 
     echo $BRANCH_NAME
-    echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-
+    echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
+    echo $(cat /workspace/Latest_Version.txt)
 # - name: 'gcr.io/cloud-builders/gcloud'
 #   args:
 #   - kms
