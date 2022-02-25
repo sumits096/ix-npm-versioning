@@ -10,6 +10,7 @@ steps:
     git config --global user.email ${_GIT_USEREMAIL}
 
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
+    echo $(cat /workspace/Latest_Version.txt)
 
     git branch -M ${_MAIN_BRANCH}
     git remote set-url origin ${_GIT_REPO}
@@ -25,8 +26,6 @@ steps:
     git checkout $BRANCH_NAME
     git fetch origin $BRANCH_NAME
     git reset --hard origin/$BRANCH_NAME
-
-    echo $(cat /workspace/Latest_Version.txt)
 
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
