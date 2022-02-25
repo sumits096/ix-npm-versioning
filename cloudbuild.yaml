@@ -34,10 +34,10 @@ steps:
   args:
   - '-c'
   - |
-    npm version --preid=alpha
+    # npm version --preid=alpha
     npm install
     npm build
-    npm publish
+    npm publish alpha
   env:
   - HOME=/root/
   volumes:
