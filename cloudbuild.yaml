@@ -1,42 +1,29 @@
 steps:
-- name: gcr.io/cloud-builders/git
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=npmrc.enc
+  - --plaintext-file=/root/.npmrc
+  - --location=global
+  - --keyring=my-keyring
+  - --key=npm-key
+  volumes:
+  - name: 'home'
+    path: /root/
+
+- name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    echo "Pushing changes to git config repo ..."
-    git show-ref
-
-    echo $BRANCH_NAME
-    echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Package_Version.txt
-    # echo 'version test'
-    echo $(cat /workspace/Package_Version.txt)
-
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   args:
-#   - kms
-#   - decrypt
-#   - --ciphertext-file=npmrc.enc
-#   - --plaintext-file=/root/.npmrc
-#   - --location=global
-#   - --keyring=my-keyring
-#   - --key=npm-key
-#   volumes:
-#   - name: 'home'
-#     path: /root/
-
-# - name: 'gcr.io/cloud-builders/npm'
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     npm install
-#     npm build
-#     npm publish --tag beta
-#   env:
-#   - HOME=/root/
-#   volumes:
-#   - name: 'home'
-#     path: /root/
+    npm install
+    npm build
+    npm publish --tag beta
+  env:
+  - HOME=/root/
+  volumes:
+  - name: 'home'
+    path: /root/
 
 
