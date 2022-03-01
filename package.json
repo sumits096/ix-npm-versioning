@@ -1,5 +1,5 @@
 {
-  "name": "@ix-incubxperts/ix-package-test-sumit",
+  "name": "@ix-incubxperts/ixtestnpm",
   "version": "1.0.0",
   "description": "This is test package",
   "main": "index.js",
