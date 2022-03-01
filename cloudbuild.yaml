@@ -17,6 +17,7 @@ steps:
   args:
   - '-c'
   - |
+    npm version 3.0.0-beta
     npm install
     npm build
     npm publish --access public --tag beta
