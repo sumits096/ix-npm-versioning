@@ -6,8 +6,8 @@ steps:
   - --ciphertext-file=npmrc.enc
   - --plaintext-file=/root/.npmrc
   - --location=global
-  - --keyring=my-keyring
-  - --key=npm-key
+  - --keyring=sdk-package-keyring
+  - --key=sdk-publish-key
   volumes:
   - name: 'home'
     path: /root/
