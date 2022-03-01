@@ -1,6 +1,6 @@
 {
-  "name": "ix-new-package",
-  "version": "1.0.1",
+  "name": "ix-new-package-org",
+  "version": "1.0.0",
   "description": "This is test package",
   "main": "index.js",
   "directories": {
