@@ -18,7 +18,7 @@ steps:
   - '-c'
   - |
     cd sdk 
-    npm version 3.0.1-beta
+    npm version 2.1.0-beta
     npm install
     npm build
     npm publish --access public --tag beta
