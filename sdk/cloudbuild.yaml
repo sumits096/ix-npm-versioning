@@ -18,6 +18,8 @@ steps:
   - '-c'
   - |
     cd sdk 
+    npm audit fix
+    npm install @google-cloud/common
     npm version 2.1.0-beta
     npm install
     npm build
