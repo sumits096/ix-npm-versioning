@@ -3,7 +3,7 @@ steps:
   args:
   - kms
   - decrypt
-  - --ciphertext-file=npmrc.enc
+  - --ciphertext-file=sdk/npmrc.enc
   - --plaintext-file=/root/.npmrc
   - --location=global
   - --keyring=sdk-package-keyring
@@ -17,7 +17,8 @@ steps:
   args:
   - '-c'
   - |
-    npm version 3.0.0-beta
+    cd sdk 
+    npm version 3.0.1-beta
     npm install
     npm build
     npm publish --access public --tag beta
