@@ -1,64 +1,46 @@
-# Cloud Run Hello World Sample
+# sdk-ts
+Typescript SDK for Boomtown.
+ 
+### Table Of Contents
 
-This sample shows how to deploy a Hello World application to Cloud Run.
+- [Overview](#overview)
+- [Installation](#installation)
+- [Technologies](#technologies)
+- [Minimal Requirements](#minimal-requirements)
+- [Features](#features)
+- [Author](#author)
+- [License](#license)
 
-For more details on how to work with this sample read the [Google Cloud Run Node.js Samples README](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/main/run).
+<h2 id="overview">Overview</h2>
+ 
+<p>
+    Sdk-ts provides set of reusable functions used to interface provided by the Boomtown.
+</p>
+ 
+<h2 id="installation">Installation</h2>
 
-## Local Development
-
-### `npm run e2e-test`
-
+Install with npm:
 ```
-export SERVICE_NAME=helloworld
-export CONTAINER_IMAGE=gcr.io/${GOOGLE_CLOUD_PROJECT}/helloworld
-npm run e2e-test
+npm i sdk-ts
 ```
+ 
+<h2 id="technologies">Technologies</h2>
+- Node <br/>
+- Typescript <br/>
+- EJS
 
-## Using Testing Scripts
+<h2 id="minimal-requirements">Minimal Requirements</h2>
+- NPM/Yarn LTS <br/>
+- NodeJs <br/>
 
-### url.sh
+<h2 id="features">Features</h2>
+<br/>
+<br/>
 
-The `url.sh` script derives the automatically provisioned URL of a deployed
-Cloud Run service.
+<h2 id="author">Author</h2>
+Boomtown Team <developers@goboomtown.com>
 
-```sh
-export SERVICE_NAME=helloworld
-export REGION=us-central1
-test/url.sh
-```
+<h2 id="license">License</h2>
+Copyright © 2021 [Boomtown <developers@goboomtown.com>](https://github.com/boomtown)
 
-### deploy.sh
-
-The `deploy.sh` script deploys a Cloud Run service.
-
-```sh
-export SERVICE_NAME=helloworld
-export CONTAINER_IMAGE=gcr.io/${GOOGLE_CLOUD_PROJECT}/helloworld
-export REGION=us-central1
-test/deploy.sh
-```
-
-### runner.sh
-
-The `runner.sh` script:
-
-* Deploys the service to Cloud Run based on the `deploy.sh` script.
-* Sets the `BASE_URL` and `ID_TOKEN` environment variables.
-* Runs any arguments passed to the `runner.sh` script.
-* Tears down the Cloud Run service on completion.
-
-```sh
-test/runner.sh sleep 20
-```
-
-## Environment Variables (Testing)
-
-* `BASE_URL`: Specifies the Cloud Run service URL for end-to-end tests.
-* `ID_TOKEN`: JWT token used to authenticate with Cloud Run's IAM-based authentication.
-* `REGION`: [`us-central1`] Optional override region for the location of the Cloud Run service.
-* `SERVICE_NAME`: The name of the deployed service, used in some API calls and test assertions.
-
-## Dependencies
-
-* **express**: Web server framework.
-* **got**: [Testing] Used to make HTTP requests of the running service in end-to-end testing.
+This project is licensed by ISC

@@ -13,7 +13,8 @@
         "experimentalDecorators": true,
         "types": [
             "node",
-            "reflect-metadata"
+            "reflect-metadata",
+            "jest"
         ],
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
