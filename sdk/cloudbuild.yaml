@@ -21,7 +21,7 @@ steps:
     node -v 
     npm -v
     npm audit fix
-    npm version 4.0.2-beta
+    npm version 4.0.3-beta
     # npm install
     npm build
     npm publish --access public --tag beta
