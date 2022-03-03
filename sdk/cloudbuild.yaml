@@ -21,9 +21,9 @@ steps:
     node -v 
     npm -v
     npm audit fix
-    npm version 4.0.3-beta
-    npm install
-    # npm build
+    npm version 4.0.4-beta
+    # npm install
+    npm build
     npm publish --access public --tag beta
   env:
   - HOME=/root/
