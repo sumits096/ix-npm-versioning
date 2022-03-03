@@ -13,7 +13,7 @@ steps:
     path: /root/
 
 - name: 'gcr.io/cloud-builders/npm'
-  entrypoint: 'bash'
+  entrypoint: 'npm'
   args:
   - '-c'
   - |
@@ -21,7 +21,7 @@ steps:
     node -v 
     npm -v
     npm audit fix
-    npm version 4.0.5-beta
+    npm version 4.0.6-beta
     npm install
     npm build
     npm publish --access public --tag beta
