@@ -13,7 +13,7 @@ steps:
     path: /root/
 
 - name: 'gcr.io/cloud-builders/npm'
-  entrypoint: 'npm'
+  entrypoint: 'bash'
   args:
   - '-c'
   - |
