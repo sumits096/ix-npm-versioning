@@ -17,11 +17,12 @@ steps:
   args:
   - '-c'
   - |
-    cd sdk 
+    cd sdk
     node -v 
     npm -v
+    npm audit
     npm audit fix
-    npm version 4.0.7-beta
+    npm version 4.0.8-beta
     npm install
     npm build
     npm publish --access public --tag beta
@@ -30,5 +31,3 @@ steps:
   volumes:
   - name: 'home'
     path: /root/
-
-
