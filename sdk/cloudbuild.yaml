@@ -21,8 +21,9 @@ steps:
     node -v 
     npm -v
     npm audit fix
-    npm version 4.0.4-beta
-    # npm install
+    npm version 4.0.5-beta
+    npm config set registry https://registry.npmjs.org/:_authToken=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
+    npm install
     npm build
     npm publish --access public --tag beta
   env:
