@@ -22,23 +22,13 @@ steps:
     npm -v
     npm audit fix
     npm version 4.0.7-beta
-    # npm install
-    # npm build
-    # npm publish --access public --tag beta
+    npm install
+    npm build
+    npm publish --access public --tag beta
   env:
   - HOME=/root/
   volumes:
   - name: 'home'
     path: /root/
-
-  # npm install
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-  # npm run build
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['build']
-  # npm install
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['publish']
 
 
