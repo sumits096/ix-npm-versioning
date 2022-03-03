@@ -36,7 +36,7 @@ steps:
   args: ['install']
   # npm run build
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'build']
+  args: ['build']
   # npm install
 - name: 'gcr.io/cloud-builders/npm'
   args: ['publish']
