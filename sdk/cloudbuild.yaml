@@ -22,10 +22,10 @@ steps:
     npm -v
     npm audit
     npm audit fix
-    npm version 4.0.9-beta
-    npm install
+    npm version 4.9.10-beta
+    npm install -g typescript
     npm build
-    npm publish --access public --tag beta
+    # npm publish --access public --tag beta
   env:
   - HOME=/root/
   volumes:
