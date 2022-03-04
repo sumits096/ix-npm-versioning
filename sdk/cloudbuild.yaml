@@ -22,8 +22,8 @@ steps:
     npm -v
     npm audit
     npm audit fix
-    npm version 4.9.10-beta
-    npm install -g typescript
+    npm version 4.9.11-beta
+    npm install -g --save
     npm build
     npm publish --access public --tag beta
   env:
