@@ -1,4 +1,4 @@
-# sdk-ts-test
+# sdk-ts
 Typescript SDK for Boomtown.
  
 ### Table Of Contents

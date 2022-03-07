@@ -79,13 +79,6 @@ var CustomerLocation = (function () {
             });
         });
     };
-    CustomerLocation.prototype.getContactByCustomerId = function (customerId, customerLocationId) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2, this.customerLocationService.getContactByCustomerId(customerId, customerLocationId)];
-            });
-        });
-    };
     CustomerLocation.prototype.getMetaStatus = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

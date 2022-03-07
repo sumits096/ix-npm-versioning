@@ -13,7 +13,6 @@ exports.apiPaths = {
     createUpdateCustomerLocationApi: generatePath("customers/location/put"),
     deleteCustomerLocationApi: function (id) { return generatePath("/customers/location/delete/".concat(id)); },
     getCustomerLocationByExternalIdApi: generatePath("customers/location/lookupByExternalId"),
-    getLocationContactByCustomerId: function (customerId) { return generatePath("/customers/location/users/".concat(customerId)); },
     getCustomerLocationMetaStatus: generatePath("customers/location/meta_statuses"),
     customerContactCheck: function (email) { return generatePath("customers/user_check/".concat(email)); },
     customerContactByCustomerId: function (customerId) { return generatePath("customers/user/get/".concat(customerId)); },

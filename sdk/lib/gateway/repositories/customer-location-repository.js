@@ -140,30 +140,9 @@ var CustomerLocationRepository = (function () {
             });
         });
     };
-    CustomerLocationRepository.prototype.getContactByCustomerId = function (customerId, customerLocationId) {
-        return __awaiter(this, void 0, void 0, function () {
-            var apiRequest, results, error_5;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        this.customerLocationOptionsModel.customer_location_id = customerLocationId;
-                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.getLocationContactByCustomerId(customerId), 'GET', '', this.customerLocationOptionsModel);
-                        return [4, this.boomtownClient.request(apiRequest)];
-                    case 1:
-                        results = _a.sent();
-                        return [2, mapper_1.CustomerContactMap.fromBTCustomerContactResponse(results.data)];
-                    case 2:
-                        error_5 = _a.sent();
-                        throw error_5.response && error_5.response.data ? mapper_1.ErrorMap.error(error_5.response.data) : error_5;
-                    case 3: return [2];
-                }
-            });
-        });
-    };
     CustomerLocationRepository.prototype.getMetaStatus = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var apiRequest, result, error_6;
+            var apiRequest, result, error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -174,8 +153,8 @@ var CustomerLocationRepository = (function () {
                         result = _a.sent();
                         return [2, mapper_1.CustomerMetaMap.mapper(result.data)];
                     case 2:
-                        error_6 = _a.sent();
-                        throw error_6.response && error_6.response.data ? mapper_1.ErrorMap.error(error_6.response.data) : error_6;
+                        error_5 = _a.sent();
+                        throw error_5.response && error_5.response.data ? mapper_1.ErrorMap.error(error_5.response.data) : error_5;
                     case 3: return [2];
                 }
             });

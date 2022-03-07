@@ -27,9 +27,6 @@ var CustomerLocationService = (function () {
     CustomerLocationService.prototype.getByExternalId = function (id) {
         return this.customerLocationRepository.getByExternalId(id);
     };
-    CustomerLocationService.prototype.getContactByCustomerId = function (customerId, customerLocationId) {
-        return this.customerLocationRepository.getContactByCustomerId(customerId, customerLocationId);
-    };
     CustomerLocationService.prototype.getMetaStatus = function () {
         return this.customerLocationRepository.getMetaStatus();
     };

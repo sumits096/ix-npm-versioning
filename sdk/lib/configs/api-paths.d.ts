@@ -9,7 +9,6 @@ export declare const apiPaths: {
     createUpdateCustomerLocationApi: string;
     deleteCustomerLocationApi: (id: string) => string;
     getCustomerLocationByExternalIdApi: string;
-    getLocationContactByCustomerId: (customerId: string) => string;
     getCustomerLocationMetaStatus: string;
     customerContactCheck: (email: string) => string;
     customerContactByCustomerId: (customerId: string) => string;
