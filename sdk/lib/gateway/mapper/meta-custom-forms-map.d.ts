@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { CustomForm, MetaCustomFormsResponse } from '../../core/entity';
 import { CustomFormFieldModel, CustomFormModel, MetaCustomFormsResponseModel } from '../../core/models';
 import { CustomFormField } from '../../core/entity/custom-form-field';

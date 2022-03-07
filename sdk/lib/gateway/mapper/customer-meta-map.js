@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerMetaMap = void 0;
-require("automapper-ts");
 var CustomerMetaMap = (function () {
     function CustomerMetaMap() {
     }

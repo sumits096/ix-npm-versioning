@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { CaseChatHistory, CaseChatHistoryResponse, CaseChatHistoryTranscript, CaseDeEscalateOptions, CaseEscalateOptions, Cases, CasesCreateRequest, CasesCreateResponse, CasesInline, CasesInline0, CasesListOptions, CasesMetadata, CasesResponse, CaseStatusHistory, CaseStatusHistoryResponse } from '../../core/entity';
 import { CaseChatHistoryModel, CaseChatHistoryResponseModel, CaseChatHistoryTranscriptModel, CaseDeEscalateOptionsModel, CaseEscalateOptionsModel, CasesCreateRequestModel, CasesCreateResponseModel, CasesInline0Model, CasesInlineModel, CasesListOptionsModel, CasesMetadataModel, CasesModel, CasesResponseModel, CaseStatusHistoryModel, CaseStatusHistoryResponseModel } from '../../core/models';
 export declare class CasesMap {

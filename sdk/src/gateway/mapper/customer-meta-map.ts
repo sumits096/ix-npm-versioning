@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { HashMapResponse } from '../../core/entity';
 import { HashMapResponseModel } from '../../core/models';
 

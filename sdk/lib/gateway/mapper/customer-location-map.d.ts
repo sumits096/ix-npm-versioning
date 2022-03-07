@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { CustomerLocation, CustomerLocationCreateRequest, CustomerLocationCreateResponse, CustomerLocationMetadata, CustomerLocationResponse } from '../../core/entity';
 import { CustomerLocationCreateRequestModel, CustomerLocationCreateResponseModel, CustomerLocationMetadataModel, CustomerLocationModel, CustomerLocationResponseModel } from '../../core/models';
 export declare class CustomerLocationMap {

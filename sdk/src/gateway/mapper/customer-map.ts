@@ -1,4 +1,4 @@
-import 'automapper-ts';
+
 import { CustomerContactMap, CustomerLocationMap } from '.';
 import {
     Customer,

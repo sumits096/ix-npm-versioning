@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import {
     CaseChatHistory,
     CaseChatHistoryResponse,

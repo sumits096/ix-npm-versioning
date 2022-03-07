@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { CustomerContact, CustomerContactResponse, CustomerContactRequest, ExistsResponse, SSOResponse } from '../../core/entity';
 import { CustomerContactResponseModel, CustomerContactModel, CustomerContactRequestModel, ExistsResponseModel, SSOResponseModel } from '../../core/models';
 export declare class CustomerContactMap {

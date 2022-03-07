@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { CustomerProductSummary } from '../../core/entity';
 import { CustomerProductSummaryModel } from '../../core/models';
 

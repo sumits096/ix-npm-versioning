@@ -1,4 +1,3 @@
-import 'automapper-ts';
 import { CustomerContactMap, CustomerFormsMap, CustomerMap, CustomerProductMap, UploadFilesMap } from '.';
 import {
     CustomerLocation,
