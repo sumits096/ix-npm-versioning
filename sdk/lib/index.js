@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Credential = exports.BoomtownProviders = void 0;
-require("automapper-ts");
 require("reflect-metadata");
 var controllers_1 = require("./api/controllers");
 var services_1 = require("./core/services");
