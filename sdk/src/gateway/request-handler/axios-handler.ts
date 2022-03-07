@@ -3,7 +3,9 @@ import { ApiClient } from './interfaces/apiClient';
 import { Credential } from '../../index';
 import { ApiRequestModel } from '../../core/models';
 import { detectQueryString } from '../../core/helpers';
+import { Service } from 'typedi';
 
+@Service()
 export class AxiosHandler implements ApiClient {
     /**
      * Send request to boomtown api using axios HTTP handler
