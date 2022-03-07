@@ -6,16 +6,16 @@ import { CustomerRepository } from './gateway/repositories';
 import { AxiosHandler } from './gateway/request-handler';
 export declare const BoomtownProviders: (token: string, secret: string) => ({
     provide: typeof Customer;
-    deps: (typeof CustomerService)[];
+    useClass: (typeof CustomerService)[];
 } | {
     provide: typeof CustomerService;
-    deps: (typeof CustomerRepository)[];
+    useClass: (typeof CustomerRepository)[];
 } | {
     provide: typeof CustomerRepository;
-    deps: (typeof BoomtownClient)[];
+    useClass: (typeof BoomtownClient)[];
 } | {
     provide: typeof BoomtownClient;
-    deps: (typeof AxiosHandler)[];
+    useClass: (typeof AxiosHandler)[];
 })[];
 export declare class Credential {
     static token: string;
