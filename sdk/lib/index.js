@@ -10,10 +10,10 @@ var request_handler_1 = require("./gateway/request-handler");
 var BoomtownProviders = function (token, secret) {
     new Credential().setTokenSecret(token, secret);
     return [
-        { provide: controllers_1.Customer, useClass: [services_1.CustomerService] },
-        { provide: services_1.CustomerService, useClass: [repositories_1.CustomerRepository] },
-        { provide: repositories_1.CustomerRepository, useClass: [boomtown_client_1.BoomtownClient] },
-        { provide: boomtown_client_1.BoomtownClient, useClass: [request_handler_1.AxiosHandler] },
+        { provide: controllers_1.Customer, deps: [services_1.CustomerService] },
+        { provide: services_1.CustomerService, deps: [repositories_1.CustomerRepository] },
+        { provide: repositories_1.CustomerRepository, deps: [boomtown_client_1.BoomtownClient] },
+        { provide: boomtown_client_1.BoomtownClient, deps: [request_handler_1.AxiosHandler] },
     ];
 };
 exports.BoomtownProviders = BoomtownProviders;

@@ -8,10 +8,10 @@ import { AxiosHandler } from './gateway/request-handler';
 export const BoomtownProviders = (token: string, secret: string) => {
     new Credential().setTokenSecret(token, secret);
     return [
-        { provide: Customer, useClass: [CustomerService] },
-        { provide: CustomerService, useClass: [CustomerRepository] },
-        { provide: CustomerRepository, useClass: [BoomtownClient] },
-        { provide: BoomtownClient, useClass: [AxiosHandler] },
+        { provide: Customer, deps: [CustomerService] },
+        { provide: CustomerService, deps: [CustomerRepository] },
+        { provide: CustomerRepository, deps: [BoomtownClient] },
+        { provide: BoomtownClient, deps: [AxiosHandler] },
     ];
 };
 
