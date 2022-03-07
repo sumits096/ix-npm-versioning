@@ -1,4 +1,4 @@
-import '../../../node_modules/automapper-ts/dist/automapper';
+import 'automapper-ts';
 import { CustomerContactMap, CustomerLocationMap } from '.';
 import {
     Customer,

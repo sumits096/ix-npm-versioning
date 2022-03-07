@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerMap = void 0;
-require("../../../node_modules/automapper-ts/dist/automapper");
+require("automapper-ts");
 var _1 = require(".");
 var CustomerMap = (function () {
     function CustomerMap() {
