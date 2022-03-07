@@ -3,6 +3,7 @@ import { Customer } from './api/controllers/customer';
 import { CustomerService } from './core/services/customer-service';
 import { BoomtownClient } from './gateway/client/boomtown-client';
 import { CustomerRepository } from './gateway/repositories';
+import { AxiosHandler } from './gateway/request-handler';
 
 export const BoomtownProviders = (token: string, secret: string) => {
     new Credential().setTokenSecret(token, secret);
@@ -10,11 +11,12 @@ export const BoomtownProviders = (token: string, secret: string) => {
         { provide: Customer, deps: [CustomerService] },
         { provide: CustomerService, deps: [CustomerRepository] },
         { provide: CustomerRepository, deps: [BoomtownClient] },
+        { provide: BoomtownClient, deps: [AxiosHandler] },
     ];
 };
 
 export class Credential {
-    static token: string = '3256754';
+    static token: string = '';
     static secret: string = '';
     setTokenSecret(token: string, secret: string) {
         Credential.token = token;
