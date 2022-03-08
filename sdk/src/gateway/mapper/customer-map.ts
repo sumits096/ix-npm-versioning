@@ -1,4 +1,26 @@
-import 'automapper-ts';
+import AutoMapper from "ts-automapper";
+
+AutoMapper.create<CustomerModel, Customer>("customerModel")
+.map(src => src.id, dst => dst.id)
+.map(src => src.name, dst => dst.name)
+.map(src => src.name_legal, dst => dst.nameLegal)
+.map(src => src.street_1, dst => dst.street1)
+.map(src => src.street_2, dst => dst.street2)
+.map(src => src.city, dst => dst.city)
+.map(src => src.state, dst => dst.state)
+.map(src => src.zipcode, dst => dst.zipcode)
+.map(src => src.email, dst => dst.email)
+.map(src => src.phone, dst => dst.phone)
+.map(src => src.external_id, dst => dst.externalId)
+.map(src => src.industry, dst => dst.industry)
+.map(src => src.status, dst => dst.status)
+.map(src => src.created, dst => dst.created)
+.map(src => src.latitude, dst => dst.latitude)
+.map(src => src.longitude, dst => dst.longitude)
+
+AutoMapper.create<CustomerResponse, CustomerResponseModel>("customerResponse")
+.map(src => src.results, dst => dst.results)
+
 import { CustomerContactMap, CustomerLocationMap } from '.';
 import {
     Customer,
@@ -24,15 +46,20 @@ export class CustomerMap {
      * @param model boomtown customer model.
      * @returns
      */
-    static fromBTCustomer(model: CustomerModel): Customer {
-        automapper
-            .createMap('BTCustomer', 'Customer')
-            .forMember('nameLegal', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('name_legal'))
-            .forMember('street1', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('street_1'))
-            .forMember('street2', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('street_2'))
-            .forMember('externalId', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('external_id'));
+    // static fromBTCustomer(model: CustomerModel): Customer {
+    //     automapper
+    //         .createMap('BTCustomer', 'Customer')
+    //         .forMember('nameLegal', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('name_legal'))
+    //         .forMember('street1', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('street_1'))
+    //         .forMember('street2', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('street_2'))
+    //         .forMember('externalId', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('external_id'));
 
-        return automapper.map('BTCustomer', 'Customer', model) as Customer;
+    //     return automapper.map('BTCustomer', 'Customer', model) as Customer;
+    // }
+
+    static fromBTCustomer(model: CustomerModel): Customer {
+        const result: Customer = AutoMapper.exec("customerModel", model);
+        return result;
     }
 
     /**
@@ -40,14 +67,19 @@ export class CustomerMap {
      * @param model customer entity model.
      * @returns
      */
-    static toBTRequestModel(model: CustomerCreateRequest): CustomerCreateRequestModel {
-        automapper
-            .createMap('CustomerCreateRequest', 'BTCustomerCreateRequest')
-            .forMember('customer', this.toBTCustomer(model.customer))
-            .forMember('customer_user', CustomerContactMap.toBTCustomerContact(model.customerContact))
-            .forMember('customer_location', CustomerLocationMap.toBTCustomerLocation(model.customerLocation));
+    // static toBTRequestModel(model: CustomerCreateRequest): CustomerCreateRequestModel {
+    //     automapper
+    //         .createMap('CustomerCreateRequest', 'BTCustomerCreateRequest')
+    //         .forMember('customer', this.toBTCustomer(model.customer))
+    //         .forMember('customer_user', CustomerContactMap.toBTCustomerContact(model.customerContact))
+    //         .forMember('customer_location', CustomerLocationMap.toBTCustomerLocation(model.customerLocation));
 
-        return automapper.map('CustomerCreateRequest', 'BTCustomerCreateRequest', model) as CustomerCreateRequestModel;
+    //     return automapper.map('CustomerCreateRequest', 'BTCustomerCreateRequest', model) as CustomerCreateRequestModel;
+    // }
+
+    static toBTRequestModel(model: CustomerCreateRequest): CustomerCreateRequestModel {
+        const result: CustomerCreateRequestModel = AutoMapper.exec("customerCreateRequest", model);
+        return result;
     }
 
     /**
@@ -77,14 +109,18 @@ export class CustomerMap {
             return CustomerMap.fromBTCustomer(customer);
         });
 
-        automapper
-            .createMap('BTCustomerResponse', 'CustomerResponse')
-            .forMember('currentServerTime', (opts: AutoMapperJs.IMemberConfigurationOptions) =>
-                opts.mapFrom('current_server_time'),
-            )
-            .forMember('results', customers);
+        console.log(customers);
+        const result: CustomerResponse = AutoMapper.exec("customerResponse", customers);
+        return result;
 
-        return automapper.map('BTCustomerResponse', 'CustomerResponse', responseModel) as CustomerResponse;
+        // automapper
+        //     .createMap('BTCustomerResponse', 'CustomerResponse')
+        //     .forMember('currentServerTime', (opts: AutoMapperJs.IMemberConfigurationOptions) =>
+        //         opts.mapFrom('current_server_time'),
+        //     )
+        //     .forMember('results', customers);
+
+        // return automapper.map('BTCustomerResponse', 'CustomerResponse', responseModel) as CustomerResponse;
     }
 
     /**

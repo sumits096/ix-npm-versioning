@@ -1,27 +1,40 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerMap = void 0;
-require("automapper-ts");
+var ts_automapper_1 = __importDefault(require("ts-automapper"));
+ts_automapper_1.default.create("customerModel")
+    .map(function (src) { return src.id; }, function (dst) { return dst.id; })
+    .map(function (src) { return src.name; }, function (dst) { return dst.name; })
+    .map(function (src) { return src.name_legal; }, function (dst) { return dst.nameLegal; })
+    .map(function (src) { return src.street_1; }, function (dst) { return dst.street1; })
+    .map(function (src) { return src.street_2; }, function (dst) { return dst.street2; })
+    .map(function (src) { return src.city; }, function (dst) { return dst.city; })
+    .map(function (src) { return src.state; }, function (dst) { return dst.state; })
+    .map(function (src) { return src.zipcode; }, function (dst) { return dst.zipcode; })
+    .map(function (src) { return src.email; }, function (dst) { return dst.email; })
+    .map(function (src) { return src.phone; }, function (dst) { return dst.phone; })
+    .map(function (src) { return src.external_id; }, function (dst) { return dst.externalId; })
+    .map(function (src) { return src.industry; }, function (dst) { return dst.industry; })
+    .map(function (src) { return src.status; }, function (dst) { return dst.status; })
+    .map(function (src) { return src.created; }, function (dst) { return dst.created; })
+    .map(function (src) { return src.latitude; }, function (dst) { return dst.latitude; })
+    .map(function (src) { return src.longitude; }, function (dst) { return dst.longitude; });
+ts_automapper_1.default.create("customerResponse")
+    .map(function (src) { return src.results; }, function (dst) { return dst.results; });
 var _1 = require(".");
 var CustomerMap = (function () {
     function CustomerMap() {
     }
     CustomerMap.fromBTCustomer = function (model) {
-        automapper
-            .createMap('BTCustomer', 'Customer')
-            .forMember('nameLegal', function (opts) { return opts.mapFrom('name_legal'); })
-            .forMember('street1', function (opts) { return opts.mapFrom('street_1'); })
-            .forMember('street2', function (opts) { return opts.mapFrom('street_2'); })
-            .forMember('externalId', function (opts) { return opts.mapFrom('external_id'); });
-        return automapper.map('BTCustomer', 'Customer', model);
+        var result = ts_automapper_1.default.exec("customerModel", model);
+        return result;
     };
     CustomerMap.toBTRequestModel = function (model) {
-        automapper
-            .createMap('CustomerCreateRequest', 'BTCustomerCreateRequest')
-            .forMember('customer', this.toBTCustomer(model.customer))
-            .forMember('customer_user', _1.CustomerContactMap.toBTCustomerContact(model.customerContact))
-            .forMember('customer_location', _1.CustomerLocationMap.toBTCustomerLocation(model.customerLocation));
-        return automapper.map('CustomerCreateRequest', 'BTCustomerCreateRequest', model);
+        var result = ts_automapper_1.default.exec("customerCreateRequest", model);
+        return result;
     };
     CustomerMap.toBTCustomer = function (model) {
         automapper
@@ -37,13 +50,9 @@ var CustomerMap = (function () {
         var customers = list.map(function transform(customer) {
             return CustomerMap.fromBTCustomer(customer);
         });
-        automapper
-            .createMap('BTCustomerResponse', 'CustomerResponse')
-            .forMember('currentServerTime', function (opts) {
-            return opts.mapFrom('current_server_time');
-        })
-            .forMember('results', customers);
-        return automapper.map('BTCustomerResponse', 'CustomerResponse', responseModel);
+        console.log(customers);
+        var result = ts_automapper_1.default.exec("customerResponse", customers);
+        return result;
     };
     CustomerMap.customerCreateResponse = function (responseModel) {
         var tuple = responseModel.results;
