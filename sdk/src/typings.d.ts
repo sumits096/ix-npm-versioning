@@ -1,0 +1,1 @@
+import 'automapper-ts'
