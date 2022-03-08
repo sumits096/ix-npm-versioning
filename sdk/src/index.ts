@@ -22,6 +22,7 @@ export class Credential {
     setTokenSecret(token: string, secret: string) {
         Credential.token = token;
         Credential.secret = secret;
+        console.log(token);
     }
 }
 

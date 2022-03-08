@@ -24,6 +24,7 @@ var Credential = (function () {
     Credential.prototype.setTokenSecret = function (token, secret) {
         Credential.token = token;
         Credential.secret = secret;
+        console.log(token);
     };
     Credential.token = '';
     Credential.secret = '';
