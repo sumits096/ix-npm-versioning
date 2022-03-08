@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerService = void 0;
 var typedi_1 = require("typedi");
@@ -32,6 +35,7 @@ var CustomerService = (function () {
     };
     CustomerService = __decorate([
         (0, typedi_1.Service)(),
+        __param(0, (0, typedi_1.Inject)('CustomerRepository')),
         __metadata("design:paramtypes", [Object])
     ], CustomerService);
     return CustomerService;

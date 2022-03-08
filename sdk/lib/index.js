@@ -25,20 +25,9 @@ var Credential = (function () {
         Credential.token = token;
         Credential.secret = secret;
     };
-    Credential.token = 'F9DE22681B8419CB9BC3';
-    Credential.secret = '90691a8eed1851cc1ee20c1d4a8a39e81f91e1de';
+    Credential.token = '';
+    Credential.secret = '';
     return Credential;
 }());
 exports.Credential = Credential;
-var result = new controllers_1.Customer(new services_1.CustomerService(new repositories_1.CustomerRepository(new boomtown_client_1.BoomtownClient(new request_handler_1.AxiosHandler()))));
-result.get().then(function (res) {
-    try {
-        console.log('Customers    ' + JSON.stringify(res));
-    }
-    catch (error) {
-        console.log(error.message);
-    }
-}).catch(function (error) {
-    console.error(error);
-});
 //# sourceMappingURL=index.js.map

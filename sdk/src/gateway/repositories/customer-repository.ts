@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Service } from 'typedi';
 import { CustomerMap, ErrorMap, ResponseMap } from '../mapper';
 import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
@@ -22,7 +22,7 @@ import { CustomerRepositoryInterface } from '../../core/interfaces/repositories'
  */
 @Service()
 export class CustomerRepository implements CustomerRepositoryInterface {
-    constructor(protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a collection of customers

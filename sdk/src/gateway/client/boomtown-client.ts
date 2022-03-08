@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Service } from 'typedi';
 import { ApiRequestModel } from '../../core/models/client-request-model';
 import { signature } from '../auth/signature';
 import { AxiosHandler } from '../request-handler';
@@ -10,7 +10,7 @@ import { AxiosHandler } from '../request-handler';
  */
 @Service()
 export class BoomtownClient {
-    constructor(private readonly axiosHandler: AxiosHandler) {}
+    constructor(@Inject('AxiosHandler') private readonly axiosHandler: AxiosHandler) {}
 
     /**
      * call to boomtown api based on http handler

@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Service } from 'typedi';
 import { BaseResponse, CustomerCreateResponse, CustomerResponse, CustomerCreateRequest, ListOptions, SmsInviteData, SmsInviteResponse } from '../entity';
 import { CustomerRepositoryInterface } from '../interfaces/repositories';
 import { CustomerServiceInterface } from '../interfaces/services';
@@ -11,7 +11,7 @@ import { CustomerServiceInterface } from '../interfaces/services';
  */
 @Service()
 export class CustomerService implements CustomerServiceInterface {
-    constructor(protected readonly customerRepository: CustomerRepositoryInterface) {}
+    constructor(@Inject('CustomerRepository') protected readonly customerRepository: CustomerRepositoryInterface) {}
 
     /**
      * Return a collection of customers

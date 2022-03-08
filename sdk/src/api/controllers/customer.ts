@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Service } from 'typedi';
 import {
     BaseResponse,
     CustomerCreateResponse,
@@ -12,7 +12,7 @@ import { CustomerServiceInterface } from '../../core/interfaces/services';
 
 @Service()
 export class Customer {
-    constructor(private readonly customerService: CustomerServiceInterface) {}
+    constructor(@Inject('CustomerService') private readonly customerService: CustomerServiceInterface) {}
 
     /**
      * Returns collection of customers

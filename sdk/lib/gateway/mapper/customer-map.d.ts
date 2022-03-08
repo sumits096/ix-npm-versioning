@@ -1,3 +1,4 @@
+import 'automapper-ts';
 import { Customer, CustomerCreateRequest, CustomerCreateResponse, CustomerResponse, SmsInviteData, SmsInviteResponse } from '../../core/entity';
 import { CustomerCreateRequestModel, CustomerCreateResponseModel, CustomerModel, CustomerResponseModel, SmsInviteDataModel, SmsInviteResponseModel } from '../../core/models';
 export declare class CustomerMap {
