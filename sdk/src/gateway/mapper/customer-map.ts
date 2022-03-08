@@ -19,6 +19,12 @@ AutoMapper.create<CustomerModel, Customer>("customerModel")
 .map(src => src.longitude, dst => dst.longitude)
 
 AutoMapper.create<CustomerResponse, CustomerResponseModel>("customerResponse")
+.map(src => src.success, dst => dst.success)
+.map(src => src.currentServerTime, dst => dst.current_server_time)
+.map(src => src.totalCount, dst => dst.totalCount)
+.map(src => src.returned, dst => dst.returned)
+.map(src => src.pages, dst => dst.pages)
+.map(src => src.message, dst => dst.message)
 .map(src => src.results, dst => dst.results)
 
 import { CustomerContactMap, CustomerLocationMap } from '.';
@@ -104,13 +110,12 @@ export class CustomerMap {
      * @returns
      */
     static mapper(responseModel: CustomerResponseModel): CustomerResponse {
-        const list = responseModel.results;
-        const customers = list.map(function transform(customer: CustomerModel) {
-            return CustomerMap.fromBTCustomer(customer);
-        });
+        // const list = responseModel.results;
+        // const customers = list.map(function transform(customer: CustomerModel) {
+        //     return CustomerMap.fromBTCustomer(customer);
+        // });
 
-        console.log(customers);
-        const result: CustomerResponse = AutoMapper.exec("customerResponse", customers);
+        const result: CustomerResponse = AutoMapper.exec("customerResponse", responseModel);
         return result;
 
         // automapper

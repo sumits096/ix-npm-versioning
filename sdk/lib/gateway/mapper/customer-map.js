@@ -23,6 +23,12 @@ ts_automapper_1.default.create("customerModel")
     .map(function (src) { return src.latitude; }, function (dst) { return dst.latitude; })
     .map(function (src) { return src.longitude; }, function (dst) { return dst.longitude; });
 ts_automapper_1.default.create("customerResponse")
+    .map(function (src) { return src.success; }, function (dst) { return dst.success; })
+    .map(function (src) { return src.currentServerTime; }, function (dst) { return dst.current_server_time; })
+    .map(function (src) { return src.totalCount; }, function (dst) { return dst.totalCount; })
+    .map(function (src) { return src.returned; }, function (dst) { return dst.returned; })
+    .map(function (src) { return src.pages; }, function (dst) { return dst.pages; })
+    .map(function (src) { return src.message; }, function (dst) { return dst.message; })
     .map(function (src) { return src.results; }, function (dst) { return dst.results; });
 var _1 = require(".");
 var CustomerMap = (function () {
@@ -46,12 +52,7 @@ var CustomerMap = (function () {
         return automapper.map('Customer', 'BTCustomer', model);
     };
     CustomerMap.mapper = function (responseModel) {
-        var list = responseModel.results;
-        var customers = list.map(function transform(customer) {
-            return CustomerMap.fromBTCustomer(customer);
-        });
-        console.log(customers);
-        var result = ts_automapper_1.default.exec("customerResponse", customers);
+        var result = ts_automapper_1.default.exec("customerResponse", responseModel);
         return result;
     };
     CustomerMap.customerCreateResponse = function (responseModel) {
