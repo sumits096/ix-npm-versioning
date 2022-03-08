@@ -17,8 +17,8 @@ export const BoomtownProviders = (token: string, secret: string) => {
 };
 
 export class Credential {
-    static token: string = 'F9DE22681B8419CB9BC3';
-    static secret: string = '90691a8eed1851cc1ee20c1d4a8a39e81f91e1de';
+    static token: string = '';
+    static secret: string = '';
     setTokenSecret(token: string, secret: string) {
         Credential.token = token;
         Credential.secret = secret;
