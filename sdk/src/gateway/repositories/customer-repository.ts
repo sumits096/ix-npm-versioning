@@ -1,4 +1,4 @@
-import { Inject, Service } from 'typedi';
+ 
 import { CustomerMap, ErrorMap, ResponseMap } from '../mapper';
 import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
@@ -13,6 +13,7 @@ import {
     SmsInviteResponse,
 } from '../../core/entity';
 import { CustomerRepositoryInterface } from '../../core/interfaces/repositories';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Customer repository
@@ -20,7 +21,7 @@ import { CustomerRepositoryInterface } from '../../core/interfaces/repositories'
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerRepository implements CustomerRepositoryInterface {
     constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 

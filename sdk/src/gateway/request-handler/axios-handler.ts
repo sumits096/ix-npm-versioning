@@ -2,10 +2,10 @@ import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 import { ApiClient } from './interfaces/apiClient';
 import { Credential } from '../../index';
 import { ApiRequestModel } from '../../core/models';
-import { detectQueryString } from '../../core/helpers';
-import { Service } from 'typedi';
+import { detectQueryString } from '../../core/helpers'; 
+import { Injectable } from '@nestjs/common';
 
-@Service()
+@Injectable()
 export class AxiosHandler implements ApiClient {
     /**
      * Send request to boomtown api using axios HTTP handler

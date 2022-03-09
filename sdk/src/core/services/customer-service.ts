@@ -1,4 +1,4 @@
-import { Inject, Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common'; 
 import { BaseResponse, CustomerCreateResponse, CustomerResponse, CustomerCreateRequest, ListOptions, SmsInviteData, SmsInviteResponse } from '../entity';
 import { CustomerRepositoryInterface } from '../interfaces/repositories';
 import { CustomerServiceInterface } from '../interfaces/services';
@@ -9,7 +9,7 @@ import { CustomerServiceInterface } from '../interfaces/services';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerService implements CustomerServiceInterface {
     constructor(@Inject('CustomerRepository') protected readonly customerRepository: CustomerRepositoryInterface) {}
 

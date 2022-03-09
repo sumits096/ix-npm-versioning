@@ -1,4 +1,4 @@
-import { Inject, Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import {
     BaseResponse,
     CustomerCreateResponse,
@@ -10,7 +10,7 @@ import {
 } from '../../core/entity';
 import { CustomerServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class Customer {
     constructor(@Inject('CustomerService') private readonly customerService: CustomerServiceInterface) {}
 
