@@ -22,7 +22,7 @@ steps:
     npm -v
     npm audit
     npm audit fix
-    npm version 1.0.21-beta
+    npm version 1.0.22-beta
     npm install -g --save
     tsc --build
     npm run-script build
