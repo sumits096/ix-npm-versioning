@@ -22,10 +22,10 @@ steps:
     npm -v
     npm audit
     npm audit fix
-    npm version 1.0.30-beta
+    npm version 1.0.31-beta
     npm install -g --save
     # tsc --build
-    npm run-script build
+    npm build
     npm publish --access public --tag beta
   env:
   - HOME=/root/
