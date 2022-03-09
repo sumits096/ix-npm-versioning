@@ -1,4 +1,4 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import 'reflect-metadata';
 import { Customer } from './api/controllers';
 import { CustomerService } from './core/services';
@@ -70,7 +70,7 @@ export class Credential {
 
 @Module({})
 export class BoomtownModule {
-    static register(token: string, secret: string):DynamicModule {
+    static register(token: string, secret: string) {
         new Credential().setTokenSecret(token, secret);
         return {
             module: BoomtownModule,
