@@ -49,11 +49,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerRepository = void 0;
-var typedi_1 = require("typedi");
 var mapper_1 = require("../mapper");
 var boomtown_client_1 = require("../client/boomtown-client");
 var helpers_1 = require("../../core/helpers");
 var api_paths_1 = require("../../configs/api-paths");
+var common_1 = require("@nestjs/common");
 var CustomerRepository = (function () {
     function CustomerRepository(boomtownClient) {
         this.boomtownClient = boomtownClient;
@@ -161,8 +161,8 @@ var CustomerRepository = (function () {
         });
     };
     CustomerRepository = __decorate([
-        (0, typedi_1.Service)(),
-        __param(0, (0, typedi_1.Inject)('BoomtownClient')),
+        (0, common_1.Injectable)(),
+        __param(0, (0, common_1.Inject)('BoomtownClient')),
         __metadata("design:paramtypes", [boomtown_client_1.BoomtownClient])
     ], CustomerRepository);
     return CustomerRepository;

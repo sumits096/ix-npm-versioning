@@ -13,7 +13,7 @@ exports.AxiosHandler = void 0;
 var axios_1 = __importDefault(require("axios"));
 var index_1 = require("../../index");
 var helpers_1 = require("../../core/helpers");
-var typedi_1 = require("typedi");
+var common_1 = require("@nestjs/common");
 var AxiosHandler = (function () {
     function AxiosHandler() {
     }
@@ -33,7 +33,7 @@ var AxiosHandler = (function () {
         return axios_1.default.request(axiosRequestConfig);
     };
     AxiosHandler = __decorate([
-        (0, typedi_1.Service)()
+        (0, common_1.Injectable)()
     ], AxiosHandler);
     return AxiosHandler;
 }());
