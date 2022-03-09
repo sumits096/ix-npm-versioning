@@ -24,7 +24,7 @@ steps:
     npm audit fix
     npm version 1.0.30-beta
     npm install -g --save
-    tsc --build
+    # tsc --build
     npm run-script build
     npm publish --access public --tag beta
   env:
