@@ -1,3 +1,4 @@
+import { DynamicModule } from '@nestjs/common';
 import 'reflect-metadata';
 import { Customer } from './api/controllers';
 import { CustomerService } from './core/services';
@@ -23,21 +24,5 @@ export declare class Credential {
     setTokenSecret(token: string, secret: string): void;
 }
 export declare class BoomtownModule {
-    static register(token: string, secret: string): {
-        module: typeof BoomtownModule;
-        providers: (typeof Customer | typeof AxiosHandler | {
-            provide: string;
-            useClass: typeof CustomerService;
-        } | {
-            provide: string;
-            useClass: typeof CustomerRepository;
-        } | {
-            provide: string;
-            useClass: typeof BoomtownClient;
-        } | {
-            provide: string;
-            useClass: typeof AxiosHandler;
-        })[];
-        exports: (typeof Customer)[];
-    };
+    static register(token: string, secret: string): DynamicModule;
 }

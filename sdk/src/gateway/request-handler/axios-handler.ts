@@ -4,7 +4,9 @@ import { Credential } from '../../index';
 import { ApiRequestModel } from '../../core/models';
 import { detectQueryString } from '../../core/helpers'; 
 import { Injectable } from '@nestjs/common';
+import { Service } from 'typedi';
 
+@Service()
 @Injectable()
 export class AxiosHandler implements ApiClient {
     /**

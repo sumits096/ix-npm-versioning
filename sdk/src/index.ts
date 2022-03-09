@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import 'reflect-metadata';
 import { Customer } from './api/controllers';
 import { CustomerService } from './core/services';
@@ -40,37 +40,9 @@ export class Credential {
 //     console.error(error);
 // });
 
-// @Module({
-//     //   imports: [],
-//     //   controllers: [],
-//     //providers: BoomtownProviders('F9DE22681B8419CB9BC3','90691a8eed1851cc1ee20c1d4a8a39e81f91e1de') as Provider
-//     providers: [
-//       Customer,
-//       AxiosHandler,
-//       {
-//         provide: 'CustomerService',
-//         useClass: CustomerService,
-//       },
-//       {
-//         provide: 'CustomerRepository',
-//         useClass: CustomerRepository,
-//       },
-//       {
-//         provide: 'BoomtownClient',
-//         useClass: BoomtownClient,
-//       },
-//       {
-//         provide: 'AxiosHandler',
-//         useClass: AxiosHandler,
-//       }
-//     ],
-//     exports: [Customer],
-//   })
-//   export class BoomtownModule {}
-
 @Module({})
 export class BoomtownModule {
-    static register(token: string, secret: string) {
+    static register(token: string, secret: string): DynamicModule {
         new Credential().setTokenSecret(token, secret);
         return {
             module: BoomtownModule,

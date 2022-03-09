@@ -50,6 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Customer = void 0;
 var common_1 = require("@nestjs/common");
+var typedi_1 = require("typedi");
 var Customer = (function () {
     function Customer(customerService) {
         this.customerService = customerService;
@@ -90,6 +91,7 @@ var Customer = (function () {
         });
     };
     Customer = __decorate([
+        (0, typedi_1.Service)(),
         (0, common_1.Injectable)(),
         __param(0, (0, common_1.Inject)('CustomerService')),
         __metadata("design:paramtypes", [Object])
