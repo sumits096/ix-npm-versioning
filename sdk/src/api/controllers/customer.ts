@@ -15,7 +15,7 @@ export class Customer {
     constructor(@Inject('CustomerService') private readonly customerService: CustomerServiceInterface) {}
 
     /**
-     * Returns collection of customers
+     * Returns collection of customers.
      * @param listOptions for the pagination of collection
      * @returns
      */
