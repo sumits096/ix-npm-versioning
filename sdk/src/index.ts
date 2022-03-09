@@ -1,4 +1,4 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import 'reflect-metadata';
 import { Customer } from './api/controllers';
 import { CustomerService } from './core/services';
