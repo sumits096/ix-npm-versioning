@@ -8,6 +8,9 @@ import { injectable } from 'inversify';
 
 @injectable()
 export class AxiosHandler implements ApiClient {
+    constructor(){
+        
+    }
     /**
      * Send request to boomtown api using axios HTTP handler
      * @param apiRequestModel
