@@ -9,7 +9,7 @@ import { AxiosHandler } from './gateway/request-handler';
 export const BoomtownProviders = (token: string, secret: string) => {
     new Credential().setTokenSecret(token, secret);
     return [
-        AxiosHandler,
+        //AxiosHandler,
         { provide: Customer, deps: [CustomerService] },
         { provide: CustomerService, deps: [CustomerRepository] },
         { provide: CustomerRepository, deps: [BoomtownClient] },
@@ -27,18 +27,18 @@ export class Credential {
     }
 }
 
-const result = new Customer(new CustomerService(new CustomerRepository(new BoomtownClient(new AxiosHandler()))));
+// const result = new Customer(new CustomerService(new CustomerRepository(new BoomtownClient(new AxiosHandler()))));
 
-result.get().then(res => {
-    try {
-        console.log('Customers    ' + JSON.stringify(res));
-    }
-    catch (error) {
-        console.log((error as Error).message);
-    }
-}).catch((error) => {
-    console.error(error);
-});
+// result.get().then(res => {
+//     try {
+//         console.log('Customers    ' + JSON.stringify(res));
+//     }
+//     catch (error) {
+//         console.log((error as Error).message);
+//     }
+// }).catch((error) => {
+//     console.error(error);
+// });
 
 // @Module({})
 // export class BoomtownModule {

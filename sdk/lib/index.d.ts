@@ -4,7 +4,7 @@ import { CustomerService } from './core/services';
 import { BoomtownClient } from './gateway/client/boomtown-client';
 import { CustomerRepository } from './gateway/repositories';
 import { AxiosHandler } from './gateway/request-handler';
-export declare const BoomtownProviders: (token: string, secret: string) => (typeof AxiosHandler | {
+export declare const BoomtownProviders: (token: string, secret: string) => ({
     provide: typeof Customer;
     deps: (typeof CustomerService)[];
 } | {
