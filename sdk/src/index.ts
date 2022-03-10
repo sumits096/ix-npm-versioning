@@ -1,4 +1,4 @@
-import { DynamicModule, Module } from '@nestjs/common';
+//import { DynamicModule, Module } from '@nestjs/common';
 import 'reflect-metadata';
 import { Customer } from './api/controllers';
 import { CustomerService } from './core/services';
@@ -27,46 +27,46 @@ export class Credential {
     }
 }
 
-// const result = new Customer(new CustomerService(new CustomerRepository(new BoomtownClient(new AxiosHandler()))));
+const result = new Customer(new CustomerService(new CustomerRepository(new BoomtownClient(new AxiosHandler()))));
 
-// result.get().then(res => {
-//     try {
-//         console.log('Customers    ' + JSON.stringify(res));
-//     }
-//     catch (error) {
-//         console.log((error as Error).message);
-//     }
-// }).catch((error) => {
-//     console.error(error);
-// });
-
-@Module({})
-export class BoomtownModule {
-    static register(token: string, secret: string): DynamicModule {
-        new Credential().setTokenSecret(token, secret);
-        return {
-            module: BoomtownModule,
-            providers: [
-                Customer,
-                AxiosHandler,
-                {
-                    provide: 'CustomerService',
-                    useClass: CustomerService,
-                },
-                {
-                    provide: 'CustomerRepository',
-                    useClass: CustomerRepository,
-                },
-                {
-                    provide: 'BoomtownClient',
-                    useClass: BoomtownClient,
-                },
-                {
-                    provide: 'AxiosHandler',
-                    useClass: AxiosHandler,
-                },
-            ],
-            exports: [Customer],
-        };
+result.get().then(res => {
+    try {
+        console.log('Customers    ' + JSON.stringify(res));
     }
-}
+    catch (error) {
+        console.log((error as Error).message);
+    }
+}).catch((error) => {
+    console.error(error);
+});
+
+// @Module({})
+// export class BoomtownModule {
+//     static register(token: string, secret: string): DynamicModule {
+//         new Credential().setTokenSecret(token, secret);
+//         return {
+//             module: BoomtownModule,
+//             providers: [
+//                 Customer,
+//                 AxiosHandler,
+//                 {
+//                     provide: 'CustomerService',
+//                     useClass: CustomerService,
+//                 },
+//                 {
+//                     provide: 'CustomerRepository',
+//                     useClass: CustomerRepository,
+//                 },
+//                 {
+//                     provide: 'BoomtownClient',
+//                     useClass: BoomtownClient,
+//                 },
+//                 {
+//                     provide: 'AxiosHandler',
+//                     useClass: AxiosHandler,
+//                 },
+//             ],
+//             exports: [Customer],
+//         };
+//     }
+// }

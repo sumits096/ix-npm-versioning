@@ -13,7 +13,8 @@ import {
     SmsInviteResponse,
 } from '../../core/entity';
 import { CustomerRepositoryInterface } from '../../core/interfaces/repositories';
-import { Inject, Injectable } from '@nestjs/common';
+//import { Inject, Injectable } from '@nestjs/common';
+import { injectable, inject } from 'inversify';
 
 /**
  * Customer repository
@@ -21,9 +22,11 @@ import { Inject, Injectable } from '@nestjs/common';
  *
  * @BoomtownSDK
  */
-@Injectable()
+@injectable()
 export class CustomerRepository implements CustomerRepositoryInterface {
-    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
+    constructor(
+        @inject('BoomtownClient') 
+        protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a collection of customers

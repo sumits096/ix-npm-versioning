@@ -53,7 +53,7 @@ var mapper_1 = require("../mapper");
 var boomtown_client_1 = require("../client/boomtown-client");
 var helpers_1 = require("../../core/helpers");
 var api_paths_1 = require("../../configs/api-paths");
-var common_1 = require("@nestjs/common");
+var inversify_1 = require("inversify");
 var CustomerRepository = (function () {
     function CustomerRepository(boomtownClient) {
         this.boomtownClient = boomtownClient;
@@ -161,8 +161,8 @@ var CustomerRepository = (function () {
         });
     };
     CustomerRepository = __decorate([
-        (0, common_1.Injectable)(),
-        __param(0, (0, common_1.Inject)('BoomtownClient')),
+        (0, inversify_1.injectable)(),
+        __param(0, (0, inversify_1.inject)('BoomtownClient')),
         __metadata("design:paramtypes", [boomtown_client_1.BoomtownClient])
     ], CustomerRepository);
     return CustomerRepository;

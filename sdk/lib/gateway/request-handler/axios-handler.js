@@ -13,7 +13,7 @@ exports.AxiosHandler = void 0;
 var axios_1 = __importDefault(require("axios"));
 var index_1 = require("../../index");
 var helpers_1 = require("../../core/helpers");
-var common_1 = require("@nestjs/common");
+var inversify_1 = require("inversify");
 var AxiosHandler = (function () {
     function AxiosHandler() {
     }
@@ -33,7 +33,7 @@ var AxiosHandler = (function () {
         return axios_1.default.request(axiosRequestConfig);
     };
     AxiosHandler = __decorate([
-        (0, common_1.Injectable)()
+        (0, inversify_1.injectable)()
     ], AxiosHandler);
     return AxiosHandler;
 }());

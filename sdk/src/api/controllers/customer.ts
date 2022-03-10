@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+//import { Inject, Injectable } from '@nestjs/common';
 import {
     BaseResponse,
     CustomerCreateResponse,
@@ -9,11 +9,12 @@ import {
     SmsInviteResponse,
 } from '../../core/entity';
 import { CustomerServiceInterface } from '../../core/interfaces/services';
+import { injectable, inject } from 'inversify';
 
-@Injectable()
+@injectable()
 export class Customer {
     constructor(
-        @Inject('CustomerService')
+        @inject('CustomerService')
         private readonly customerService: CustomerServiceInterface,
     ) {}
 

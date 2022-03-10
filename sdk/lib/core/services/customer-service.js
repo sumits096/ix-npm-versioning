@@ -13,7 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerService = void 0;
-var common_1 = require("@nestjs/common");
+var inversify_1 = require("inversify");
 var CustomerService = (function () {
     function CustomerService(customerRepository) {
         this.customerRepository = customerRepository;
@@ -34,8 +34,8 @@ var CustomerService = (function () {
         return this.customerRepository.smsInvite(smsInviteData);
     };
     CustomerService = __decorate([
-        (0, common_1.Injectable)(),
-        __param(0, (0, common_1.Inject)('CustomerRepository')),
+        (0, inversify_1.injectable)(),
+        __param(0, (0, inversify_1.inject)('CustomerRepository')),
         __metadata("design:paramtypes", [Object])
     ], CustomerService);
     return CustomerService;

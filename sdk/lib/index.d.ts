@@ -1,4 +1,3 @@
-import { DynamicModule } from '@nestjs/common';
 import 'reflect-metadata';
 import { Customer } from './api/controllers';
 import { CustomerService } from './core/services';
@@ -22,7 +21,4 @@ export declare class Credential {
     static token: string;
     static secret: string;
     setTokenSecret(token: string, secret: string): void;
-}
-export declare class BoomtownModule {
-    static register(token: string, secret: string): DynamicModule;
 }
