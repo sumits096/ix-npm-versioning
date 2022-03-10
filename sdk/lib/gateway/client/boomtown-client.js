@@ -70,6 +70,7 @@ var BoomtownClient = (function () {
     BoomtownClient = __decorate([
         (0, typedi_1.Service)(),
         (0, common_1.Injectable)(),
+        __param(0, (0, typedi_1.Inject)('AxiosHandler')),
         __param(0, (0, common_1.Inject)('AxiosHandler')),
         __metadata("design:paramtypes", [request_handler_1.AxiosHandler])
     ], BoomtownClient);

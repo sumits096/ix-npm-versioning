@@ -14,7 +14,7 @@ import {
 } from '../../core/entity';
 import { CustomerRepositoryInterface } from '../../core/interfaces/repositories';
 import { Inject, Injectable } from '@nestjs/common';
-import { Service } from 'typedi';
+import { Service, Inject as TsInject } from 'typedi';
 
 /**
  * Customer repository
@@ -25,7 +25,7 @@ import { Service } from 'typedi';
 @Service()
 @Injectable()
 export class CustomerRepository implements CustomerRepositoryInterface {
-    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@TsInject('BoomtownClient') @Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a collection of customers

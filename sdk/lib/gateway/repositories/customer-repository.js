@@ -164,6 +164,7 @@ var CustomerRepository = (function () {
     CustomerRepository = __decorate([
         (0, typedi_1.Service)(),
         (0, common_1.Injectable)(),
+        __param(0, (0, typedi_1.Inject)('BoomtownClient')),
         __param(0, (0, common_1.Inject)('BoomtownClient')),
         __metadata("design:paramtypes", [boomtown_client_1.BoomtownClient])
     ], CustomerRepository);

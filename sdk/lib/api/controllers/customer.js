@@ -93,6 +93,7 @@ var Customer = (function () {
     Customer = __decorate([
         (0, typedi_1.Service)(),
         (0, common_1.Injectable)(),
+        __param(0, (0, typedi_1.Inject)('CustomerService')),
         __param(0, (0, common_1.Inject)('CustomerService')),
         __metadata("design:paramtypes", [Object])
     ], Customer);

@@ -37,6 +37,7 @@ var CustomerService = (function () {
     CustomerService = __decorate([
         (0, typedi_1.Service)(),
         (0, common_1.Injectable)(),
+        __param(0, (0, typedi_1.Inject)('CustomerRepository')),
         __param(0, (0, common_1.Inject)('CustomerRepository')),
         __metadata("design:paramtypes", [Object])
     ], CustomerService);

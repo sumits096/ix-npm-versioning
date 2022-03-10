@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Service } from 'typedi';
+import { Service, Inject as TsInject } from 'typedi';
 import {
     BaseResponse,
     CustomerCreateResponse,
@@ -14,7 +14,11 @@ import { CustomerServiceInterface } from '../../core/interfaces/services';
 @Service()
 @Injectable()
 export class Customer {
-    constructor(@Inject('CustomerService') private readonly customerService: CustomerServiceInterface) {}
+    constructor(
+        @TsInject('CustomerService')
+        @Inject('CustomerService')
+        private readonly customerService: CustomerServiceInterface,
+    ) {}
 
     /**
      * Returns collection of customers.
@@ -55,7 +59,7 @@ export class Customer {
     /**
      * Sms invite for existing/new customer
      * @param smsInviteData for sms invite details
-     * @returns 
+     * @returns
      */
     async smsInvite(smsInviteData: SmsInviteData): Promise<SmsInviteResponse> {
         return this.customerService.smsInvite(smsInviteData);
