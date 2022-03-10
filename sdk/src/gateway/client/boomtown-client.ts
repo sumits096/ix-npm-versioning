@@ -1,6 +1,5 @@
  
 import { Inject, Injectable } from '@nestjs/common';
-import { Service, Inject as TsInject } from 'typedi';
 import { ApiRequestModel } from '../../core/models/client-request-model';
 import { signature } from '../auth/signature';
 import { AxiosHandler } from '../request-handler';
@@ -10,10 +9,9 @@ import { AxiosHandler } from '../request-handler';
  *
  * @BoomtownSDK
  */
- @Service()
 @Injectable()
 export class BoomtownClient {
-    constructor(@TsInject('AxiosHandler') @Inject('AxiosHandler') private readonly axiosHandler: AxiosHandler) {}
+    constructor(@Inject('AxiosHandler') private readonly axiosHandler: AxiosHandler) {}
 
     /**
      * call to boomtown api based on http handler

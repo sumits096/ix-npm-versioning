@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerService = void 0;
 var common_1 = require("@nestjs/common");
-var typedi_1 = require("typedi");
 var CustomerService = (function () {
     function CustomerService(customerRepository) {
         this.customerRepository = customerRepository;
@@ -35,9 +34,7 @@ var CustomerService = (function () {
         return this.customerRepository.smsInvite(smsInviteData);
     };
     CustomerService = __decorate([
-        (0, typedi_1.Service)(),
         (0, common_1.Injectable)(),
-        __param(0, (0, typedi_1.Inject)('CustomerRepository')),
         __param(0, (0, common_1.Inject)('CustomerRepository')),
         __metadata("design:paramtypes", [Object])
     ], CustomerService);

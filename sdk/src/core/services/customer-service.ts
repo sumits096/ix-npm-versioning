@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common'; 
-import { Service, Inject as TsInject } from 'typedi';
 import { BaseResponse, CustomerCreateResponse, CustomerResponse, CustomerCreateRequest, ListOptions, SmsInviteData, SmsInviteResponse } from '../entity';
 import { CustomerRepositoryInterface } from '../interfaces/repositories';
 import { CustomerServiceInterface } from '../interfaces/services';
@@ -10,10 +9,9 @@ import { CustomerServiceInterface } from '../interfaces/services';
  *
  * @BoomtownSDK
  */
-@Service()
 @Injectable()
 export class CustomerService implements CustomerServiceInterface {
-    constructor( @TsInject('CustomerRepository') @Inject('CustomerRepository') protected readonly customerRepository: CustomerRepositoryInterface) {}
+    constructor(@Inject('CustomerRepository') protected readonly customerRepository: CustomerRepositoryInterface) {}
 
     /**
      * Return a collection of customers
