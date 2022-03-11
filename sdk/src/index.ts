@@ -29,18 +29,18 @@ export class Credential {
 
 //const result = new Customer(new CustomerService(new CustomerRepository(new BoomtownClient(new AxiosHandler()))));
 
-const result = new Customer(new CustomerService(new CustomerRepository()));
+// const result = new Customer(new CustomerService(new CustomerRepository()));
 
-result.get().then(res => {
-    try {
-        console.log('Customers    ' + JSON.stringify(res));
-    }
-    catch (error) {
-        console.log((error as Error).message);
-    }
-}).catch((error) => {
-    console.error(error);
-});
+// result.get().then(res => {
+//     try {
+//         console.log('Customers    ' + JSON.stringify(res));
+//     }
+//     catch (error) {
+//         console.log((error as Error).message);
+//     }
+// }).catch((error) => {
+//     console.error(error);
+// });
 
 // @Module({})
 // export class BoomtownModule {
