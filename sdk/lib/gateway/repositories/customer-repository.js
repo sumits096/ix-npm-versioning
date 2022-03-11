@@ -5,12 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -50,120 +44,86 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerRepository = void 0;
 var mapper_1 = require("../mapper");
-var boomtown_client_1 = require("../client/boomtown-client");
 var helpers_1 = require("../../core/helpers");
 var api_paths_1 = require("../../configs/api-paths");
 var inversify_1 = require("inversify");
 var CustomerRepository = (function () {
-    function CustomerRepository(boomtownClient) {
-        this.boomtownClient = boomtownClient;
+    function CustomerRepository() {
     }
     CustomerRepository.prototype.get = function (listOptions) {
         return __awaiter(this, void 0, void 0, function () {
-            var apiRequest, result, error_1;
+            var apiRequest;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.getCustomerApi, 'GET', '', listOptions);
-                        return [4, this.boomtownClient.request(apiRequest)];
-                    case 1:
-                        result = _a.sent();
-                        return [2, mapper_1.CustomerMap.mapper(result.data)];
-                    case 2:
-                        error_1 = _a.sent();
-                        throw error_1.response && error_1.response.data ? mapper_1.ErrorMap.error(error_1.response.data) : error_1;
-                    case 3: return [2];
+                try {
+                    apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.getCustomerApi, 'GET', '', listOptions);
+                    console.log(apiRequest);
+                    return [2, {}];
                 }
+                catch (error) {
+                    throw error.response && error.response.data ? mapper_1.ErrorMap.error(error.response.data) : error;
+                }
+                return [2];
             });
         });
     };
     CustomerRepository.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var apiRequest, result, error_2;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.getCustomerByIdApi(id), 'GET');
-                        return [4, this.boomtownClient.request(apiRequest)];
-                    case 1:
-                        result = _a.sent();
-                        return [2, mapper_1.CustomerMap.mapper(result.data)];
-                    case 2:
-                        error_2 = _a.sent();
-                        throw error_2.response && error_2.response.data ? mapper_1.ErrorMap.error(error_2.response.data) : error_2;
-                    case 3: return [2];
+                try {
+                    console.log(id);
+                    return [2, {}];
                 }
+                catch (error) {
+                    throw error.response && error.response.data ? mapper_1.ErrorMap.error(error.response.data) : error;
+                }
+                return [2];
             });
         });
     };
     CustomerRepository.prototype.post = function (customerCreateRequest) {
         return __awaiter(this, void 0, void 0, function () {
-            var payload, apiRequest, result, error_3;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        payload = JSON.stringify(mapper_1.CustomerMap.toBTRequestModel(customerCreateRequest));
-                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.createUpdateCustomerApi, 'POST', payload);
-                        return [4, this.boomtownClient.request(apiRequest)];
-                    case 1:
-                        result = _a.sent();
-                        return [2, mapper_1.CustomerMap.customerCreateResponse(result.data)];
-                    case 2:
-                        error_3 = _a.sent();
-                        throw error_3.response && error_3.response.data ? mapper_1.ErrorMap.error(error_3.response.data) : error_3;
-                    case 3: return [2];
+                try {
+                    console.log(customerCreateRequest);
+                    return [2, {}];
                 }
+                catch (error) {
+                    throw error.response && error.response.data ? mapper_1.ErrorMap.error(error.response.data) : error;
+                }
+                return [2];
             });
         });
     };
     CustomerRepository.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var apiRequest, result, error_4;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.deleteCustomerApi(id), 'POST');
-                        return [4, this.boomtownClient.request(apiRequest)];
-                    case 1:
-                        result = _a.sent();
-                        return [2, mapper_1.ResponseMap.response(result.data)];
-                    case 2:
-                        error_4 = _a.sent();
-                        throw error_4.response && error_4.response.data ? mapper_1.ErrorMap.error(error_4.response.data) : error_4;
-                    case 3: return [2];
+                try {
+                    console.log(id);
+                    return [2, {}];
                 }
+                catch (error) {
+                    throw error.response && error.response.data ? mapper_1.ErrorMap.error(error.response.data) : error;
+                }
+                return [2];
             });
         });
     };
     CustomerRepository.prototype.smsInvite = function (smsInviteData) {
         return __awaiter(this, void 0, void 0, function () {
-            var payload, apiRequest, result, error_5;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        payload = mapper_1.CustomerMap.toBTSmsInviteDataModel(smsInviteData);
-                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.customerSmsInviteApi, 'POST', JSON.stringify(payload));
-                        return [4, this.boomtownClient.request(apiRequest)];
-                    case 1:
-                        result = _a.sent();
-                        return [2, mapper_1.CustomerMap.fromBTSmsInviteResponse(result.data)];
-                    case 2:
-                        error_5 = _a.sent();
-                        throw error_5.response && error_5.response.data ? mapper_1.ErrorMap.error(error_5.response.data) : error_5;
-                    case 3: return [2];
+                try {
+                    console.log(smsInviteData);
+                    return [2, {}];
                 }
+                catch (error) {
+                    throw error.response && error.response.data ? mapper_1.ErrorMap.error(error.response.data) : error;
+                }
+                return [2];
             });
         });
     };
     CustomerRepository = __decorate([
-        (0, inversify_1.injectable)(),
-        __param(0, (0, inversify_1.inject)('BoomtownClient')),
-        __metadata("design:paramtypes", [boomtown_client_1.BoomtownClient])
+        (0, inversify_1.injectable)()
     ], CustomerRepository);
     return CustomerRepository;
 }());

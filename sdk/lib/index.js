@@ -30,4 +30,15 @@ var Credential = (function () {
     return Credential;
 }());
 exports.Credential = Credential;
+var result = new controllers_1.Customer(new services_1.CustomerService(new repositories_1.CustomerRepository()));
+result.get().then(function (res) {
+    try {
+        console.log('Customers    ' + JSON.stringify(res));
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+}).catch(function (error) {
+    console.error(error);
+});
 //# sourceMappingURL=index.js.map
