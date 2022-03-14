@@ -10,7 +10,8 @@
     "test": "jest --coverage",
     "dev-test": "jest --coverage --onlyChanged",
     "build": "tsc",
-    "version": "git add -A src"
+    "version": "git add -A src",
+    "sonar": "node sonarqube-scanner.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "@types/node": "^16.11.7",
     "jest": "^27.4.7",
     "prettier": "^2.4.1",
+    "sonarqube-scanner": "^2.8.1",
     "ts-jest": "^27.1.3",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
