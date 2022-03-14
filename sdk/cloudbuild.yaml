@@ -1,10 +1,10 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['pull', 'sonarqube:community']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['pull', 'sonarqube:community']
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-i', 'sonarqube:community', 'bash']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['run', '-i', 'sonarqube:community', 'bash']
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
