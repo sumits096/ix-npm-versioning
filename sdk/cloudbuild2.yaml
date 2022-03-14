@@ -1,21 +1,4 @@
 steps:
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['pull', 'sonarqube:community']
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-i', 'sonarqube:community', 'bash']
-
-- name: gcr.io/cloud-builders/npm
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    cd sdk
-    npm install
-    npm install sonarqube-scanner --save-dev
-    npm run sonar
-
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
   - kms
@@ -39,7 +22,7 @@ steps:
     npm -v
     npm audit
     npm audit fix
-    npm version 2.0.12-beta
+    npm version 2.0.11-beta
     npm install -g --save
     # tsc --build
     npm run-script build
@@ -49,4 +32,3 @@ steps:
   volumes:
   - name: 'home'
     path: /root/
-
