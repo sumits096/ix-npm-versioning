@@ -1,7 +1,7 @@
 const sonarqubeScanner = require('sonarqube-scanner');
 sonarqubeScanner({
 // serverUrl: 'http://localhost:9000',
-serverUrl: 'http://127.0.0.1:9000',
+serverUrl: 'https://8080-cs-543085140216-default.cs-asia-southeast1-yelo.cloudshell.dev',
 
 login: "admin",
 password: "boomtown",
