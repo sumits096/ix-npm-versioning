@@ -1,3 +1,4 @@
+import 'automapper-ts';
 import { CustomFormData, CustomFormDataList } from '../../core/entity';
 import { CustomFormDataListModel, CustomFormDataModel } from '../../core/models';
 

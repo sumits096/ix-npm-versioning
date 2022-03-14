@@ -9,20 +9,21 @@ import axios from 'axios';
 import { caseLogCreateMock, caseLogDeleteMock, caseLogGetByIdMock } from '../mocks/case-log-mock';
 
 jest.mock('axios');
-let caselog: CaseLog;
+let caseLog: CaseLog;
+const caseLogId = '0059b314-44e7-4f1f-a3dc-8046ac5388d4';
 
 beforeAll(async () => {
-    caselog = new CaseLog(new CaseLogService(new CaseLogRepository(new BoomtownClient(new AxiosHandler()))));
+    caseLog = new CaseLog(new CaseLogService(new CaseLogRepository(new BoomtownClient(new AxiosHandler()))));
 });
 
-describe('caselog', () => {
+describe('caseLog', () => {
     describe('Get CaseLog', () => {
-        it('should be retrun valid response', async () => {
+        it('should be return valid response', async () => {
             // given
-            caseLogGetByIdMock('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+            caseLogGetByIdMock(caseLogId);
 
             // when
-            const result = await caselog.getCaseLog('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+            const result = await caseLog.getCaseLog(caseLogId);
 
             // then
             expect(axios.request).toHaveBeenCalled();
@@ -33,12 +34,12 @@ describe('caselog', () => {
             }
         });
 
-        it('should be retrun error response', () => {
+        it('should be return error response', () => {
             // given
-            caseLogGetByIdMock('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+            caseLogGetByIdMock('0059b314-44e7-4f1f-a3dc-8046ac5388d4a');
 
             // when
-            const result = caselog.getCaseLog('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+            const result = caseLog.getCaseLog(caseLogId);
 
             // then
             result.then(
@@ -60,7 +61,7 @@ describe('caselog', () => {
             caseLogCreateMock();
 
             // when
-            const result = await caselog.postCaseLog('0059b314-44e7-4f1f-a3dc-8046ac5388d4', 'test');
+            const result = await caseLog.postCaseLog(caseLogId, 'test');
 
             // then
             expect(axios.request).toHaveBeenCalled();
@@ -69,7 +70,7 @@ describe('caselog', () => {
 
             if (result.results) {
                 expect(result.results.length).toEqual(1);
-                expect(result.results[0].issuesId).toEqual('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+                expect(result.results[0].issuesId).toEqual(caseLogId);
             }
         });
 
@@ -79,45 +80,45 @@ describe('caselog', () => {
             caseLogCreateMock();
 
             // when
-            const result = await caselog.postCaseLog('0059b314-44e7-4f1f-a3dc-8046ac5388d4', 'test');
+            const result = await caseLog.postCaseLog(caseLogId, 'test');
 
             // then    
             if (result.results) {
                 expect(result.results.length).toEqual(1);
-                expect(result.results[0].issuesId).toEqual('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+                expect(result.results[0].issuesId).toEqual(caseLogId);
             }
-            
-            (error: any) => {
-                expect(axios.request).toHaveBeenCalled();
-                expect(error.success).toEqual(false);
-                expect(error.errorType).toEqual('FileNotFoundException');
-            }          
+
+            // (error: any) => {
+            //     expect(axios.request).toHaveBeenCalled();
+            //     expect(error.success).toEqual(false);
+            //     expect(error.errorType).toEqual('FileNotFoundException');
+            // }
         });
     });
 
     describe('Delete Case Log', () => {
         it('should be return success', async () => {
             // given
-            caseLogDeleteMock('0059b314-44e7-4f1f-a3dc-8046ac5388d4', '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
+            caseLogDeleteMock(caseLogId, '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
 
             // when
-            const result = await caselog.deleteCaseLog('0059b314-44e7-4f1f-a3dc-8046ac5388d4', '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
+            const result = await caseLog.deleteCaseLog(caseLogId, '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
 
             // then
             expect(axios.request).toHaveBeenCalled();
             expect(result.success).toEqual(true);
 
             if (result.results) {
-                expect(result.results[0].issuesId).toEqual('0059b314-44e7-4f1f-a3dc-8046ac5388d4');
+                expect(result.results[0].issuesId).toEqual(caseLogId);
             }
         });
 
         it('should be return FileNotFoundException', () => {
             // given
-            caseLogDeleteMock('0059b314-44e7-4f1f-a3dc-8046ac5388d4', '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
+            caseLogDeleteMock(caseLogId, '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
 
             // when
-            const result = caselog.deleteCaseLog('0059b314-44e7-4f1f-a3dc-8046ac5388d4', '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
+            const result = caseLog.deleteCaseLog(caseLogId, '0059b314-44e7-4f1f-a3dc-8046ac5388d4-AH6');
 
             // then
             result.then(

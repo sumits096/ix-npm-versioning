@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { EnumerationItemResponse } from '../entity';
 import { CaseMetaRepositoryInterface } from '../interfaces/repositories/case-meta-repository-interface';
 import { CaseMetaServiceInterface } from '../interfaces/services/case-meta-service-interface';
@@ -9,9 +9,9 @@ import { CaseMetaServiceInterface } from '../interfaces/services/case-meta-servi
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CaseMetaService implements CaseMetaServiceInterface {
-    constructor(protected readonly caseMetaRepository: CaseMetaRepositoryInterface) {}
+    constructor(@Inject('CaseMetaRepository') protected readonly caseMetaRepository: CaseMetaRepositoryInterface) {}
 
     /**
      * Return dictionary mapping Status keys to their labels.

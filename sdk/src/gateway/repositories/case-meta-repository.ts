@@ -1,10 +1,10 @@
-import { Service } from 'typedi';
 import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
 import { apiPaths } from '../../configs/api-paths';
 import { CaseMetaMap, ErrorMap } from '../mapper';
 import { EnumerationItemResponse } from '../../core/entity';
 import { CaseMetaRepositoryInterface } from '../../core/interfaces/repositories';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Case meta repository
@@ -12,9 +12,9 @@ import { CaseMetaRepositoryInterface } from '../../core/interfaces/repositories'
  *
  * @BoomtownSDK
  */
-@Service()
-export class CaseMataRepository implements CaseMetaRepositoryInterface {
-    constructor(protected readonly boomtownClient: BoomtownClient) {}
+@Injectable()
+export class CaseMetaRepository implements CaseMetaRepositoryInterface {
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Return dictionary mapping Status keys to their labels.

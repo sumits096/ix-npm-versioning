@@ -1,10 +1,10 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CaseLogResponse } from '../../core/entity';
 import { CaseLogServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class CaseLog {
-    constructor(private readonly caseLogService: CaseLogServiceInterface) { }
+    constructor(@Inject('CaseLogService') private readonly caseLogService: CaseLogServiceInterface) {}
 
     /**
      * Returns case Log details by caseId

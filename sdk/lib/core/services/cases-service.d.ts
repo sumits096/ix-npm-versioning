@@ -2,7 +2,7 @@ import { CasesCreateRequest, CasesResponse, CasesListOptions, CaseEscalateOption
 import { CasesRepositoryInterface } from '../interfaces/repositories';
 import { CasesServiceInterface } from '../interfaces/services';
 export declare class CasesService implements CasesServiceInterface {
-    protected readonly casesRepository: CasesRepositoryInterface;
+    private readonly casesRepository;
     constructor(casesRepository: CasesRepositoryInterface);
     get(listOptions?: CasesListOptions): Promise<CasesResponse>;
     getById(id: string): Promise<CasesResponse>;

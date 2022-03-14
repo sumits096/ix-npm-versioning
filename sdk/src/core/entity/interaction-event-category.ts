@@ -1,4 +1,4 @@
-export interface InteractionEventCategory{
+export interface InteractionEventCategory {
     id: string;
     label: string;
 }

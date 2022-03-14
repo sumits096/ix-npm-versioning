@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CaseFileResponse, CaseFileUpload } from '../entity';
 import { CaseFileRepositoryInterface } from '../interfaces/repositories';
 import { CaseFileServiceInterface } from '../interfaces/services';
@@ -9,9 +9,9 @@ import { CaseFileServiceInterface } from '../interfaces/services';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CaseFileService implements CaseFileServiceInterface {
-    constructor(protected readonly caseFileRepository: CaseFileRepositoryInterface) {}
+    constructor(@Inject('CaseFileRepository') protected readonly caseFileRepository: CaseFileRepositoryInterface) {}
 
     /**
      * Returns a list of files related to an case object.

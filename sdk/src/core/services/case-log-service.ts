@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CaseLogResponse } from '../entity';
 import { CaseLogRepositoryInterface } from '../interfaces/repositories/';
 import { CaseLogServiceInterface } from '../interfaces/services/';
@@ -9,9 +9,9 @@ import { CaseLogServiceInterface } from '../interfaces/services/';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CaseLogService implements CaseLogServiceInterface {
-    constructor(protected readonly caseLogRepository: CaseLogRepositoryInterface) { }
+    constructor(@Inject('CaseLogRepository') protected readonly caseLogRepository: CaseLogRepositoryInterface) {}
 
     /**
      * Uploads a case log entry related to an case object.

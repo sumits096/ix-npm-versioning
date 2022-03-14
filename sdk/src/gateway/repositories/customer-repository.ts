@@ -1,22 +1,10 @@
- 
-//import { CustomerMap, ErrorMap, ResponseMap } from '../mapper';
-//import { BoomtownClient } from '../client/boomtown-client';
-
-import { ErrorMap } from '../mapper';
+import { CustomerMap, ErrorMap, ResponseMap } from '../mapper';
+import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
 import { apiPaths } from '../../configs/api-paths';
-import {
-    BaseResponse,
-    CustomerCreateResponse,
-    CustomerResponse,
-    CustomerCreateRequest,
-    ListOptions,
-    SmsInviteData,
-    SmsInviteResponse,
-} from '../../core/entity';
+import { BaseResponse, CustomerCreateResponse, CustomerResponse, CustomerCreateRequest, ListOptions, SmsInviteData, SmsInviteResponse } from '../../core/entity';
 import { CustomerRepositoryInterface } from '../../core/interfaces/repositories';
-//import { Inject, Injectable } from '@nestjs/common';
-import { injectable } from 'inversify';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Customer repository
@@ -24,11 +12,9 @@ import { injectable } from 'inversify';
  *
  * @BoomtownSDK
  */
-@injectable()
+@Injectable()
 export class CustomerRepository implements CustomerRepositoryInterface {
-    // constructor(
-    //     @inject('BoomtownClient') 
-    //     protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a collection of customers
@@ -38,11 +24,9 @@ export class CustomerRepository implements CustomerRepositoryInterface {
     async get(listOptions?: ListOptions): Promise<CustomerResponse> {
         try {
             const apiRequest = createApiRequest(apiPaths.getCustomerApi, 'GET', '', listOptions);
-            //const result = await this.boomtownClient.request(apiRequest);
+            const result = await this.boomtownClient.request(apiRequest);
 
-            //return CustomerMap.mapper(result.data);
-            console.log(apiRequest);
-            return {} as CustomerResponse;
+            return CustomerMap.mapper(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
         }
@@ -55,12 +39,10 @@ export class CustomerRepository implements CustomerRepositoryInterface {
      */
     async getById(id: string): Promise<CustomerResponse> {
         try {
-            // const apiRequest = createApiRequest(apiPaths.getCustomerByIdApi(id), 'GET');
-            // const result = await this.boomtownClient.request(apiRequest);
+            const apiRequest = createApiRequest(apiPaths.getCustomerByIdApi(id), 'GET');
+            const result = await this.boomtownClient.request(apiRequest);
 
-            // return CustomerMap.mapper(result.data);
-            console.log(id);
-            return {} as CustomerResponse;
+            return CustomerMap.mapper(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
         }
@@ -73,14 +55,11 @@ export class CustomerRepository implements CustomerRepositoryInterface {
      */
     async post(customerCreateRequest: CustomerCreateRequest): Promise<CustomerCreateResponse> {
         try {
-            // const payload = JSON.stringify(CustomerMap.toBTRequestModel(customerCreateRequest));
-            // const apiRequest = createApiRequest(apiPaths.createUpdateCustomerApi, 'POST', payload);
-            // const result = await this.boomtownClient.request(apiRequest);
+            const payload = JSON.stringify(CustomerMap.toBTRequestModel(customerCreateRequest));
+            const apiRequest = createApiRequest(apiPaths.createUpdateCustomerApi, 'POST', payload);
+            const result = await this.boomtownClient.request(apiRequest);
 
-            // return CustomerMap.customerCreateResponse(result.data);
-
-            console.log(customerCreateRequest);
-            return {} as CustomerCreateResponse;
+            return CustomerMap.customerCreateResponse(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
         }
@@ -93,12 +72,10 @@ export class CustomerRepository implements CustomerRepositoryInterface {
      */
     async delete(id: string): Promise<BaseResponse> {
         try {
-            // const apiRequest = createApiRequest(apiPaths.deleteCustomerApi(id), 'POST');
-            // const result = await this.boomtownClient.request(apiRequest);
+            const apiRequest = createApiRequest(apiPaths.deleteCustomerApi(id), 'POST');
+            const result = await this.boomtownClient.request(apiRequest);
 
-            // return ResponseMap.response(result.data);
-            console.log(id);
-            return {} as BaseResponse;
+            return ResponseMap.response(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
         }
@@ -107,18 +84,15 @@ export class CustomerRepository implements CustomerRepositoryInterface {
     /**
      * Sms invite for existing/new customer
      * @param smsInviteData for sms invite details
-     * @returns 
+     * @returns
      */
     async smsInvite(smsInviteData: SmsInviteData): Promise<SmsInviteResponse> {
         try {
-            // const payload = CustomerMap.toBTSmsInviteDataModel(smsInviteData);
-            // const apiRequest = createApiRequest(apiPaths.customerSmsInviteApi, 'POST', JSON.stringify(payload));
-            // const result = await this.boomtownClient.request(apiRequest);
+            const payload = CustomerMap.toBTSmsInviteDataModel(smsInviteData);
+            const apiRequest = createApiRequest(apiPaths.customerSmsInviteApi, 'POST', JSON.stringify(payload));
+            const result = await this.boomtownClient.request(apiRequest);
 
-            // return CustomerMap.fromBTSmsInviteResponse(result.data);
-
-            console.log(smsInviteData);
-            return {} as SmsInviteResponse;
+            return CustomerMap.fromBTSmsInviteResponse(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
         }

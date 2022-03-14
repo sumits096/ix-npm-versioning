@@ -1,3 +1,4 @@
+import 'automapper-ts';
 import {
     CustomerContact,
     CustomerContactResponse,

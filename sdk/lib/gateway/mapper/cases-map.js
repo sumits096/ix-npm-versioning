@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CasesMap = void 0;
+require("automapper-ts");
 var CasesMap = (function () {
     function CasesMap() {
     }

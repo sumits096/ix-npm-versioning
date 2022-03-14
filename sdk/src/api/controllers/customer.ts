@@ -1,25 +1,13 @@
-//import { Inject, Injectable } from '@nestjs/common';
-import {
-    BaseResponse,
-    CustomerCreateResponse,
-    CustomerResponse,
-    CustomerCreateRequest,
-    ListOptions,
-    SmsInviteData,
-    SmsInviteResponse,
-} from '../../core/entity';
+import { Inject, Injectable } from '@nestjs/common';
+import { BaseResponse, CustomerCreateResponse, CustomerResponse, CustomerCreateRequest, ListOptions, SmsInviteData, SmsInviteResponse } from '../../core/entity';
 import { CustomerServiceInterface } from '../../core/interfaces/services';
-import { injectable, inject } from 'inversify';
 
-@injectable()
+@Injectable()
 export class Customer {
-    constructor(
-        @inject('CustomerService')
-        private readonly customerService: CustomerServiceInterface,
-    ) {}
+    constructor(@Inject('CustomerService') private readonly customerService: CustomerServiceInterface) {}
 
     /**
-     * Returns collection of customers.
+     * Returns collection of customers
      * @param listOptions for the pagination of collection
      * @returns
      */

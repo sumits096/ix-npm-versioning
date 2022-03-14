@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CustomerLookupResponse } from '../entity';
 import { CustomerLookupRepositoryInterface } from '../interfaces/repositories';
 import { CustomerLookupServiceInterface } from '../interfaces/services';
@@ -6,18 +6,17 @@ import { CustomerLookupServiceInterface } from '../interfaces/services';
 /**
  * Customer Lookup service
  * @description Provide methods for customer lookup endpoints.
- * 
+ *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerLookupService implements CustomerLookupServiceInterface {
-    constructor(protected readonly customerLookupRepository: CustomerLookupRepositoryInterface) {
-    }
+    constructor(@Inject('CustomerLookupRepository') protected readonly customerLookupRepository: CustomerLookupRepositoryInterface) {}
 
     /**
      * Returns customer details.
      * @param issueId for issue id
-     * @returns 
+     * @returns
      */
     getLookupByIssueId(issueId: string): Promise<CustomerLookupResponse> {
         return this.customerLookupRepository.getLookupByIssueId(issueId);
@@ -26,7 +25,7 @@ export class CustomerLookupService implements CustomerLookupServiceInterface {
     /**
      * Returns customer details.
      * @param customerUserId for customer user id
-     * @returns 
+     * @returns
      */
     getLookupById(customerUserId: string): Promise<CustomerLookupResponse> {
         return this.customerLookupRepository.getLookupById(customerUserId);
@@ -35,7 +34,7 @@ export class CustomerLookupService implements CustomerLookupServiceInterface {
     /**
      * Returns customer details.
      * @param customerUserEmail for customer email id
-     * @returns 
+     * @returns
      */
     getLookupByEmail(customerUserEmail: string): Promise<CustomerLookupResponse> {
         return this.customerLookupRepository.getLookupByEmail(customerUserEmail);
@@ -44,7 +43,7 @@ export class CustomerLookupService implements CustomerLookupServiceInterface {
     /**
      * Returns customer details.
      * @param externalId for customer external id
-     * @returns 
+     * @returns
      */
     getLookupByExternalId(externalId: string): Promise<CustomerLookupResponse> {
         return this.customerLookupRepository.getLookupByExternalId(externalId);

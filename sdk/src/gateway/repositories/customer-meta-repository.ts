@@ -1,4 +1,3 @@
-import { Service } from 'typedi';
 import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
 import { apiPaths } from '../../configs/api-paths';
@@ -6,6 +5,7 @@ import { CustomerMetaRepositoryInterface } from '../../core/interfaces/repositor
 import { CustomerMetaMap, ErrorMap, MetaCustomFormsMap } from '../mapper';
 import { HashMapResponse, MetaCustomFormsResponse } from '../../core/entity';
 import { QueryParamModel } from '../../core/models';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Customer meta repository
@@ -13,10 +13,11 @@ import { QueryParamModel } from '../../core/models';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerMetaRepository implements CustomerMetaRepositoryInterface {
     private queryParamModel: QueryParamModel = {} as QueryParamModel;
-    constructor(protected readonly boomtownClient: BoomtownClient) { }
+
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Return dictionary mapping Status keys to their labels.
@@ -51,7 +52,7 @@ export class CustomerMetaRepository implements CustomerMetaRepositoryInterface {
     /**
      * Returns collection of custom form object
      * @param orgTeamId for organization team id
-     * @returns 
+     * @returns
      */
     async customForms(orgTeamId: string): Promise<MetaCustomFormsResponse> {
         try {

@@ -5,7 +5,7 @@ import {
     caseLogDeleteResponse,
     caseLogErrorResponse,
     caseLogList,
-    caseLogResponse , createCaseLogResponse
+    caseLogResponse, createCaseLogResponse
 } from '../mock-data/case-log-data';
 
 jest.mock('axios');
@@ -15,7 +15,7 @@ export function caseLogGetByIdMock(caseID: string) {
     mockedAxios.request.mockReset();
 
     const data = caseLogResponse;
-    data.results = data.results.filter((item: CaseLogModel) => item.issues_id === caseID );
+    data.results = data.results.filter((item: CaseLogModel) => item.issues_id === caseID);
     const res = {
         data: data,
     };

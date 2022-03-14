@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CustomerContactResponse, CustomerContactRequest, ExistsResponse, SSOResponse } from '../entity';
 import { CustomerContactRepositoryInterface } from '../interfaces/repositories';
 import { CustomerContactServiceInterface } from '../interfaces/services';
@@ -9,9 +9,9 @@ import { CustomerContactServiceInterface } from '../interfaces/services';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerContactService implements CustomerContactServiceInterface {
-    constructor(protected readonly customerContactRepository: CustomerContactRepositoryInterface) {}
+    constructor(@Inject('CustomerContactRepository') protected readonly customerContactRepository: CustomerContactRepositoryInterface) {}
 
     /**
      * Returns whether a Customer contact with the email address exists or not.

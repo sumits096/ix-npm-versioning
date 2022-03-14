@@ -49,9 +49,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoomtownClient = void 0;
+var common_1 = require("@nestjs/common");
 var signature_1 = require("../auth/signature");
 var request_handler_1 = require("../request-handler");
-var inversify_1 = require("inversify");
 var BoomtownClient = (function () {
     function BoomtownClient(axiosHandler) {
         this.axiosHandler = axiosHandler;
@@ -67,8 +67,8 @@ var BoomtownClient = (function () {
         });
     };
     BoomtownClient = __decorate([
-        (0, inversify_1.injectable)(),
-        __param(0, (0, inversify_1.inject)('AxiosHandler')),
+        (0, common_1.Injectable)(),
+        __param(0, (0, common_1.Inject)('AxiosHandler')),
         __metadata("design:paramtypes", [request_handler_1.AxiosHandler])
     ], BoomtownClient);
     return BoomtownClient;

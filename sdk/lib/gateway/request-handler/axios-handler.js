@@ -5,9 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,7 +13,7 @@ exports.AxiosHandler = void 0;
 var axios_1 = __importDefault(require("axios"));
 var index_1 = require("../../index");
 var helpers_1 = require("../../core/helpers");
-var inversify_1 = require("inversify");
+var common_1 = require("@nestjs/common");
 var AxiosHandler = (function () {
     function AxiosHandler() {
     }
@@ -36,8 +33,7 @@ var AxiosHandler = (function () {
         return axios_1.default.request(axiosRequestConfig);
     };
     AxiosHandler = __decorate([
-        (0, inversify_1.injectable)(),
-        __metadata("design:paramtypes", [])
+        (0, common_1.Injectable)()
     ], AxiosHandler);
     return AxiosHandler;
 }());

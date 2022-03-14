@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -45,17 +48,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CaseMataRepository = void 0;
-var typedi_1 = require("typedi");
+exports.CaseMetaRepository = void 0;
 var boomtown_client_1 = require("../client/boomtown-client");
 var helpers_1 = require("../../core/helpers");
 var api_paths_1 = require("../../configs/api-paths");
 var mapper_1 = require("../mapper");
-var CaseMataRepository = (function () {
-    function CaseMataRepository(boomtownClient) {
+var common_1 = require("@nestjs/common");
+var CaseMetaRepository = (function () {
+    function CaseMetaRepository(boomtownClient) {
         this.boomtownClient = boomtownClient;
     }
-    CaseMataRepository.prototype.getStatuses = function () {
+    CaseMetaRepository.prototype.getStatuses = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_1;
             return __generator(this, function (_a) {
@@ -75,7 +78,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getJobs = function () {
+    CaseMetaRepository.prototype.getJobs = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_2;
             return __generator(this, function (_a) {
@@ -95,7 +98,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getCategories = function () {
+    CaseMetaRepository.prototype.getCategories = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_3;
             return __generator(this, function (_a) {
@@ -115,7 +118,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getCategoriesNew = function () {
+    CaseMetaRepository.prototype.getCategoriesNew = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_4;
             return __generator(this, function (_a) {
@@ -135,7 +138,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getTags = function () {
+    CaseMetaRepository.prototype.getTags = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_5;
             return __generator(this, function (_a) {
@@ -155,7 +158,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getTypes = function () {
+    CaseMetaRepository.prototype.getTypes = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_6;
             return __generator(this, function (_a) {
@@ -175,7 +178,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getFileTags = function () {
+    CaseMetaRepository.prototype.getFileTags = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_7;
             return __generator(this, function (_a) {
@@ -195,7 +198,7 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository.prototype.getResolutions = function () {
+    CaseMetaRepository.prototype.getResolutions = function () {
         return __awaiter(this, void 0, void 0, function () {
             var apiRequest, result, error_8;
             return __generator(this, function (_a) {
@@ -215,11 +218,12 @@ var CaseMataRepository = (function () {
             });
         });
     };
-    CaseMataRepository = __decorate([
-        (0, typedi_1.Service)(),
+    CaseMetaRepository = __decorate([
+        (0, common_1.Injectable)(),
+        __param(0, (0, common_1.Inject)('BoomtownClient')),
         __metadata("design:paramtypes", [boomtown_client_1.BoomtownClient])
-    ], CaseMataRepository);
-    return CaseMataRepository;
+    ], CaseMetaRepository);
+    return CaseMetaRepository;
 }());
-exports.CaseMataRepository = CaseMataRepository;
+exports.CaseMetaRepository = CaseMetaRepository;
 //# sourceMappingURL=case-meta-repository.js.map

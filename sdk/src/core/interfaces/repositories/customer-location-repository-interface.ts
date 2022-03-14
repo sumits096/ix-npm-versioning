@@ -1,4 +1,4 @@
-import { BaseResponse, CustomerLocationOptions, CustomerLocationResponse, HashMapResponse } from '../../entity';
+import { BaseResponse, CustomerContactResponse, CustomerLocationOptions, CustomerLocationResponse, HashMapResponse } from '../../entity';
 
 /**
  * Defines methods defination for customer location to request boomtown api's.
@@ -31,6 +31,13 @@ export interface CustomerLocationRepositoryInterface {
      * @returns
      */
     getByExternalId(id?: string): Promise<CustomerLocationResponse>;
+
+    /**
+     * Returns a paginated collection of customer contact objects related to a Customer location object.
+     * @param customerId for customer id
+     * @param customerLocationId for Optional customer location id to filter the results with
+     */
+    getContactByCustomerId(customerId: string, customerLocationId: string): Promise<CustomerContactResponse>;
 
     /**
      * Return dictionary mapping Status keys to their labels.

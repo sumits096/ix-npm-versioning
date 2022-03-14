@@ -1,4 +1,3 @@
-import { Service } from 'typedi';
 import { BoomtownClient } from '../client/boomtown-client';
 import { CustomerContactResponse, CustomerContactRequest, ExistsResponse, SSOResponse } from '../../core/entity';
 import { CustomerContactRepositoryInterface } from '../../core/interfaces/repositories';
@@ -6,6 +5,7 @@ import { createApiRequest } from '../../core/helpers';
 import { apiPaths } from '../../configs/api-paths';
 import { QueryParamModel } from '../../core/models';
 import { CustomerContactMap, ErrorMap } from '../mapper';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Customer contact repository
@@ -13,11 +13,11 @@ import { CustomerContactMap, ErrorMap } from '../mapper';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerContactRepository implements CustomerContactRepositoryInterface {
     private queryParamModel: QueryParamModel = {} as QueryParamModel;
 
-    constructor(protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns whether a Customer contact with the email address exists or not.
@@ -44,12 +44,7 @@ export class CustomerContactRepository implements CustomerContactRepositoryInter
     async getByCustomerId(customerId: string, userId?: string): Promise<CustomerContactResponse> {
         try {
             this.queryParamModel.user_id = userId;
-            const apiRequest = createApiRequest(
-                apiPaths.customerContactByCustomerId(customerId),
-                'GET',
-                '',
-                this.queryParamModel,
-            );
+            const apiRequest = createApiRequest(apiPaths.customerContactByCustomerId(customerId), 'GET', '', this.queryParamModel);
             const results = await this.boomtownClient.request(apiRequest);
 
             return CustomerContactMap.fromBTCustomerContactResponse(results.data);
@@ -101,12 +96,7 @@ export class CustomerContactRepository implements CustomerContactRepositoryInter
     async authToken(contactId: string, endpoint: string = 'admin/v1'): Promise<SSOResponse> {
         try {
             this.queryParamModel.endpoint = endpoint;
-            const apiRequest = createApiRequest(
-                apiPaths.customerContactSSO(contactId),
-                'POST',
-                '',
-                this.queryParamModel,
-            );
+            const apiRequest = createApiRequest(apiPaths.customerContactSSO(contactId), 'POST', '', this.queryParamModel);
             const results = await this.boomtownClient.request(apiRequest);
 
             return CustomerContactMap.fromBTCustomerContactResponse(results.data);

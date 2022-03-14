@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MetaCustomFormsMap = void 0;
+require("automapper-ts");
 var MetaCustomFormsMap = (function () {
     function MetaCustomFormsMap() {
     }

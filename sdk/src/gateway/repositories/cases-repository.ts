@@ -1,21 +1,11 @@
-import { Service } from 'typedi';
 import { CasesMap, ErrorMap, ResponseMap } from '../mapper';
 import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
 import { apiPaths } from '../../configs/api-paths';
-import {
-    CasesResponse,
-    CasesCreateRequest,
-    CasesListOptions,
-    CaseDeEscalateOptions,
-    CaseEscalateOptions,
-    BaseResponse,
-    CaseStatusHistoryResponse,
-    CaseChatHistoryResponse,
-    CasesCreateResponse,
-} from '../../core/entity';
+import { CasesResponse, CasesCreateRequest, CasesListOptions, CaseDeEscalateOptions, CaseEscalateOptions, BaseResponse, CaseStatusHistoryResponse, CaseChatHistoryResponse, CasesCreateResponse } from '../../core/entity';
 import { CasesRepositoryInterface } from '../../core/interfaces/repositories';
 import { CaseScheduleOptionsModel } from '../../core/models';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Cases repository
@@ -23,9 +13,9 @@ import { CaseScheduleOptionsModel } from '../../core/models';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CasesRepository implements CasesRepositoryInterface {
-    constructor(protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a collection of cases

@@ -4,7 +4,7 @@ import { CustomerCreateRequest, SmsInviteData } from '../../src/core/entity';
 import { CustomerModel } from '../../src/core/models';
 import { CustomerMap } from '../../src/gateway/mapper';
 import { digitsOnly, generateId } from '../helpers/common-helpers';
-import { smsInviteErrorResponse, smsInviteResponse } from '../mock-data/customer-data'; 
+import { smsInviteErrorResponse, smsInviteResponse } from '../mock-data/customer-data';
 import {
     createCustomerErrorResponse,
     customerCreateResponse,
@@ -86,6 +86,7 @@ export function customerInvalidCreateOrUpdateMock(model: CustomerCreateRequest) 
 
     mockedAxios.request.mockRejectedValueOnce(Promise.resolve(res));
 }
+
 export function customerDeleteMock(id: string) {
     mockedAxios.request.mockReset();
 
@@ -103,7 +104,7 @@ export function customerDeleteMock(id: string) {
 }
 
 export function customerSmsInviteMock(model: SmsInviteData) {
-    mockedAxios.request.mockReset(); 
+    mockedAxios.request.mockReset();
 
     const res = {
         data: smsInviteResponse,
@@ -115,4 +116,3 @@ export function customerSmsInviteMock(model: SmsInviteData) {
         mockedAxios.request.mockRejectedValueOnce(smsInviteErrorResponse);
     }
 }
-

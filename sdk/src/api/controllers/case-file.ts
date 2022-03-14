@@ -1,10 +1,11 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CaseFileResponse, CaseFileUpload } from '../../core/entity';
 import { CaseFileServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class CaseFile {
-    constructor(private readonly caseFileService: CaseFileServiceInterface) {}
+    constructor(@Inject('CaseFileService') private readonly caseFileService: CaseFileServiceInterface) {}
+
     /**
      * Returns a list of files related to an case object.
      * @param caseId for case id

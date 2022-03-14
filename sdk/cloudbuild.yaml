@@ -1,4 +1,13 @@
 steps:
+- name: gcr.io/cloud-builders/git
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo "Npm publish- publishing package to npm registry..."
+    git show-ref
+    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Sdk_Package_Version.txt
+
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
   - kms
@@ -22,9 +31,8 @@ steps:
     npm -v
     npm audit
     npm audit fix
-    npm version 2.0.9-beta
+    npm version $(cat /workspace/Sdk_Package_Version.txt)-beta
     npm install -g --save
-    # tsc --build
     npm run-script build
     npm publish --access public --tag beta
   env:

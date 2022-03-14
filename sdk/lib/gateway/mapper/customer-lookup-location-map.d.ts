@@ -1,3 +1,4 @@
+import 'automapper-ts';
 import { CustomerLookupLocation, CustomerLookupLocationMetadata, CustomerTechnologySummary } from '../../core/entity';
 import { CustomerLookupLocationMetadataModel, CustomerLookupLocationModel, CustomerTechnologySummaryModel } from '../../core/models';
 export declare class CustomerLookupLocationMap {

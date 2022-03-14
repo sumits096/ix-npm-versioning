@@ -1,7 +1,7 @@
 import { HashMapResponse, MetaCustomFormsResponse } from '../../entity';
 
 /**
- * Defines methods defination for customer meta status and meta industries to request boomtown api's.
+ * Defines methods definition for customer meta status and meta industries to request boomtown api's.
  *
  * @interface CustomerMetaRepositoryInterface
  */

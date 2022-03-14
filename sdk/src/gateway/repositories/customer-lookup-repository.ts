@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { apiPaths } from '../../configs/api-paths';
 import { CustomerLookupResponse } from '../../core/entity';
 import { createApiRequest } from '../../core/helpers';
@@ -10,27 +10,26 @@ import { CustomerLookupMap, ErrorMap } from '../mapper';
 /**
  * Customer lookup repository
  * @description Provide methods for customer lookup endpoints.
- * 
+ *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerLookupRepository implements CustomerLookupRepositoryInterface {
     private queryParamModel: QueryParamModel = {} as QueryParamModel;
 
-    constructor(protected readonly boomtownClient: BoomtownClient) {
-    }
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns customer details.
      * @param issueId for issue id
-     * @returns 
+     * @returns
      */
     async getLookupByIssueId(issueId: string): Promise<CustomerLookupResponse> {
         try {
             this.queryParamModel.issueId = issueId;
             const apiRequest = createApiRequest(apiPaths.getLookupByIssueId, 'GET', '', this.queryParamModel);
             const result = await this.boomtownClient.request(apiRequest);
-            
+
             return CustomerLookupMap.customerLookupResponse(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
@@ -40,7 +39,7 @@ export class CustomerLookupRepository implements CustomerLookupRepositoryInterfa
     /**
      * Returns customer details.
      * @param customerUserId for customer user id
-     * @returns 
+     * @returns
      */
     async getLookupById(customerUserId: string): Promise<CustomerLookupResponse> {
         try {
@@ -57,7 +56,7 @@ export class CustomerLookupRepository implements CustomerLookupRepositoryInterfa
     /**
      * Returns customer details.
      * @param customerUserEmail for customer email id
-     * @returns 
+     * @returns
      */
     async getLookupByEmail(customerUserEmail: string): Promise<CustomerLookupResponse> {
         try {
@@ -73,8 +72,8 @@ export class CustomerLookupRepository implements CustomerLookupRepositoryInterfa
 
     /**
      * Returns customer details.
-     * @param externalId for customer external id 
-     * @returns 
+     * @param externalId for customer external id
+     * @returns
      */
     async getLookupByExternalId(externalId: string): Promise<CustomerLookupResponse> {
         try {

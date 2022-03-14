@@ -27,5 +27,5 @@ export interface CaseLogServiceInterface {
    * @param caseLogId for case log id
    */
   deleteCaseLog(caseId: string, caseLogId: string): Promise<CaseLogResponse>;
-};
+}
 

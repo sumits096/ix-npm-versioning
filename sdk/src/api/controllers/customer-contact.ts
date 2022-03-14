@@ -1,10 +1,10 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CustomerContactRequest, CustomerContactResponse, ExistsResponse, SSOResponse } from '../../core/entity';
 import { CustomerContactServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class CustomerContact {
-    constructor(private readonly customerContactService: CustomerContactServiceInterface) {}
+    constructor(@Inject('CustomerContactService') private readonly customerContactService: CustomerContactServiceInterface) {}
 
     /**
      * Returns whether a customer contact with the email address exists or not
@@ -44,7 +44,7 @@ export class CustomerContact {
     }
 
     /**
-     * Authenticates a Customer contact, and returns the authtoken (and URL for web apps) for use with SSO.
+     * Authenticates a Customer contact, and returns the authToken (and URL for web apps) for use with SSO.
      * @param contactId for customer contact id
      * @param endpoint to authenticate (defaults to admin/v1)
      * @returns

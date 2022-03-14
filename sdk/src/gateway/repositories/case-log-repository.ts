@@ -1,4 +1,3 @@
-import { Service } from 'typedi';
 import { CaseLogResponse } from '../../core/entity';
 import { CaseLogCreateModel } from '../../core/models';
 import { CaseLogRepositoryInterface } from '../../core/interfaces/repositories';
@@ -6,6 +5,7 @@ import { BoomtownClient } from '../client/boomtown-client';
 import { apiPaths } from '../../configs/api-paths';
 import { createApiRequest } from '../../core/helpers';
 import { CaseLogMapper, ErrorMap } from '../mapper';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Case Log repository
@@ -13,10 +13,11 @@ import { CaseLogMapper, ErrorMap } from '../mapper';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CaseLogRepository implements CaseLogRepositoryInterface {
     private caseLogCreateModel: CaseLogCreateModel = {} as CaseLogCreateModel;
-    constructor(protected readonly boomtownClient: BoomtownClient) { }
+
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Uploads a new case log entry related to an case object.
@@ -27,11 +28,7 @@ export class CaseLogRepository implements CaseLogRepositoryInterface {
     async postCaseLog(caseId: string, notes: string): Promise<CaseLogResponse> {
         try {
             this.caseLogCreateModel.notes = notes;
-            const apiRequest = createApiRequest(
-                apiPaths.createUpdateCaseLogApi(caseId),
-                'POST',
-                JSON.stringify(this.caseLogCreateModel)
-            );
+            const apiRequest = createApiRequest(apiPaths.createUpdateCaseLogApi(caseId), 'POST', JSON.stringify(this.caseLogCreateModel));
             const result = await this.boomtownClient.request(apiRequest);
 
             return CaseLogMapper.caseLogResponse(result.data);
@@ -49,7 +46,7 @@ export class CaseLogRepository implements CaseLogRepositoryInterface {
         try {
             const apiRequest = createApiRequest(apiPaths.getCaseLogByIdApi(caseId), 'GET');
             const result = await this.boomtownClient.request(apiRequest);
-            
+
             return CaseLogMapper.caseLogResponse(result.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
@@ -65,11 +62,7 @@ export class CaseLogRepository implements CaseLogRepositoryInterface {
     async deleteCaseLog(caseId: string, caseLogId: string): Promise<CaseLogResponse> {
         try {
             this.caseLogCreateModel.issue_log_id = caseLogId;
-            const apiRequest = createApiRequest(
-                apiPaths.deleteCaseLogApi(caseId),
-                'POST',
-                JSON.stringify(this.caseLogCreateModel),
-            );
+            const apiRequest = createApiRequest(apiPaths.deleteCaseLogApi(caseId), 'POST', JSON.stringify(this.caseLogCreateModel));
             const result = await this.boomtownClient.request(apiRequest);
 
             return CaseLogMapper.caseLogResponse(result.data);

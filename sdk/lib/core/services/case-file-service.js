@@ -8,9 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CaseFileService = void 0;
-var typedi_1 = require("typedi");
+var common_1 = require("@nestjs/common");
 var CaseFileService = (function () {
     function CaseFileService(caseFileRepository) {
         this.caseFileRepository = caseFileRepository;
@@ -25,7 +28,8 @@ var CaseFileService = (function () {
         return this.caseFileRepository.delete(caseId, fileId);
     };
     CaseFileService = __decorate([
-        (0, typedi_1.Service)(),
+        (0, common_1.Injectable)(),
+        __param(0, (0, common_1.Inject)('CaseFileRepository')),
         __metadata("design:paramtypes", [Object])
     ], CaseFileService);
     return CaseFileService;

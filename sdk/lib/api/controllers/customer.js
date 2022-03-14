@@ -49,7 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Customer = void 0;
-var inversify_1 = require("inversify");
+var common_1 = require("@nestjs/common");
 var Customer = (function () {
     function Customer(customerService) {
         this.customerService = customerService;
@@ -90,8 +90,8 @@ var Customer = (function () {
         });
     };
     Customer = __decorate([
-        (0, inversify_1.injectable)(),
-        __param(0, (0, inversify_1.inject)('CustomerService')),
+        (0, common_1.Injectable)(),
+        __param(0, (0, common_1.Inject)('CustomerService')),
         __metadata("design:paramtypes", [Object])
     ], Customer);
     return Customer;

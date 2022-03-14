@@ -1,11 +1,5 @@
-import { Service } from 'typedi';
-import {
-    BaseResponse,
-    CustomerLocationOptions,
-    CustomerLocationResponse,
-    CustomerLocationCreateRequest,
-    HashMapResponse,
-} from '../entity';
+import { Inject, Injectable } from '@nestjs/common';
+import { BaseResponse, CustomerLocationOptions, CustomerLocationResponse, CustomerLocationCreateRequest, HashMapResponse, CustomerContactResponse } from '../entity';
 import { CustomerLocationRepositoryInterface } from '../interfaces/repositories/customer-location-repository-interface';
 import { CustomerLocationServiceInterface } from '../interfaces/services/customer-location-service-interface';
 
@@ -15,9 +9,9 @@ import { CustomerLocationServiceInterface } from '../interfaces/services/custome
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerLocationService implements CustomerLocationServiceInterface {
-    constructor(protected readonly customerLocationRepository: CustomerLocationRepositoryInterface) {}
+    constructor(@Inject('CustomerLocationRepository') protected readonly customerLocationRepository: CustomerLocationRepositoryInterface) {}
 
     /**
      * Return collection of customer location
@@ -54,6 +48,16 @@ export class CustomerLocationService implements CustomerLocationServiceInterface
      */
     getByExternalId(id: string): Promise<CustomerLocationResponse> {
         return this.customerLocationRepository.getByExternalId(id);
+    }
+
+    /**
+     * Returns a paginated collection of customer contact objects related to a Customer location object.
+     * @param customerId for customer id.
+     * @param customerLocationId for Optional customer location Id to filter the results with.
+     * @returns
+     */
+    getContactByCustomerId(customerId: string, customerLocationId: string): Promise<CustomerContactResponse> {
+        return this.customerLocationRepository.getContactByCustomerId(customerId, customerLocationId);
     }
 
     /**

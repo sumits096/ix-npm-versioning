@@ -1,16 +1,10 @@
-import { Service } from 'typedi';
-import {
-    BaseResponse,
-    CustomerLocationOptions,
-    CustomerLocationResponse,
-    CustomerLocationCreateRequest,
-    HashMapResponse,
-} from '../../core/entity';
+import { Inject, Injectable } from '@nestjs/common';
+import { BaseResponse, CustomerLocationOptions, CustomerLocationResponse, CustomerLocationCreateRequest, HashMapResponse, CustomerContactResponse } from '../../core/entity';
 import { CustomerLocationServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class CustomerLocation {
-    constructor(private readonly customerLocationService: CustomerLocationServiceInterface) {}
+    constructor(@Inject('CustomerLocationService') private readonly customerLocationService: CustomerLocationServiceInterface) {}
 
     /**
      * Returns collection of customers locations
@@ -18,10 +12,7 @@ export class CustomerLocation {
      * @param customerLocationOptions for customer location query parameters
      * @returns
      */
-    async getByCustomerId(
-        id: string,
-        customerLocationOptions?: CustomerLocationOptions,
-    ): Promise<CustomerLocationResponse> {
+    async getByCustomerId(id: string, customerLocationOptions?: CustomerLocationOptions): Promise<CustomerLocationResponse> {
         return this.customerLocationService.getByCustomerId(id, customerLocationOptions);
     }
 
@@ -50,6 +41,16 @@ export class CustomerLocation {
      */
     async getByExternalId(id: string): Promise<CustomerLocationResponse> {
         return this.customerLocationService.getByExternalId(id);
+    }
+
+    /**
+     * Get a collection of contact for a Customer Location
+     * @param customerId for customer id
+     * @param customerLocationId for customer location id
+     * @returns
+     */
+    async getContactByCustomerId(customerId: string, customerLocationId: string): Promise<CustomerContactResponse> {
+        return this.customerLocationService.getContactByCustomerId(customerId, customerLocationId);
     }
 
     /**

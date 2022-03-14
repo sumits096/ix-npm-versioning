@@ -1,8 +1,7 @@
-//import { Inject, Injectable } from '@nestjs/common'; 
+import { Inject, Injectable } from '@nestjs/common';
 import { BaseResponse, CustomerCreateResponse, CustomerResponse, CustomerCreateRequest, ListOptions, SmsInviteData, SmsInviteResponse } from '../entity';
 import { CustomerRepositoryInterface } from '../interfaces/repositories';
 import { CustomerServiceInterface } from '../interfaces/services';
-import { injectable, inject } from 'inversify';
 
 /**
  * Customer service
@@ -10,11 +9,9 @@ import { injectable, inject } from 'inversify';
  *
  * @BoomtownSDK
  */
-@injectable()
+@Injectable()
 export class CustomerService implements CustomerServiceInterface {
-    constructor(
-        @inject('CustomerRepository') 
-        protected readonly customerRepository: CustomerRepositoryInterface) {}
+    constructor(@Inject('CustomerRepository') protected readonly customerRepository: CustomerRepositoryInterface) {}
 
     /**
      * Return a collection of customers
@@ -55,7 +52,7 @@ export class CustomerService implements CustomerServiceInterface {
     /**
      * Sms invite for existing/new customer
      * @param smsInviteData for sms invite details
-     * @returns 
+     * @returns
      */
     smsInvite(smsInviteData: SmsInviteData): Promise<SmsInviteResponse> {
         return this.customerRepository.smsInvite(smsInviteData);

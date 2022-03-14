@@ -1,15 +1,15 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { CustomerLookupResponse } from '../../core/entity';
 import { CustomerLookupServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class CustomerLookup {
-    constructor(private readonly customerLookupService: CustomerLookupServiceInterface) {
-    }
+    constructor(@Inject('CustomerLookupService') private readonly customerLookupService: CustomerLookupServiceInterface) {}
+    
     /**
      * Returns customer details.
      * @param issueId for issue id
-     * @returns 
+     * @returns
      */
     async getLookupByIssueId(issueId: string): Promise<CustomerLookupResponse> {
         return this.customerLookupService.getLookupByIssueId(issueId);
@@ -18,7 +18,7 @@ export class CustomerLookup {
     /**
      * Returns customer details.
      * @param customerUserId for customer user id
-     * @returns 
+     * @returns
      */
     async getLookupById(customerUserId: string): Promise<CustomerLookupResponse> {
         return this.customerLookupService.getLookupById(customerUserId);
@@ -27,7 +27,7 @@ export class CustomerLookup {
     /**
      * Returns customer details.
      * @param customerUserEmail for customer email id
-     * @returns 
+     * @returns
      */
     async getLookupByEmail(customerUserEmail: string): Promise<CustomerLookupResponse> {
         return this.customerLookupService.getLookupByEmail(customerUserEmail);
@@ -36,7 +36,7 @@ export class CustomerLookup {
     /**
      * Returns customer details.
      * @param externalId for customer external id
-     * @returns 
+     * @returns
      */
     async getLookupByExternalId(externalId: string): Promise<CustomerLookupResponse> {
         return this.customerLookupService.getLookupByExternalId(externalId);

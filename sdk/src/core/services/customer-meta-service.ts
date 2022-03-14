@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { HashMapResponse, MetaCustomFormsResponse } from '../entity';
 import { CustomerMetaRepositoryInterface } from '../interfaces/repositories';
 import { CustomerMetaServiceInterface } from '../interfaces/services';
@@ -9,9 +9,9 @@ import { CustomerMetaServiceInterface } from '../interfaces/services';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerMetaService implements CustomerMetaServiceInterface {
-    constructor(protected readonly customerMetaRepository: CustomerMetaRepositoryInterface) {}
+    constructor(@Inject('CustomerMetaRepository') protected readonly customerMetaRepository: CustomerMetaRepositoryInterface) {}
 
     /**
      * Return dictionary mapping Status keys to their labels.
@@ -31,8 +31,8 @@ export class CustomerMetaService implements CustomerMetaServiceInterface {
 
     /**
      * Returns collection of custom form object
-     * @param orgTeamId for organization team id 
-     * @returns 
+     * @param orgTeamId for organization team id
+     * @returns
      */
     customForms(orgTeamId: string): Promise<MetaCustomFormsResponse> {
         return this.customerMetaRepository.customForms(orgTeamId);

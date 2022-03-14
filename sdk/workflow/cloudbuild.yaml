@@ -4,7 +4,7 @@ steps:
   args:
   - '-c'
   - |
-    echo "Pushing changes to git config repo ..."
+    echo "Version migration- check and push version changes to GitHub repo..."
     git show-ref
     git config --global user.name ${_GIT_USERNAME}
     git config --global user.email ${_GIT_USEREMAIL}
@@ -26,10 +26,6 @@ steps:
     git fetch origin $BRANCH_NAME
     git reset --hard origin/$BRANCH_NAME
 
-    echo 'Version is'
-    echo $(cat /workspace/Latest_Version.txt)
-    echo $(cat /workspace/Previous_Version.txt)
-
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
   args:
@@ -40,11 +36,11 @@ steps:
       cd sdk
       npm version patch
       git add .
-      git commit -m "Patch package version by GCP CI/CD"
+      git commit -m "Automation- package version has been patched by GCP CI/CD"
       git push origin $BRANCH_NAME
     elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
     then
-      echo 'version is not updated'
+      echo 'Package version has been updated by developer.'
     fi
 
 - name: gcr.io/cloud-builders/git

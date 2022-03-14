@@ -1,18 +1,12 @@
-import { Service } from 'typedi';
 import { BoomtownClient } from '../client/boomtown-client';
 import { createApiRequest } from '../../core/helpers';
 import { apiPaths } from '../../configs/api-paths';
-import {
-    BaseResponse,
-    CustomerLocationOptions,
-    CustomerLocationResponse,
-    CustomerLocationCreateRequest,
-    HashMapResponse,
-} from '../../core/entity';
+import { BaseResponse, CustomerLocationOptions, CustomerLocationResponse, CustomerLocationCreateRequest, HashMapResponse, CustomerContactResponse } from '../../core/entity';
 import { CustomerLocationMap } from '../mapper/customer-location-map';
-import { CustomerMetaMap, ErrorMap, ResponseMap } from '../mapper';
+import { CustomerContactMap, CustomerMetaMap, ErrorMap, ResponseMap } from '../mapper';
 import { CustomerLocationOptionsModel } from '../../core/models';
 import { CustomerLocationRepositoryInterface } from '../../core/interfaces/repositories';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Customer location repository
@@ -20,11 +14,11 @@ import { CustomerLocationRepositoryInterface } from '../../core/interfaces/repos
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CustomerLocationRepository implements CustomerLocationRepositoryInterface {
     private customerLocationOptionsModel: CustomerLocationOptionsModel = {} as CustomerLocationOptionsModel;
 
-    constructor(protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a collection of customers location
@@ -32,18 +26,10 @@ export class CustomerLocationRepository implements CustomerLocationRepositoryInt
      * @param customerLocationOptions customer location query parameter
      * @returns
      */
-    async getByCustomerId(
-        id: string,
-        customerLocationOptions?: CustomerLocationOptions,
-    ): Promise<CustomerLocationResponse> {
+    async getByCustomerId(id: string, customerLocationOptions?: CustomerLocationOptions): Promise<CustomerLocationResponse> {
         try {
             this.customerLocationOptionsModel.customer_location_id = customerLocationOptions?.customerLocationId;
-            const apiRequest = createApiRequest(
-                apiPaths.getCustomerLocationByIdApi(id),
-                'GET',
-                '',
-                this.customerLocationOptionsModel,
-            );
+            const apiRequest = createApiRequest(apiPaths.getCustomerLocationByIdApi(id), 'GET', '', this.customerLocationOptionsModel);
             const result = await this.boomtownClient.request(apiRequest);
 
             return CustomerLocationMap.responseCustomerLocationMapper(result.data);
@@ -91,15 +77,28 @@ export class CustomerLocationRepository implements CustomerLocationRepositoryInt
     async getByExternalId(id: string): Promise<CustomerLocationResponse> {
         try {
             this.customerLocationOptionsModel.external_id = id;
-            const apiRequest = createApiRequest(
-                apiPaths.getCustomerLocationByExternalIdApi,
-                'GET',
-                '',
-                this.customerLocationOptionsModel,
-            );
+            const apiRequest = createApiRequest(apiPaths.getCustomerLocationByExternalIdApi, 'GET', '', this.customerLocationOptionsModel);
             const result = await this.boomtownClient.request(apiRequest);
 
             return CustomerLocationMap.responseCustomerLocationMapper(result.data);
+        } catch (error: any) {
+            throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
+        }
+    }
+
+    /**
+     * Returns a paginated collection of customer contact objects related to a Customer location object.
+     * @param customerId for customer id.
+     * @param customerLocationId for Optional customer location id to filter the results with.
+     * @returns
+     */
+    async getContactByCustomerId(customerId: string, customerLocationId: string): Promise<CustomerContactResponse> {
+        try {
+            this.customerLocationOptionsModel.customer_location_id = customerLocationId;
+            const apiRequest = createApiRequest(apiPaths.getLocationContactByCustomerId(customerId), 'GET', '', this.customerLocationOptionsModel);
+            const results = await this.boomtownClient.request(apiRequest);
+
+            return CustomerContactMap.fromBTCustomerContactResponse(results.data);
         } catch (error: any) {
             throw error.response && error.response.data ? ErrorMap.error(error.response.data) : error;
         }

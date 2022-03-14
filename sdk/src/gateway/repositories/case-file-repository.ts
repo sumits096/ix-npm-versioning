@@ -1,4 +1,3 @@
-import { Service } from 'typedi';
 import { createApiRequest } from '../../core/helpers';
 import { CaseFileResponse } from '../../core/entity/case-file-response';
 import { CaseFileRepositoryInterface } from '../../core/interfaces/repositories';
@@ -6,6 +5,7 @@ import { BoomtownClient } from '../client/boomtown-client';
 import { apiPaths } from '../../configs/api-paths';
 import { ErrorMap, CaseFileMap } from '../mapper';
 import { CaseFileUpload } from '../../core/entity';
+import { Inject, Injectable } from '@nestjs/common';
 
 /**
  * Case/issues file repository
@@ -13,9 +13,9 @@ import { CaseFileUpload } from '../../core/entity';
  *
  * @BoomtownSDK
  */
-@Service()
+@Injectable()
 export class CaseFileRepository implements CaseFileRepositoryInterface {
-    constructor(protected readonly boomtownClient: BoomtownClient) {}
+    constructor(@Inject('BoomtownClient') protected readonly boomtownClient: BoomtownClient) {}
 
     /**
      * Returns a list of files related to an case object.
@@ -44,13 +44,7 @@ export class CaseFileRepository implements CaseFileRepositoryInterface {
         try {
             const caseFileDataModel = CaseFileMap.toCaseFileQueryModel(fileTag);
             const payload = CaseFileMap.toBTCaseFileUploadModel(file);
-            const apiRequest = createApiRequest(
-                apiPaths.caseFileUploadApi(caseId),
-                'POST',
-                JSON.stringify(payload),
-                caseFileDataModel,
-                true
-            );
+            const apiRequest = createApiRequest(apiPaths.caseFileUploadApi(caseId), 'POST', JSON.stringify(payload), caseFileDataModel, true);
             const result = await this.boomtownClient.request(apiRequest);
 
             return CaseFileMap.responseCaseFileMapper(result.data);
@@ -68,13 +62,7 @@ export class CaseFileRepository implements CaseFileRepositoryInterface {
     async delete(caseId: string, fileId: string): Promise<CaseFileResponse> {
         try {
             const caseFileDataModel = CaseFileMap.toCaseFileDataModel(fileId);
-            const apiRequest = createApiRequest(
-                apiPaths.deleteCaseFileByIdApi(caseId),
-                'POST',
-                JSON.stringify(caseFileDataModel),
-                '',
-                true
-            );
+            const apiRequest = createApiRequest(apiPaths.deleteCaseFileByIdApi(caseId), 'POST', JSON.stringify(caseFileDataModel), '', true);
             const result = await this.boomtownClient.request(apiRequest);
 
             return CaseFileMap.responseCaseFileMapper(result.data);

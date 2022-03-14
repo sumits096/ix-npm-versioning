@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -46,12 +49,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerLocationRepository = void 0;
-var typedi_1 = require("typedi");
 var boomtown_client_1 = require("../client/boomtown-client");
 var helpers_1 = require("../../core/helpers");
 var api_paths_1 = require("../../configs/api-paths");
 var customer_location_map_1 = require("../mapper/customer-location-map");
 var mapper_1 = require("../mapper");
+var common_1 = require("@nestjs/common");
 var CustomerLocationRepository = (function () {
     function CustomerLocationRepository(boomtownClient) {
         this.boomtownClient = boomtownClient;
@@ -140,9 +143,30 @@ var CustomerLocationRepository = (function () {
             });
         });
     };
+    CustomerLocationRepository.prototype.getContactByCustomerId = function (customerId, customerLocationId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var apiRequest, results, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        this.customerLocationOptionsModel.customer_location_id = customerLocationId;
+                        apiRequest = (0, helpers_1.createApiRequest)(api_paths_1.apiPaths.getLocationContactByCustomerId(customerId), 'GET', '', this.customerLocationOptionsModel);
+                        return [4, this.boomtownClient.request(apiRequest)];
+                    case 1:
+                        results = _a.sent();
+                        return [2, mapper_1.CustomerContactMap.fromBTCustomerContactResponse(results.data)];
+                    case 2:
+                        error_5 = _a.sent();
+                        throw error_5.response && error_5.response.data ? mapper_1.ErrorMap.error(error_5.response.data) : error_5;
+                    case 3: return [2];
+                }
+            });
+        });
+    };
     CustomerLocationRepository.prototype.getMetaStatus = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var apiRequest, result, error_5;
+            var apiRequest, result, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -153,15 +177,16 @@ var CustomerLocationRepository = (function () {
                         result = _a.sent();
                         return [2, mapper_1.CustomerMetaMap.mapper(result.data)];
                     case 2:
-                        error_5 = _a.sent();
-                        throw error_5.response && error_5.response.data ? mapper_1.ErrorMap.error(error_5.response.data) : error_5;
+                        error_6 = _a.sent();
+                        throw error_6.response && error_6.response.data ? mapper_1.ErrorMap.error(error_6.response.data) : error_6;
                     case 3: return [2];
                 }
             });
         });
     };
     CustomerLocationRepository = __decorate([
-        (0, typedi_1.Service)(),
+        (0, common_1.Injectable)(),
+        __param(0, (0, common_1.Inject)('BoomtownClient')),
         __metadata("design:paramtypes", [boomtown_client_1.BoomtownClient])
     ], CustomerLocationRepository);
     return CustomerLocationRepository;

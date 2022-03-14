@@ -109,12 +109,12 @@ export class CaseLogMapper {
         return automapper.map('BTInteractionEventType', 'InteractionEventType', data) as InteractionEventType;
     }
 
-     /**
-    * Return category model from entity case file upload
-    * @param model category request model
-    * @returns
-    */
-      static fromBTInteractionEventCategory(model: InteractionEventCategoryModel): InteractionEventCategory {
+    /**
+   * Return category model from entity case file upload
+   * @param model category request model
+   * @returns
+   */
+    static fromBTInteractionEventCategory(model: InteractionEventCategoryModel): InteractionEventCategory {
         const data = model ? model : {} as InteractionEventCategoryModel;
         automapper.createMap('BTInteractionEventCategory', 'InteractionEventCategory')
             .forMember('id', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('id'))

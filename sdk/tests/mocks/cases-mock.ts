@@ -31,7 +31,7 @@ export function getCasesMock(start: number = 0, limit: number = 0) {
         data: casesResponse,
     };
 
-    mockedAxios.request.mockResolvedValueOnce(response);
+    mockedAxios.request.mockResolvedValueOnce(Promise.resolve(response));
 }
 
 export function getCasesByIdMock(id: string) {
@@ -43,7 +43,7 @@ export function getCasesByIdMock(id: string) {
         data: data,
     };
 
-    mockedAxios.request.mockResolvedValueOnce(response);
+    mockedAxios.request.mockResolvedValueOnce(Promise.resolve(response));
 }
 
 export function casesCreateOrUpdateMock(model: CasesCreateRequest) {
@@ -70,7 +70,7 @@ export function casesSuccessResponseMock() {
         data: successResponse,
     };
 
-    mockedAxios.request.mockResolvedValueOnce(response);
+    mockedAxios.request.mockResolvedValueOnce(Promise.resolve(response));
 }
 
 export function scheduleInvalidCaseIdMock() {
@@ -80,7 +80,7 @@ export function scheduleInvalidCaseIdMock() {
         data: caseIdErrorResponse,
     };
 
-    mockedAxios.request.mockResolvedValueOnce(response);
+    mockedAxios.request.mockResolvedValueOnce(Promise.resolve(response));
 }
 
 export function scheduleTimeInvalidMock() {
@@ -90,7 +90,7 @@ export function scheduleTimeInvalidMock() {
         data: scheduleTimeErrorResponse,
     };
 
-    mockedAxios.request.mockResolvedValueOnce(response);
+    mockedAxios.request.mockResolvedValueOnce(Promise.resolve(response));
 }
 
 export function cancelScheduleInvalidCaseIdMock() {
@@ -100,7 +100,7 @@ export function cancelScheduleInvalidCaseIdMock() {
         data: cancelScheduleErrorResponse,
     };
 
-    mockedAxios.request.mockResolvedValueOnce(response);
+    mockedAxios.request.mockResolvedValueOnce(Promise.resolve(response));
 }
 
 export function statusHistoryResponseMock() {

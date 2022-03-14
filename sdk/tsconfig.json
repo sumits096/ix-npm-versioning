@@ -25,8 +25,7 @@
         "preserveConstEnums": true,
         "noEmitOnError": false,
         "typeRoots": [
-            "../node_modules/@types/",
-            "../src/typings.d.ts"
+            "../node_modules/@types/"
         ],
         "suppressImplicitAnyIndexErrors": false,
         "strictNullChecks": true,

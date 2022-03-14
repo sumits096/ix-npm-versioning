@@ -1,10 +1,10 @@
-import { Service } from 'typedi';
+import { Inject, Injectable } from '@nestjs/common';
 import { EnumerationItemResponse } from '../../core/entity';
 import { CaseMetaServiceInterface } from '../../core/interfaces/services';
 
-@Service()
+@Injectable()
 export class CaseMeta {
-    constructor(private readonly caseMetaService: CaseMetaServiceInterface) {}
+    constructor(@Inject('CaseMetaService') private readonly caseMetaService: CaseMetaServiceInterface) {}
 
     /**
      * Returns a dictionary for mapping 'Status' keys to labels on Case objects.

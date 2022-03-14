@@ -11,6 +11,7 @@ export const apiPaths = {
     createUpdateCustomerLocationApi: generatePath(`customers/location/put`),
     deleteCustomerLocationApi: (id: string) => generatePath(`/customers/location/delete/${id}`),
     getCustomerLocationByExternalIdApi: generatePath(`customers/location/lookupByExternalId`),
+    getLocationContactByCustomerId: (customerId: string) => generatePath(`/customers/location/users/${customerId}`),
     getCustomerLocationMetaStatus: generatePath(`customers/location/meta_statuses`),
     customerContactCheck: (email: string) => generatePath(`customers/user_check/${email}`),
     customerContactByCustomerId: (customerId: string) => generatePath(`customers/user/get/${customerId}`),

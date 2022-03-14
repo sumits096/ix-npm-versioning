@@ -1,3 +1,4 @@
+import 'automapper-ts';
 import { CustomerContactMap, CustomerLookupLocationMap } from '.';
 import { CustomerLookupResponse, CustomerLookupTuple } from '../../core/entity';
 import { CustomerLookupResponseModel, CustomerLookupTupleModel } from '../../core/models'; 
