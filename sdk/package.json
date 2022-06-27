@@ -1,0 +1,28 @@
+{
+  "name": "@ix-incubxperts/ixtestnpm",
+  "version": "1.0.0",
+  "description": "This is test package",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "user": "^0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "build": "tsc",
+    "version": "git add -A src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sumits096/ix-npm-versioning.git"
+  },
+  "author": "sumit096",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumits096/ix-npm-versioning/issues"
+  },
+  "homepage": "https://github.com/sumits096/ix-npm-versioning#readme"
+}

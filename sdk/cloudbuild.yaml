@@ -1,0 +1,31 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=sdk/npmrc.enc
+  - --plaintext-file=/root/.npmrc
+  - --location=global
+  - --keyring=sdk-package-keyring
+  - --key=sdk-publish-key
+  volumes:
+  - name: 'home'
+    path: /root/
+
+- name: 'gcr.io/cloud-builders/npm'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    cd sdk 
+    npm version 3.0.1-beta
+    npm install
+    npm build
+    npm publish --access public --tag beta
+  env:
+  - HOME=/root/
+  volumes:
+  - name: 'home'
+    path: /root/
+
+
